@@ -34,7 +34,7 @@ Evidence to watch: shares and quiz completions. Needs analytics (decision pendin
 | Static site on Vercel Hobby from the public repo skirberg/leadersheet | Nothing to run or maintain; free | Accounts or progress across devices are needed |
 | Shareable results as 13 static pages with pre-rendered cards | Works without a server; rich previews everywhere | Results need personal data on the card |
 | Public site is timeless; class mode via `?class` | Strangers do not need a syllabus | The course ends |
-| Name Leadersheet; domain pending | leadersheet.app unregistered; lead.ing or lead.how as a vanity redirect if not premium | A clearly better name and domain appear |
+| Name Leadersheet; domain pending | leadersheet.app is $9.99 then $15 a year; lead.ing ($33,000) and lead.how ($372.90) are premium, so no vanity hack | A clearly better name and domain appear |
 | No analytics yet | It is a tracking decision on a public site | Sami says yes (Vercel Web Analytics, cookieless) |
 | No external skills installed | The referrals skill targets paid referral programs; Vercel's interface guidelines can be read directly | A review or growth task needs one |
 

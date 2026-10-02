@@ -12,15 +12,19 @@ Proof points: sheets numbered S01 to S12 with title blocks, a highlighter on the
 
 Leadersheet: leader plus sheet, read like cheat sheet. No product called Leadersheet turned up in a web search.
 
-Domains checked on 2 October 2026 with `npm run domains` (registry RDAP, or the TLD's own whois server):
+Domains priced on 2 October 2026 with Vercel's public registrar API (first year, then yearly renewal):
 
-| Unregistered | Taken |
-|---|---|
-| leadersheet.app, .io, .so, .co, .sh, .gg, .me, .how, .quest, .page, .study, .ink | leadersheet.com |
-| lead.ing, lead.how, leading.how, leadership.how | leader.sh, lead.sh, lead.gg, lead.quest, lead.to, lead.team |
-| leadership.fun, leadership.study | leadership.gg, leadership.fyi, leadership.guide, leade.rs, leader.ink |
+| Domain | First year | Renewal | Note |
+|---|---|---|---|
+| leadersheet.app | $9.99 | $15 | Recommended home. Exact name, HTTPS only |
+| leadersheets.com | $11.25 | $11.25 | Closest .com; leadersheet.com is taken |
+| leadersheet.org | $9.99 | $10.99 | Fits a free learning resource |
+| leading.how | $25 | $25 | Short vanity link |
+| leadersheet.fyi | $7 | $7 | Cheapest steady price |
+| lead.how | $372.90 | $372.90 | Premium |
+| lead.ing | $33,000 | $33,000 | Premium |
 
-"Unregistered" is a registry lookup, not a price. Short dictionary words on .ing and .how are often premium (writ.ing was priced in the thousands at launch); check at a registrar. Suggested setup: leadersheet.app as the home, with lead.ing or lead.how as a short vanity redirect if either is standard priced.
+Unavailable through Vercel: leadersheet.com, leadersheet.so. Cheap first years can hide steep renewals (leadersheet.study $1.99 then $35.56; leadersheet.io $14.99 then $46). Prices change; recheck before buying.
 
 Runners-up: **Moveset** (moveset.io and .so unregistered; a fighting-game combo app owns moveset.app) and **Orgbox** (orgbox.app and .io unregistered; a university research tool uses the name). Ruled out: Sandtable (a funded defense-AI company) and Orgami (two HR companies).
 
