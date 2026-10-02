@@ -3,6 +3,7 @@
 import * as React from "react"
 import { CheckRow } from "@/components/labs/kit"
 import { Question } from "./quiz"
+import { Burst } from "@/components/play/burst"
 import { useProgress } from "@/lib/store"
 import type { Session } from "@/data/course"
 
@@ -39,7 +40,8 @@ export function SessionQuiz({ s }: { s: Session }) {
           }}
         />
       ))}
-      <div className="flex flex-wrap items-center gap-4 border-t border-dashed border-border pt-4" role="status">
+      <div className="relative flex flex-wrap items-center gap-4 border-t border-dashed border-border pt-4" role="status">
+        <Burst fire={done && score === 3 ? round + 1 : 0} className="!place-items-start" />
         <span className="font-mono text-sm font-medium tnum">
           {done ? `${score} of 3.` : `${Object.keys(answers).length} of 3 answered.`}
           {done && score === 3 && " Sheet signed off."}

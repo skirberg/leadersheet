@@ -9,6 +9,8 @@ import { FrameworkCard } from "@/components/learn/framework-card"
 import { SheetRail } from "@/components/learn/sheets"
 import { DueChecklist, SeenMarker, SessionQuiz } from "@/components/learn/session-parts"
 import { SessionLab } from "@/components/labs"
+import { PlayCallout } from "@/components/play/arcade"
+import { SheetPlaySlot } from "@/components/play/home-bits"
 import { SESSIONS, fmt, fmtMono, fwById, sessionById, sheetNo } from "@/data/course"
 
 export const dynamicParams = false
@@ -153,7 +155,13 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
           </Section>
 
           <Section no="02" title="See it" id="see-it">
+            <SheetPlaySlot sheet={s.id} slot="top">
+              <PlayCallout sheet={s.id} />
+            </SheetPlaySlot>
             <SessionLab lab={s.lab} />
+            <SheetPlaySlot sheet={s.id} slot="bottom">
+              <PlayCallout sheet={s.id} />
+            </SheetPlaySlot>
           </Section>
 
           {fws.length > 0 && (

@@ -53,6 +53,10 @@ Nearest study-tool brand color checked: Chegg orange #EB7100 (brandcolorcode.com
 - Remotion films: the hero builds an organization and redraws it as the four structures from session 3; every sheet has a 16 second recap film generated from its own data.
 - Everything respects `prefers-reduced-motion`: the hero shows a still frame and the pencil appears already drawn.
 
+## Study and Play
+
+A header switch changes emphasis, never hides content. Play mode leads the home page with the arcade, swaps the hero to "built so you can play it", puts each sheet's game first under See it, and celebrates wins with a burst of red pencil strokes (never under reduced motion). The quizzes use original questions on the public models and say so: for fun, not validated assessments.
+
 ## Components
 
 shadcn/ui on Radix, restyled from these tokens: default grays, radius, font, ring and shadows all replaced. Utility pieces (inputs, dialogs, tabs) stay quiet. The signature pieces got custom design: the labs, the films, the sheet cards and the title block.

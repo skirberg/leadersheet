@@ -41,6 +41,8 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: { card: "summary_large_image", images: ["/og.png"] },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { title: "Sandbox", statusBarStyle: "default" },
 }
 
 export const viewport: Viewport = {

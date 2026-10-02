@@ -312,3 +312,37 @@
     stroke-dasharray: 3 3;
   }
 }
+
+@layer components {
+  .burst-stroke {
+    animation: burst 760ms var(--ease-draft) both;
+  }
+  @keyframes burst {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0.4);
+    }
+    25% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--bx), var(--by)) scale(1);
+    }
+  }
+  @keyframes nudge {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+  }
+  .nudge {
+    animation: nudge 240ms ease-in-out;
+  }
+}

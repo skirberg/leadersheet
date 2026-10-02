@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <style>
-    .ink{stroke:#171f2e;fill:none}.dot{fill:#171f2e}.bg{fill:#f9f5ee}
-    @media (prefers-color-scheme:dark){.ink{stroke:#f4f0e7}.dot{fill:#f4f0e7}.bg{fill:#0a1423}}
+    .ink{stroke:#171f2e;fill:none}.dot{fill:#171f2e}.bg{fill:#f9f5ee}.pen{fill:#d02f14}
+    @media (prefers-color-scheme:dark){.ink{stroke:#f4f0e7}.dot{fill:#f4f0e7}.bg{fill:#0a1423}.pen{fill:#f96c4a}}
   </style>
-  <rect class="bg" width="32" height="32" rx="6"/>
-  <path class="ink" d="M4 10V4h6M22 4h6v6M28 22v6h-6M10 28H4v-6" stroke-width="2.4" stroke-linecap="square"/>
-  <path class="ink" d="M16 13.2v3.3h-5.5v2.3M16 16.5h5.5v2.3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="16" cy="10.2" r="3.4" fill="#d5351b"/>
-  <circle class="dot" cx="10.5" cy="21.6" r="2.9"/>
-  <circle class="dot" cx="21.5" cy="21.6" r="2.9"/>
+  <rect class="bg" width="32" height="32" rx="7"/>
+  <path class="ink" d="M4.5 11V4.5H11M21 4.5h6.5V11M27.5 21v6.5H21M11 27.5H4.5V21" stroke-width="3" stroke-linecap="square"/>
+  <path class="ink" d="M16 14v2.6h-5.2v2.2M16 16.6h5.2v2.2" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle class="pen" cx="16" cy="10.6" r="3.8"/>
+  <circle class="dot" cx="10.8" cy="21.6" r="3.2"/>
+  <circle class="dot" cx="21.2" cy="21.6" r="3.2"/>
 </svg>

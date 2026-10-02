@@ -7,13 +7,14 @@ import { cn } from "@/lib/utils"
 import { NAV, isActive } from "./nav-items"
 import { SearchButton } from "./command-menu"
 import { ThemeToggle } from "./theme-toggle"
+import { ModeSwitch, ModeToggle } from "@/components/play/mode-switch"
 
 export function SiteHeader() {
   const pathname = usePathname()
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-border bg-background pt-[env(safe-area-inset-top)]">
-        <div className="mx-auto flex h-16 max-w-[1240px] items-center gap-6 px-4 sm:px-6">
+        <div className="mx-auto flex h-16 max-w-[1240px] items-center gap-4 px-4 sm:px-6 lg:gap-6">
           <Link href="/" className="-ml-1 rounded-md p-1" aria-label="Leadership Sandbox, home">
             <Wordmark />
           </Link>
@@ -37,6 +38,8 @@ export function SiteHeader() {
             })}
           </nav>
           <div className="ml-auto flex items-center gap-1.5">
+            <ModeSwitch className="hidden md:flex" />
+            <ModeToggle className="md:hidden" />
             <SearchButton />
             <ThemeToggle />
           </div>
@@ -47,7 +50,7 @@ export function SiteHeader() {
         aria-label="Main"
         className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background pb-[env(safe-area-inset-bottom)] md:hidden"
       >
-        <ul className="grid grid-cols-5">
+        <ul className="grid grid-cols-6">
           {NAV.map((n) => {
             const on = isActive(pathname, n.href)
             return (
@@ -56,11 +59,11 @@ export function SiteHeader() {
                   href={n.href}
                   aria-current={on ? "page" : undefined}
                   className={cn(
-                    "relative flex h-14 flex-col items-center justify-center gap-1 text-[11px] text-muted-foreground",
+                    "relative flex h-14 flex-col items-center justify-center gap-1 text-[10.5px] text-muted-foreground",
                     on && "font-semibold text-foreground"
                   )}
                 >
-                  {on && <span className="absolute inset-x-5 top-0 h-[2px] bg-foreground" />}
+                  {on && <span className="absolute inset-x-3 top-0 h-[2px] bg-foreground" />}
                   <n.icon className="size-[18px]" strokeWidth={on ? 2.2 : 1.8} />
                   {n.label}
                 </Link>

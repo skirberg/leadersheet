@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/command"
 import { FRAMEWORKS, SESSIONS, sessionById, sheetNo } from "@/data/course"
 import { NAV } from "./nav-items"
+import { GAMES } from "@/data/games"
 import { cn } from "@/lib/utils"
 
 const OpenCtx = React.createContext<(v: boolean) => void>(() => {})
@@ -72,6 +73,14 @@ export function CommandMenuProvider({ children }: { children: React.ReactNode })
                 <span className="font-mono text-[11px] text-muted-foreground tnum">{sheetNo(f.s)}</span>
                 <span className="truncate">{f.name}</span>
                 <span className="ml-auto truncate pl-2 text-xs text-muted-foreground">{f.by}</span>
+              </CommandItem>
+            ))}
+          </CommandGroup>
+          <CommandGroup heading="Play">
+            {GAMES.map((g) => (
+              <CommandItem key={g.id} value={`game ${g.title} ${g.blurb}`} onSelect={() => go(`/play/${g.id}/`)}>
+                <span className="font-mono text-[11px] text-muted-foreground">{g.kind.toUpperCase()}</span>
+                <span className="truncate">{g.title}</span>
               </CommandItem>
             ))}
           </CommandGroup>

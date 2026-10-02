@@ -27,6 +27,7 @@ npm run dev
 - `src/data/labs.ts`: the text inside each lab
 - `src/components/labs/`: the 20 interactive labs
 - `src/components/film/`: the Remotion hero film and session recap film
+- `src/data/games.ts` and `src/components/play/`: the arcade (two quizzes, two timed games) and the Study and Play switch
 - `src/app/globals.css`: brand tokens; reasoning in `DESIGN.md`
 
 Unofficial student study companion. Summaries are for learning; read the originals.

@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { ArrowUpRight, Command } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { PencilUnderline } from "@/components/brand/pencil"
 import { HeroPlayer } from "@/components/film/players"
 import { OpenThisWeek, ThisWeek } from "@/components/learn/this-week"
+import { HeroCtas, HeroLine, HomeArcade } from "@/components/play/home-bits"
 import { CheckCount, SheetGrid } from "@/components/learn/sheets"
 import { C, FRAMEWORKS, sheetNo } from "@/data/course"
 
@@ -17,16 +17,18 @@ export default function Home() {
           <div className="grid gap-6">
             <p className="label-mono rise">Leadership in Organizations · 12 sheets</p>
             <h1 className="rise text-[44px] leading-[0.98] font-semibold tracking-[-0.035em] [font-stretch:92%] sm:text-[64px] lg:text-[76px]" style={{ ["--delay" as string]: "60ms" }}>
-              Every LiO idea, built so you can <PencilUnderline delay={700}>move it.</PencilUnderline>
+              <HeroLine />
             </h1>
             <p className="rise max-w-[50ch] text-lg leading-snug text-muted-foreground sm:text-xl" style={{ ["--delay" as string]: "120ms" }}>
               Twelve sessions as drawing sheets. Each one gives you the idea, a model to play with, the frameworks, and a three question check.
             </p>
             <div className="rise flex flex-wrap items-center gap-2" style={{ ["--delay" as string]: "180ms" }}>
-              <OpenThisWeek />
-              <Button asChild size="lg" variant="outline">
-                <Link href="/practice/">Practice</Link>
-              </Button>
+              <HeroCtas>
+                <OpenThisWeek />
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/play/">Play</Link>
+                </Button>
+              </HeroCtas>
               <span className="ml-2 hidden items-center gap-1.5 font-mono text-xs text-muted-foreground lg:inline-flex">
                 <Command className="size-3.5" />K to search everything
               </span>
@@ -37,6 +39,8 @@ export default function Home() {
       </section>
 
       <div className="mx-auto grid max-w-[1240px] gap-20 px-4 pt-12 sm:px-6 lg:pt-16">
+        <HomeArcade slot="top" />
+
         <div id="this-week" className="scroll-mt-24">
           <ThisWeek />
         </div>
@@ -52,6 +56,8 @@ export default function Home() {
           </div>
           <SheetGrid />
         </section>
+
+        <HomeArcade slot="bottom" />
 
         <section className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
           <div className="grid content-start gap-5">
