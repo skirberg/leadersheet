@@ -3,7 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import { TitleBlock } from "@/components/brand/title-block"
-import { PencilUnderline } from "@/components/brand/pencil"
+import { Emphasis } from "@/components/brand/emphasis"
 import { SessionFilmPlayer } from "@/components/film/players"
 import { FrameworkCard } from "@/components/learn/framework-card"
 import { SheetRail } from "@/components/learn/sheets"
@@ -75,7 +75,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
             />
             <h1 className="text-[42px] leading-[1] font-semibold tracking-[-0.03em] [font-stretch:94%] sm:text-[60px]">{s.title}</h1>
             <p className="text-2xl leading-[1.25] font-medium tracking-[-0.01em] sm:text-[28px]">
-              {head} <PencilUnderline delay={500}>{tail}</PencilUnderline>
+              {head} <Emphasis delay={500}>{tail}</Emphasis>
             </p>
           </header>
 

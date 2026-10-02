@@ -61,7 +61,7 @@ export function KotterLab() {
                   width={66}
                   height={252 - y}
                   rx={3}
-                  className={cur ? "fill-pencil" : on ? "fill-ink" : "fill-soft"}
+                  className={cur ? "fill-signal" : on ? "fill-ink" : "fill-soft"}
                   style={{ transition: "fill 300ms" }}
                 />
                 <rect x={x} y={y} width={66} height={252 - y} rx={3} fill="none" className="focus-ring" />
@@ -120,7 +120,7 @@ export function TeamLab() {
             {pts.map((p, i) =>
               pts.slice(i + 1).map((q, j) => {
                 const newest = i + 1 + j === n - 1
-                return <line key={`${i}-${j}`} x1={p[0]} y1={p[1]} x2={q[0]} y2={q[1]} className={newest ? "edge-pencil" : "edge"} strokeWidth={newest ? 1.75 : 1} />
+                return <line key={`${i}-${j}`} x1={p[0]} y1={p[1]} x2={q[0]} y2={q[1]} className={newest ? "edge-signal" : "edge"} strokeWidth={newest ? 1.75 : 1} />
               })
             )}
             {pts.map((p, i) => (
@@ -133,7 +133,7 @@ export function TeamLab() {
               {links}
               <span className="ml-2 font-sans text-base font-medium text-muted-foreground">links</span>
             </p>
-            <p className="text-sm text-muted-foreground">{n > 2 ? `The newest person, in red pencil, adds ${n - 1}.` : "Two people, one conversation."}</p>
+            <p className="text-sm text-muted-foreground">{n > 2 ? `The newest person, highlighted, adds ${n - 1}.` : "Two people, one conversation."}</p>
           </div>
         </div>
         <p className="text-sm text-muted-foreground">
@@ -196,7 +196,7 @@ export function ConflictLab() {
                 }}
               >
                 <circle cx={x} cy={y} r={24} fill="transparent" className="focus-ring" />
-                <circle cx={x} cy={y} r={on ? 11 : 8} className={on ? "fill-pencil" : "node"} />
+                <circle cx={x} cy={y} r={on ? 11 : 8} className={on ? "fill-signal" : "node"} />
                 <text x={x} y={y - 18} textAnchor="middle" className="lbl">{k}</text>
               </g>
             )

@@ -7,6 +7,7 @@ import { ProgressProvider } from "@/lib/store"
 import { CommandMenuProvider } from "@/components/site/command-menu"
 import { SiteFooter, SiteHeader } from "@/components/site/header"
 import { currentSession } from "@/data/course"
+import { BRAND } from "@/brand"
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -29,20 +30,21 @@ const site =
 export const metadata: Metadata = {
   metadataBase: site ? new URL(site) : undefined,
   title: {
-    default: "Leadership Sandbox · Every LiO idea, built to play with",
-    template: "%s · Leadership Sandbox",
+    default: BRAND.title,
+    template: `%s · ${BRAND.name}`,
   },
-  description:
-    "Twelve sessions of Leadership in Organizations as interactive sheets: the idea, a model you can move, the frameworks and a three-question check.",
+  description: BRAND.description,
+  applicationName: BRAND.name,
+  authors: [{ name: BRAND.author.name, url: BRAND.author.url }],
   openGraph: {
-    title: "Leadership Sandbox",
-    description: "Every Leadership in Organizations idea, built to play with.",
+    title: BRAND.name,
+    description: BRAND.description,
+    siteName: BRAND.name,
     images: [{ url: "/og.png", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: { card: "summary_large_image", images: ["/og.png"] },
-  manifest: "/manifest.webmanifest",
-  appleWebApp: { title: "Sandbox", statusBarStyle: "default" },
+  appleWebApp: { title: BRAND.shortName, statusBarStyle: "default" },
 }
 
 export const viewport: Viewport = {
@@ -50,8 +52,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f9f5ee" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a1423" },
+    { media: "(prefers-color-scheme: light)", color: BRAND.themeColor.light },
+    { media: "(prefers-color-scheme: dark)", color: BRAND.themeColor.dark },
   ],
 }
 

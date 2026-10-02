@@ -13,7 +13,7 @@ export function Timeline() {
         const now = ready && s.id === current.id
         return (
           <li key={s.id} className={cn("relative grid gap-1 border-b border-border py-4 pr-2 pl-6 sm:grid-cols-[6.5rem_minmax(0,1fr)] sm:gap-4", now && "bg-card")}>
-            <span aria-hidden className={cn("absolute top-[22px] -left-[7px] size-3 rounded-full border-2 border-foreground bg-background", now && "border-pencil bg-pencil")} />
+            <span aria-hidden className={cn("absolute top-[22px] -left-[7px] size-3 rounded-full border-2 border-foreground bg-background", now && "border-signal bg-signal")} />
             <span className="font-mono text-[13px] font-medium tnum">
               {fmtMono(s.date)}
               <span className="block text-[11px] font-normal text-muted-foreground">{sheetNo(s.n)}</span>

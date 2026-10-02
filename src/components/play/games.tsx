@@ -10,6 +10,7 @@ import { fwById, seededOrder } from "@/data/course"
 import { CULTURE_STYLES, TKI_MODES } from "@/data/labs"
 import { BIAS_ITEMS, BIAS_NAMES, CONFLICT_QUIZ, CULTURE_QUIZ } from "@/data/games"
 import { cn } from "@/lib/utils"
+import { BRAND } from "@/brand"
 
 const shuffle = <T,>(a: T[]) => {
   const x = [...a]
@@ -160,7 +161,7 @@ export function CultureGame() {
               </div>
             </dl>
             <div className="flex flex-wrap gap-2 pt-2">
-              <CopyResult text={`I fit a ${r.top} culture on the Leadership Sandbox culture map.`} />
+              <CopyResult text={`I fit a ${r.top} culture on the ${BRAND.name} culture map.`} />
               <Button
                 variant="ghost"
                 onClick={() => {
@@ -230,9 +231,9 @@ function CultureMapResult({ you, top }: { you: number[]; top: string }) {
           </text>
         </g>
       ))}
-      <line x1={MX(you[0])} y1={MY(you[1])} x2={MX(CULTURE_STYLES[top][0])} y2={MY(CULTURE_STYLES[top][1])} className="edge-pencil" strokeDasharray="4 5" strokeWidth={2} />
-      <circle cx={MX(you[0])} cy={MY(you[1])} r={13} className="fill-pencil" />
-      <text x={MX(you[0])} y={MY(you[1]) + 4} textAnchor="middle" style={{ fill: "var(--background)", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 10 }}>
+      <line x1={MX(you[0])} y1={MY(you[1])} x2={MX(CULTURE_STYLES[top][0])} y2={MY(CULTURE_STYLES[top][1])} className="edge-signal" strokeDasharray="4 5" strokeWidth={2} />
+      <circle cx={MX(you[0])} cy={MY(you[1])} r={13} className="fill-signal" />
+      <text x={MX(you[0])} y={MY(you[1]) + 4} textAnchor="middle" style={{ fill: "var(--signal-foreground)", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 10 }}>
         YOU
       </text>
     </svg>
@@ -278,7 +279,7 @@ export function ConflictGame() {
                 <div key={m} className="grid grid-cols-[8.5rem_minmax(0,1fr)_2rem] items-center gap-3 text-sm">
                   <span className={cn(m === top && "font-semibold")}>{m}</span>
                   <div className="h-2 overflow-hidden rounded-full bg-border" role="img" aria-label={`${m}: ${c} of ${picks.length}`}>
-                    <div className={cn("h-full rounded-full", m === top ? "bg-pencil" : "bg-foreground")} style={{ width: `${(c / picks.length) * 100}%` }} />
+                    <div className={cn("h-full rounded-full", m === top ? "bg-signal" : "bg-foreground")} style={{ width: `${(c / picks.length) * 100}%` }} />
                   </div>
                   <span className="text-right font-mono text-xs tnum">{c}</span>
                 </div>
@@ -310,8 +311,8 @@ export function ConflictGame() {
                 </text>
               </g>
             ))}
-            <circle cx={60 + pos[1] * 500} cy={300 - pos[0] * 270} r={13} className="fill-pencil" />
-            <text x={60 + pos[1] * 500} y={300 - pos[0] * 270 + 4} textAnchor="middle" style={{ fill: "var(--background)", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 10 }}>
+            <circle cx={60 + pos[1] * 500} cy={300 - pos[0] * 270} r={13} className="fill-signal" />
+            <text x={60 + pos[1] * 500} y={300 - pos[0] * 270 + 4} textAnchor="middle" style={{ fill: "var(--signal-foreground)", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 10 }}>
               YOU
             </text>
           </svg>
@@ -495,9 +496,9 @@ export function BiasGame() {
           <span className="font-mono text-4xl font-medium tnum" aria-label={`${score} points`}>
             {score}
           </span>
-          {streak >= 3 && <span className="label-mono !text-pencil">Streak {streak}</span>}
+          {streak >= 3 && <span className="label-mono !text-signal-text">Streak {streak}</span>}
         </div>
-        <span className={cn("font-mono text-2xl font-medium tnum", left <= 10 && "text-pencil")} aria-hidden>
+        <span className={cn("font-mono text-2xl font-medium tnum", left <= 10 && "text-signal")} aria-hidden>
           0:{String(left).padStart(2, "0")}
         </span>
       </div>
@@ -620,7 +621,7 @@ export function ClimbGame() {
               {steps.map((_, i) => {
                 const x = 12 + i * 72,
                   y = 192 - i * 24
-                return <rect key={i} x={x} y={y} width={66} height={212 - y} rx={3} className={i < next ? (i === next - 1 ? "fill-pencil" : "fill-ink") : "fill-soft"} style={{ transition: "fill 200ms" }} />
+                return <rect key={i} x={x} y={y} width={66} height={212 - y} rx={3} className={i < next ? (i === next - 1 ? "fill-signal" : "fill-ink") : "fill-soft"} style={{ transition: "fill 200ms" }} />
               })}
               <line x1={4} x2={596} y1={212.5} y2={212.5} className="edge-ink" />
             </svg>
@@ -645,7 +646,7 @@ export function ClimbGame() {
                     "relative flex min-h-20 flex-col items-start justify-between gap-2 rounded-md border border-border bg-background/40 p-3 text-left text-[15px] leading-snug font-semibold transition-[border-color,background-color,opacity]",
                     !placed && "hover:border-foreground/60",
                     placed && "border-foreground bg-foreground text-background",
-                    bad === s && "nudge border-pencil"
+                    bad === s && "nudge border-signal"
                   )}
                 >
                   <span className={cn("font-mono text-[11px] font-medium", placed ? "text-background/70" : "text-muted-foreground")}>{placed ? `STEP ${s + 1}` : "?"}</span>

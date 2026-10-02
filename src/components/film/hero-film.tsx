@@ -76,7 +76,7 @@ export function HeroFilm() {
         ))}
         {[bs[0][1], bs[3][1]].map((y, ri) => (
           <g key={ri}>
-            <path d={`M${bs[0][0] - 90} ${y} L${bs[2][0] + 40} ${y}`} stroke="var(--pencil)" strokeWidth={2.5} strokeDasharray="9 9" fill="none" />
+            <path d={`M${bs[0][0] - 90} ${y} L${bs[2][0] + 40} ${y}`} stroke="var(--signal)" strokeWidth={2.5} strokeDasharray="9 9" fill="none" />
             <text x={bs[0][0] - 100} y={y + 8} textAnchor="end" style={{ font: `600 24px ${sans}`, fill: "var(--foreground)" }}>
               {ri ? "Audio" : "Wearables"}
             </text>
@@ -170,16 +170,16 @@ export function HeroFilm() {
               </g>
             )
           })}
-          {/* the leader, in red pencil */}
+          {/* the leader, in the signal color */}
           <g transform={`translate(${ceo[0]} ${ceo[1]}) scale(${build(18)})`}>
-            <rect x={-82} y={-leadR} width={164} height={leadR * 2} rx={6} fill="var(--pencil)" />
-            <text y={9} textAnchor="middle" style={{ font: `600 25px ${sans}`, fill: "var(--background)" }}>
+            <rect x={-82} y={-leadR} width={164} height={leadR * 2} rx={6} fill="var(--signal)" />
+            <text y={9} textAnchor="middle" style={{ font: `600 25px ${sans}`, fill: "var(--signal-foreground)" }}>
               Leader
             </text>
           </g>
           <path
             d={`M${ceo[0] + 40} ${ceo[1] - 44}C${ceo[0] - 60} ${ceo[1] - 52} ${ceo[0] - 132} ${ceo[1] - 30} ${ceo[0] - 128} ${ceo[1] + 4}C${ceo[0] - 124} ${ceo[1] + 46} ${ceo[0] + 40} ${ceo[1] + 54} ${ceo[0] + 110} ${ceo[1] + 34}C${ceo[0] + 150} ${ceo[1] + 20} ${ceo[0] + 140} ${ceo[1] - 34} ${ceo[0] + 20} ${ceo[1] - 46}`}
-            stroke="var(--pencil)"
+            stroke="var(--signal)"
             strokeWidth={3.5}
             fill="none"
             strokeLinecap="round"

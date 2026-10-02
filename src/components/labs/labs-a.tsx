@@ -75,10 +75,10 @@ export function EiLab() {
               )
             })}
             <polygon points={poly(ot)} fill="none" stroke="var(--muted-foreground)" strokeWidth={1.75} strokeDasharray="5 4" className="transition-all duration-300" />
-            <polygon points={poly(me)} fill="var(--pencil-soft)" stroke="var(--pencil)" strokeWidth={2.25} className="transition-all duration-300" />
+            <polygon points={poly(me)} fill="var(--signal-soft)" stroke="var(--signal)" strokeWidth={2.25} className="transition-all duration-300" />
           </svg>
           <figcaption className="flex flex-wrap justify-center gap-5 text-sm">
-            <span className="inline-flex items-center gap-2"><i className="block h-[3px] w-6 bg-pencil" /> You</span>
+            <span className="inline-flex items-center gap-2"><i className="block h-[3px] w-6 bg-signal" /> You</span>
             <span className="inline-flex items-center gap-2"><i className="block h-0 w-6 border-t-2 border-dashed border-muted-foreground" /> A colleague</span>
           </figcaption>
         </figure>
@@ -125,7 +125,7 @@ function StructureMorph() {
         ))}
         {[190, 236].map((y, ri) => (
           <g key={y}>
-            <path className="edge-pencil" strokeDasharray="5 5" strokeWidth={1.75} d={`M92 ${y} L476 ${y}`} />
+            <path className="edge-signal" strokeDasharray="5 5" strokeWidth={1.75} d={`M92 ${y} L476 ${y}`} />
             <text x={22} y={y + 4} className="lbl">{ri ? "Audio" : "Wearables"}</text>
           </g>
         ))}
@@ -166,7 +166,7 @@ function StructureMorph() {
         <g key={k} className="animate-in fade-in duration-500">{edges}</g>
         <g className="move" style={tr(P.ceo)}>
           <rect className="node node-lead" x={-48} y={-16} width={96} height={32} rx={4} />
-          <text className="lbl" textAnchor="middle" y={5} style={{ fill: "var(--background)" }}>Leader</text>
+          <text className="lbl" textAnchor="middle" y={5} style={{ fill: "var(--signal-foreground)" }}>Leader</text>
         </g>
         {P.a.map((p, i) => (
           <g key={i} className="move" style={tr(p)}>
@@ -224,7 +224,7 @@ function Congruence() {
                 }
               }}
             >
-              <line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className={on ? "edge-pencil" : "edge"} strokeWidth={on ? 4 : 2} />
+              <line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} className={on ? "edge-signal" : "edge"} strokeWidth={on ? 4 : 2} />
               <line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="transparent" strokeWidth={24} className="focus-ring" />
             </g>
           )
@@ -321,7 +321,7 @@ export function CultureLab() {
         <text x={250} y={-10} textAnchor="end">INTERDEPENDENCE</text>
         {sel.length === 2 && (
           <line
-            className="edge-pencil"
+            className="edge-signal"
             x1={X(CULTURE_STYLES[sel[0]][0])}
             y1={Y(CULTURE_STYLES[sel[0]][1])}
             x2={X(CULTURE_STYLES[sel[1]][0])}
@@ -346,7 +346,7 @@ export function CultureLab() {
               }}
             >
               <circle cx={X(p[0])} cy={Y(p[1])} r={22} fill="transparent" className="focus-ring" />
-              <circle cx={X(p[0])} cy={Y(p[1])} r={on ? 10 : 7} className={on ? "fill-pencil" : "node"} style={{ transition: "r 200ms" }} />
+              <circle cx={X(p[0])} cy={Y(p[1])} r={on ? 10 : 7} className={on ? "fill-signal" : "node"} style={{ transition: "r 200ms" }} />
               <text x={X(p[0])} y={Y(p[1]) - 17} textAnchor="middle" className="lbl">{k}</text>
             </g>
           )

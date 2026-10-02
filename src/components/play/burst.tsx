@@ -3,7 +3,7 @@
 import { useProgress, useReducedMotion } from "@/lib/store"
 
 /**
- * A burst of red-pencil strokes, the brand's version of confetti.
+ * A burst of strokes in the brand colors, the brand's version of confetti.
  * Play mode only, and never under reduced motion. Change `fire` to replay.
  */
 export function Burst({ fire, className }: { fire: number; className?: string }) {
@@ -22,7 +22,7 @@ export function Burst({ fire, className }: { fire: number; className?: string })
             <path
               key={i}
               d={`M${Math.cos(a) * r1} ${Math.sin(a) * r1}L${Math.cos(a) * r2} ${Math.sin(a) * r2}`}
-              stroke={i % 3 === 0 ? "var(--foreground)" : "var(--pencil)"}
+              stroke={i % 3 === 0 ? "var(--foreground)" : i % 3 === 1 ? "var(--signal)" : "var(--signal-2)"}
               strokeWidth={i % 3 === 0 ? 3 : 4}
               strokeLinecap="round"
               className="burst-stroke"

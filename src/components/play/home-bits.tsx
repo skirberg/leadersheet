@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { PencilUnderline } from "@/components/brand/pencil"
+import { Emphasis } from "@/components/brand/emphasis"
 import { Arcade } from "./arcade"
 import { useProgress } from "@/lib/store"
 
@@ -13,9 +13,9 @@ export function HeroLine() {
   return (
     <>
       Every LiO idea, built so you can{" "}
-      <PencilUnderline key={play ? "p" : "s"} delay={play ? 100 : 700}>
+      <Emphasis key={play ? "p" : "s"} delay={play ? 100 : 700}>
         {play ? "play it." : "move it."}
-      </PencilUnderline>
+      </Emphasis>
     </>
   )
 }

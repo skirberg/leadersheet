@@ -1,12 +1,11 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "../brand/presets/leadersheet/tokens.css";
 
 /*
-  Leadership Sandbox tokens. Concept: a drafting table for leadership.
-  Paper and ink, a faint blueprint grid, and one red pencil.
-  Rule: the pencil marks one thing per view. It is never an error color.
-  Source of truth for the reasoning: DESIGN.md.
+  Structure and components. Colors, radius and motion values come from the active brand preset.
+  Rule: the signal color marks one thing per view and is never an error color.
 */
 
 @custom-variant dark (&:is(.dark *));
@@ -30,8 +29,12 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-pencil: var(--pencil);
-  --color-pencil-soft: var(--pencil-soft);
+  --color-signal: var(--signal);
+  --color-signal-text: var(--signal-text);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-signal-2: var(--signal-2);
+  --color-signal-2-foreground: var(--signal-2-foreground);
+  --color-signal-soft: var(--signal-soft);
   --color-ok: var(--ok);
   --color-rule: var(--rule);
   --color-grid: var(--grid);
@@ -52,64 +55,7 @@
   --ease-snap: cubic-bezier(0.3, 1.4, 0.5, 1);
 }
 
-:root {
-  --radius: 6px;
-  --dur-press: 120ms;
-  --dur-ui: 220ms;
-  --dur-draw: 700ms;
-
-  /* drafting paper, blue-black ink */
-  --background: oklch(0.972 0.01 85);
-  --foreground: oklch(0.24 0.03 262);
-  --card: oklch(0.988 0.006 85);
-  --card-foreground: oklch(0.24 0.03 262);
-  --popover: oklch(0.988 0.006 85);
-  --popover-foreground: oklch(0.24 0.03 262);
-  --primary: oklch(0.24 0.03 262);
-  --primary-foreground: oklch(0.985 0.006 85);
-  --secondary: oklch(0.945 0.012 85);
-  --secondary-foreground: oklch(0.24 0.03 262);
-  --muted: oklch(0.945 0.012 85);
-  --muted-foreground: oklch(0.47 0.025 262);
-  --accent: oklch(0.94 0.014 85);
-  --accent-foreground: oklch(0.24 0.03 262);
-  --destructive: oklch(0.5 0.17 20);
-  --border: oklch(0.86 0.014 80);
-  --rule: oklch(0.62 0.02 262);
-  --input: oklch(0.62 0.02 262);
-  --ring: oklch(0.56 0.2 32);
-  --pencil: oklch(0.56 0.2 32);
-  --pencil-soft: oklch(0.56 0.2 32 / 0.1);
-  --ok: oklch(0.52 0.13 152);
-  --grid: oklch(0.55 0.08 245 / 0.11);
-}
-
-.dark {
-  /* the blueprint at night */
-  --background: oklch(0.19 0.035 258);
-  --foreground: oklch(0.955 0.012 85);
-  --card: oklch(0.225 0.038 258);
-  --card-foreground: oklch(0.955 0.012 85);
-  --popover: oklch(0.225 0.038 258);
-  --popover-foreground: oklch(0.955 0.012 85);
-  --primary: oklch(0.955 0.012 85);
-  --primary-foreground: oklch(0.19 0.035 258);
-  --secondary: oklch(0.26 0.038 258);
-  --secondary-foreground: oklch(0.955 0.012 85);
-  --muted: oklch(0.26 0.038 258);
-  --muted-foreground: oklch(0.74 0.025 250);
-  --accent: oklch(0.28 0.04 258);
-  --accent-foreground: oklch(0.955 0.012 85);
-  --destructive: oklch(0.7 0.16 20);
-  --border: oklch(0.34 0.035 258);
-  --rule: oklch(0.52 0.035 258);
-  --input: oklch(0.52 0.035 258);
-  --ring: oklch(0.7 0.18 35);
-  --pencil: oklch(0.7 0.18 35);
-  --pencil-soft: oklch(0.7 0.18 35 / 0.14);
-  --ok: oklch(0.75 0.15 152);
-  --grid: oklch(0.75 0.08 245 / 0.09);
-}
+/* Brand tokens live in src/brand/presets/<name>/tokens.css, imported at the top of this file. */
 
 @layer base {
   * {
@@ -130,11 +76,11 @@
     cursor: pointer;
   }
   ::selection {
-    background: var(--pencil-soft);
+    background: var(--signal-soft);
     color: inherit;
   }
   :focus-visible {
-    outline: 2px solid var(--pencil);
+    outline: 2px solid var(--signal);
     outline-offset: 2px;
   }
   h1,
@@ -194,18 +140,18 @@
   .tnum {
     font-variant-numeric: tabular-nums slashed-zero;
   }
-  /* Device 2: the red pencil. Draws once when it enters. */
-  .pencil-stroke {
-    stroke: var(--pencil);
+  /* Emphasis device: an underline stroke or a highlighter swipe, set per brand. Draws once on entry. */
+  .signal-stroke {
+    stroke: var(--signal);
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-dasharray: var(--len, 600);
     stroke-dashoffset: var(--len, 600);
-    animation: pencil-draw var(--dur-draw) var(--ease-draft) forwards;
+    animation: signal-draw var(--dur-draw) var(--ease-draft) forwards;
     animation-delay: var(--delay, 200ms);
   }
-  @keyframes pencil-draw {
+  @keyframes signal-draw {
     to {
       stroke-dashoffset: 0;
     }
@@ -265,8 +211,8 @@
     stroke-width: 1.5;
   }
   .viz .node-lead {
-    fill: var(--pencil);
-    stroke: var(--pencil);
+    fill: var(--signal);
+    stroke: var(--signal);
   }
   .viz .edge {
     stroke: var(--rule);
@@ -278,8 +224,8 @@
     stroke-width: 1.5;
     fill: none;
   }
-  .viz .edge-pencil {
-    stroke: var(--pencil);
+  .viz .edge-signal {
+    stroke: var(--signal);
     stroke-width: 2.5;
     fill: none;
   }
@@ -291,8 +237,8 @@
   .viz .fill-ink {
     fill: var(--foreground);
   }
-  .viz .fill-pencil {
-    fill: var(--pencil);
+  .viz .fill-signal {
+    fill: var(--signal);
   }
   .viz .fill-soft {
     fill: var(--border);
@@ -307,7 +253,7 @@
     outline: none;
   }
   .viz [role="button"]:focus-visible .focus-ring {
-    stroke: var(--pencil);
+    stroke: var(--signal);
     stroke-width: 2;
     stroke-dasharray: 3 3;
   }
@@ -344,5 +290,20 @@
   }
   .nudge {
     animation: nudge 240ms ease-in-out;
+  }
+}
+
+@layer components {
+  /* Highlighter swipe: grows left to right once, slightly skewed like a real marker. */
+  .highlight-swipe {
+    transform-origin: left center;
+    transform: skewX(-8deg) scaleX(0);
+    animation: swipe var(--dur-draw) var(--ease-draft) forwards;
+    animation-delay: var(--delay, 200ms);
+  }
+  @keyframes swipe {
+    to {
+      transform: skewX(-8deg) scaleX(1);
+    }
   }
 }

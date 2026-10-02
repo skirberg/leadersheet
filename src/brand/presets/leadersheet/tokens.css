@@ -1,0 +1,73 @@
+/*
+  Preset: Leadersheet.
+  Concept: the cheat sheet for leading people, printed in two fluorescent inks.
+  Paper and ink do the work. Lime is the highlighter (behind words, ink text on top, one per view).
+  Pink is the signal (lines, data marks, focus). Pink text only at 24px and up, or use --signal-text.
+*/
+
+:root {
+  --radius: 8px;
+  --dur-press: 120ms;
+  --dur-ui: 200ms;
+  --dur-draw: 650ms;
+
+  --background: #f7f6ef;
+  --foreground: #13161c;
+  --card: #fdfcf8;
+  --card-foreground: #13161c;
+  --popover: #fdfcf8;
+  --popover-foreground: #13161c;
+  --primary: #13161c;
+  --primary-foreground: #f7f6ef;
+  --secondary: #eeece3;
+  --secondary-foreground: #13161c;
+  --muted: #eeece3;
+  --muted-foreground: #545860;
+  --accent: #ebe9df;
+  --accent-foreground: #13161c;
+  --destructive: #a5122d;
+  --border: #dedcd2;
+  --rule: #7d8088;
+  --input: #7d8088;
+  --ring: #f1228f;
+  --ok: #05773b;
+  --grid: rgb(19 22 28 / 0.07);
+
+  --signal: #f1228f;
+  --signal-text: #ca0d76;
+  --signal-foreground: #13161c;
+  --signal-soft: rgb(241 34 143 / 0.1);
+  --signal-2: #ddf93c;
+  --signal-2-foreground: #13161c;
+}
+
+.dark {
+  --background: #0c0e13;
+  --foreground: #f5f3ee;
+  --card: #14171d;
+  --card-foreground: #f5f3ee;
+  --popover: #14171d;
+  --popover-foreground: #f5f3ee;
+  --primary: #f5f3ee;
+  --primary-foreground: #0c0e13;
+  --secondary: #1c1f26;
+  --secondary-foreground: #f5f3ee;
+  --muted: #1c1f26;
+  --muted-foreground: #a4a8af;
+  --accent: #22262e;
+  --accent-foreground: #f5f3ee;
+  --destructive: #ff7a8f;
+  --border: #2a2e36;
+  --rule: #5f636c;
+  --input: #5f636c;
+  --ring: #ff6fae;
+  --ok: #5bcc80;
+  --grid: rgb(245 243 238 / 0.05);
+
+  --signal: #ff6fae;
+  --signal-text: #ff6fae;
+  --signal-foreground: #0c0e13;
+  --signal-soft: rgb(255 111 174 / 0.14);
+  --signal-2: #d4f73e;
+  --signal-2-foreground: #0c0e13;
+}

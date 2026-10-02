@@ -57,7 +57,7 @@ function Underline({ start, width }: { start: number; width: number }) {
   const off = interpolate(f, [start, start + 22], [1, 0], { ...clamp, easing: ease })
   return (
     <svg width={width} height={16} viewBox="0 0 300 14" preserveAspectRatio="none" style={{ display: "block", marginTop: 6, overflow: "visible" }}>
-      <path d="M3 9.5C46 5 92 11 141 6.8S236 5.2 297 7.5" stroke="var(--pencil)" strokeWidth={4.5} fill="none" strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={off} />
+      <path d="M3 9.5C46 5 92 11 141 6.8S236 5.2 297 7.5" stroke="var(--signal)" strokeWidth={4.5} fill="none" strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={off} />
     </svg>
   )
 }
@@ -175,8 +175,8 @@ function FrameworkTree({ names, sheet }: { names: string[]; sheet: string }) {
   const draw = interpolate(f, [8, 30], [1, 0], { ...clamp, easing: ease })
   return (
     <svg width={W} height={330} viewBox={`0 0 ${W} 330`} style={{ overflow: "visible" }}>
-      <rect x={W / 2 - 90} y={10} width={180} height={56} rx={6} fill="var(--pencil)" />
-      <text x={W / 2} y={46} textAnchor="middle" style={{ font: `600 24px ${sans}`, fill: "var(--background)" }}>
+      <rect x={W / 2 - 90} y={10} width={180} height={56} rx={6} fill="var(--signal)" />
+      <text x={W / 2} y={46} textAnchor="middle" style={{ font: `600 24px ${sans}`, fill: "var(--signal-foreground)" }}>
         Sheet {sheet}
       </text>
       {xs.map((x, i) => (

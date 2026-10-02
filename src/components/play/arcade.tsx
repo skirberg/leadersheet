@@ -16,7 +16,7 @@ function Glyph({ id }: { id: GameId }) {
         {[[30, 22], [84, 18], [100, 34], [24, 50], [44, 66], [64, 70], [96, 60]].map(([x, y], i) => (
           <circle key={i} cx={x} cy={y} r={4} className="node" />
         ))}
-        <circle cx={42} cy={30} r={7} className="fill-pencil" />
+        <circle cx={42} cy={30} r={7} className="fill-signal" />
       </svg>
     )
   if (id === "conflict")
@@ -26,7 +26,7 @@ function Glyph({ id }: { id: GameId }) {
         {[[30, 58], [98, 58], [64, 38], [30, 16], [98, 16]].map(([x, y], i) => (
           <circle key={i} cx={x} cy={y} r={4} className="node" />
         ))}
-        <circle cx={80} cy={26} r={7} className="fill-pencil" />
+        <circle cx={80} cy={26} r={7} className="fill-signal" />
       </svg>
     )
   if (id === "bias")
@@ -34,14 +34,14 @@ function Glyph({ id }: { id: GameId }) {
       <svg viewBox="0 0 120 80" className="viz h-20 w-auto" aria-hidden>
         <circle cx={60} cy={42} r={30} className="node" />
         <path d="M60 42V22" className="edge-ink" strokeWidth={3} strokeLinecap="round" />
-        <path d="M60 42L74 50" stroke="var(--pencil)" strokeWidth={3} strokeLinecap="round" />
+        <path d="M60 42L74 50" stroke="var(--signal)" strokeWidth={3} strokeLinecap="round" />
         <path d="M52 6H68M60 6V12" className="edge-ink" strokeWidth={3} />
       </svg>
     )
   return (
     <svg viewBox="0 0 120 80" className="viz h-20 w-auto" aria-hidden>
       {Array.from({ length: 8 }, (_, i) => (
-        <rect key={i} x={6 + i * 14} y={66 - i * 8} width={12} height={8 + i * 8} rx={1.5} className={i === 7 ? "fill-pencil" : i < 5 ? "fill-ink" : "fill-soft"} />
+        <rect key={i} x={6 + i * 14} y={66 - i * 8} width={12} height={8 + i * 8} rx={1.5} className={i === 7 ? "fill-signal" : i < 5 ? "fill-ink" : "fill-soft"} />
       ))}
     </svg>
   )
@@ -102,12 +102,12 @@ export function PlayCallout({ sheet }: { sheet: string }) {
       href={`/play/${g.id}/`}
       className={cn(
         "group corners flex items-center gap-4 border bg-card p-4 transition-colors hover:border-foreground/70",
-        play ? "border-pencil" : "border-border"
+        play ? "border-signal" : "border-border"
       )}
     >
       <Glyph id={g.id} />
       <span className="grid min-w-0 gap-0.5">
-        <span className={cn("label-mono", play && "!text-pencil")}>Play this sheet · {g.minutes}</span>
+        <span className={cn("label-mono", play && "!text-signal-text")}>Play this sheet · {g.minutes}</span>
         <span className="text-lg leading-tight font-semibold">{g.title}</span>
         <span className="text-sm text-muted-foreground">{g.blurb}</span>
       </span>

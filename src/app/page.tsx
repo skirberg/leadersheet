@@ -20,7 +20,7 @@ export default function Home() {
               <HeroLine />
             </h1>
             <p className="rise max-w-[50ch] text-lg leading-snug text-muted-foreground sm:text-xl" style={{ ["--delay" as string]: "120ms" }}>
-              Twelve sessions as drawing sheets. Each one gives you the idea, a model to play with, the frameworks, and a three question check.
+              Twelve classes, twelve sheets. Each one gives you the idea, a model you can move, the frameworks, and a three question check. Then the games.
             </p>
             <div className="rise flex flex-wrap items-center gap-2" style={{ ["--delay" as string]: "180ms" }}>
               <HeroCtas>

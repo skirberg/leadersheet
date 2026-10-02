@@ -1,4 +1,4 @@
-/* Lab content, ported word for word from the Leadership Sandbox artifact. */
+/* Lab content, ported word for word from the original study artifact. */
 
 export type SortItem = [text: string, key: string]
 

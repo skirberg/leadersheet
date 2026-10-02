@@ -16,7 +16,7 @@ export function ModeToggle({ className }: { className?: string }) {
       onClick={() => setMode(play ? "study" : "play")}
       className={cn(
         "grid size-11 place-items-center rounded-md border border-rule/50 bg-card text-muted-foreground transition-colors",
-        play && "border-pencil bg-pencil-soft text-pencil",
+        play && "border-signal bg-signal-soft text-signal-text",
         className
       )}
     >
@@ -47,7 +47,7 @@ export function ModeSwitch({ className }: { className?: string }) {
             className={cn(
               "flex h-full items-center gap-1.5 rounded-[4px] px-2.5 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground",
               on && "bg-card font-semibold text-foreground shadow-[0_0_0_1px_var(--rule)]",
-              on && m === "play" && "text-pencil"
+              on && m === "play" && "text-signal-text"
             )}
           >
             <Icon className="size-4" />

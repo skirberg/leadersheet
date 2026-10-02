@@ -53,7 +53,7 @@ export function TapLab() {
             aria-hidden
             className={cn(
               "grid size-14 place-items-center rounded-full border-2 border-foreground font-mono text-xs font-medium transition-transform duration-75",
-              hit && "scale-115 bg-pencil text-background border-pencil"
+              hit && "scale-115 bg-signal text-background border-signal"
             )}
           >
             tap
@@ -66,12 +66,12 @@ export function TapLab() {
         </div>
         {revealed && (
           <div className="grid gap-2.5" role="img" aria-label={`Your guess ${guess} of 40. Tappers predicted 20 of 40. Listeners got 1 of 40.`}>
-            {rows.map(([l, v, pencil]) => (
+            {rows.map(([l, v, hi]) => (
               <div key={l} className="grid grid-cols-[minmax(0,9rem)_minmax(0,1fr)] items-center gap-3 text-sm">
-                <span className={cn(pencil && "font-semibold")}>{l}</span>
+                <span className={cn(hi && "font-semibold")}>{l}</span>
                 <div className="relative h-7 overflow-hidden rounded-[3px] bg-border/60">
                   <div
-                    className={cn("h-full rounded-[3px] animate-in slide-in-from-left duration-700", pencil ? "bg-pencil" : "bg-foreground/80")}
+                    className={cn("h-full rounded-[3px] animate-in slide-in-from-left duration-700", hi ? "bg-signal" : "bg-foreground/80")}
                     style={{ width: `${Math.max(1, v * 100)}%` }}
                   />
                   <span className="absolute inset-y-0 right-2 flex items-center font-mono text-xs font-medium tnum">{Math.round(v * 40)} of 40</span>
@@ -178,7 +178,7 @@ export function MotivationLab() {
             onChange={(v) => setLab("ex", e.map((x, k) => (k === i ? v : x)))}
           />
         ))}
-        <p className={cn("font-mono text-5xl leading-none font-medium tracking-tight tnum", prod === 0 && "text-pencil")}>
+        <p className={cn("font-mono text-5xl leading-none font-medium tracking-tight tnum", prod === 0 && "text-signal")}>
           {prod.toFixed(2)}
           <span className="ml-2 font-sans text-base font-medium text-muted-foreground">motivation</span>
         </p>
@@ -224,7 +224,7 @@ export function LadderLab() {
               style={{ animationDelay: `${(5 - i) * 70}ms`, animationFillMode: "both" }}
             >
               <span className="label-mono pt-0.5">{r[0].replace(/^\d+ /, "")}</span>
-              <span className={cn("text-[15px]", i === 0 && "font-semibold text-pencil")}>{txt[i]}</span>
+              <span className={cn("text-[15px]", i === 0 && "font-semibold text-signal-text")}>{txt[i]}</span>
             </li>
           ))}
         </ol>

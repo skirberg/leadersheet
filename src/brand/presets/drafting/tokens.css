@@ -1,0 +1,68 @@
+/* Preset: Drafting Table (the original Leadership Sandbox look). Paper, blue-black ink, one red pencil. */
+
+:root {
+  --radius: 6px;
+  --dur-press: 120ms;
+  --dur-ui: 220ms;
+  --dur-draw: 700ms;
+
+  /* drafting paper, blue-black ink */
+  --background: oklch(0.972 0.01 85);
+  --foreground: oklch(0.24 0.03 262);
+  --card: oklch(0.988 0.006 85);
+  --card-foreground: oklch(0.24 0.03 262);
+  --popover: oklch(0.988 0.006 85);
+  --popover-foreground: oklch(0.24 0.03 262);
+  --primary: oklch(0.24 0.03 262);
+  --primary-foreground: oklch(0.985 0.006 85);
+  --secondary: oklch(0.945 0.012 85);
+  --secondary-foreground: oklch(0.24 0.03 262);
+  --muted: oklch(0.945 0.012 85);
+  --muted-foreground: oklch(0.47 0.025 262);
+  --accent: oklch(0.94 0.014 85);
+  --accent-foreground: oklch(0.24 0.03 262);
+  --destructive: oklch(0.5 0.17 20);
+  --border: oklch(0.86 0.014 80);
+  --rule: oklch(0.62 0.02 262);
+  --input: oklch(0.62 0.02 262);
+  --ring: oklch(0.56 0.2 32);
+  --signal: oklch(0.56 0.2 32);
+  --signal-soft: oklch(0.56 0.2 32 / 0.1);
+  --signal-text: oklch(0.56 0.2 32);
+  --signal-foreground: oklch(0.985 0.006 85);
+  --signal-2: oklch(0.56 0.2 32 / 0.16);
+  --signal-2-foreground: oklch(0.24 0.03 262);
+  --ok: oklch(0.52 0.13 152);
+  --grid: oklch(0.55 0.08 245 / 0.11);
+}
+
+.dark {
+  /* the blueprint at night */
+  --background: oklch(0.19 0.035 258);
+  --foreground: oklch(0.955 0.012 85);
+  --card: oklch(0.225 0.038 258);
+  --card-foreground: oklch(0.955 0.012 85);
+  --popover: oklch(0.225 0.038 258);
+  --popover-foreground: oklch(0.955 0.012 85);
+  --primary: oklch(0.955 0.012 85);
+  --primary-foreground: oklch(0.19 0.035 258);
+  --secondary: oklch(0.26 0.038 258);
+  --secondary-foreground: oklch(0.955 0.012 85);
+  --muted: oklch(0.26 0.038 258);
+  --muted-foreground: oklch(0.74 0.025 250);
+  --accent: oklch(0.28 0.04 258);
+  --accent-foreground: oklch(0.955 0.012 85);
+  --destructive: oklch(0.7 0.16 20);
+  --border: oklch(0.34 0.035 258);
+  --rule: oklch(0.52 0.035 258);
+  --input: oklch(0.52 0.035 258);
+  --ring: oklch(0.7 0.18 35);
+  --signal: oklch(0.7 0.18 35);
+  --signal-soft: oklch(0.7 0.18 35 / 0.14);
+  --signal-text: oklch(0.7 0.18 35);
+  --signal-foreground: oklch(0.19 0.035 258);
+  --signal-2: oklch(0.7 0.18 35 / 0.22);
+  --signal-2-foreground: oklch(0.955 0.012 85);
+  --ok: oklch(0.75 0.15 152);
+  --grid: oklch(0.75 0.08 245 / 0.09);
+}

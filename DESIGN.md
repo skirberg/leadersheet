@@ -1,72 +1,73 @@
-# Leadership Sandbox: design
+# Leadersheet: design
 
-The single source of the reasoning behind the look. Values live in `src/app/globals.css`.
+Values live in `src/brand/presets/leadersheet/`. This file holds the reasoning. The original look and its reasoning live in `src/brand/presets/drafting/`.
 
 ## Concept
 
-**A drafting table for leadership.** Session 1 calls the leader an architect: you shape behavior through the setting you design. So every class is a drawing sheet, every model is something you can pick up and move, and one red pencil marks what matters.
+**The cheat sheet for leading people, printed in two fluorescent inks.** Every class is one sheet: the idea, a model you can move, the frameworks, a three question check, and a game. A cheat sheet is the thing you actually keep, so the site behaves like one: dense, marked up, quick to scan.
 
-Proof points: sheets are numbered S01 to S12 like an architect's plan set; each sheet opens with a title block; the logo is a leader node inside a sandbox frame.
+Proof points: sheets numbered S01 to S12 with title blocks, a highlighter on the one phrase that matters, and a logo that is a dog-eared sheet with one line highlighted.
+
+## Name
+
+Leadersheet: leader plus sheet, read like cheat sheet. Checked on 2 October 2026:
+
+| | .com | .app | .io | .so | .co | .study | .lol |
+|---|---|---|---|---|---|---|---|
+| leadersheet | taken | free | free | free | free | free | free |
+
+"Free" means unregistered at the registry (RDAP or whois), not a confirmed price; premium names look the same. No product called Leadersheet turned up in a web search. Runners-up: **Moveset** (moveset.io, .so, .study free; a fighting-game combo app owns moveset.app) and **Orgbox** (orgbox.app, .io free; a university research tool uses the name). Ruled out: Sandtable (a funded defense-AI company) and Orgami (two HR companies). Recheck with `npm run domains leadersheet` before buying.
 
 ## Voice
 
-Register: drafting room. Short, concrete, a little dry. Instructions read like notes on a drawing.
+Register: a sharp classmate's notes. Short, concrete, a little dry, never cute.
 
-- Uses: build, draw, sheet, move, test
+- Uses: sheet, move, mark, check, play
 - Never: unlock, journey, empower, leverage, synergy
 - Hero: "Every LiO idea, built so you can move it."
 - Error: "No sheet at this address. The set has twelve."
 - Confirmation: "3 of 3. Sheet signed off."
 
-## Type
-
-| Role | Face | Why | License |
-|---|---|---|---|
-| Speaks (headlines, body) | Bricolage Grotesque, variable opsz and width | Ink-trap grotesk with a hand-built edge; reads as drafted, not templated | SIL Open Font License, free, web and print |
-| Measures (sheet numbers, dates, scores, labels) | Martian Mono | The annotation layer of a drawing; tabular and slashed-zero numerals | SIL Open Font License, free |
-
-Both self-hosted at build by `next/font`, so no request goes to Google at runtime.
-
 ## Color
 
-| Token | Paper (light) | Blueprint (dark) | Use |
+Two spot inks on paper, like a Riso print. Paper and ink carry the page.
+
+| Token | Light | Dark | Use |
 |---|---|---|---|
-| background | #f9f5ee | #0a1423 | Page |
-| foreground | #171f2e | #f4f0e7 | Ink: text, primary buttons, lines |
-| muted-foreground | #535b69 (6.3:1) | #9facba (8.0:1) | Secondary text |
-| pencil | #d02f14 (4.7:1) | #f96c4a (6.4:1) | One mark per view |
-| ok | #137d41 (4.8:1) | #58c97d | Right answers, with a check icon |
+| background | #f7f6ef | #0c0e13 | Paper and night |
+| foreground | #13161c | #f5f3ee | Ink |
+| signal | #f1228f | #ff6fae | Hot pink: lines, data marks, focus, the logo fold. One thing per view. |
+| signal-text | #ca0d76 | #ff6fae | Pink when it has to be small text |
+| signal-2 | #ddf93c | #d4f73e | Lime highlighter, always with ink text on top. One phrase per view. |
 
-Rules: neutrals are tinted (warm paper, blue-black ink), never pure gray. The pencil is never an error color; wrong answers get a strike and an X icon in ink. The pencil is deliberately not the school's violet: this is an unofficial study tool and should not look like the school.
+`npm run contrast` checks every pair; all pass in both modes. Pink is never an error color; wrong answers get a strike and an X in ink.
 
-Nearest study-tool brand color checked: Chegg orange #EB7100 (brandcolorcode.com), OKLCH hue 51. The pencil #d02f14 sits at hue 32, a red vermilion rather than an amber orange.
+Category check: study tools own indigo (Quizlet), grass green (Duolingo), amber (Chegg), blue (Coursera) and purple (Kahoot). Hot pink and a lime highlighter belong to none of them. The lime is lighter and yellower than Duolingo's green and only ever appears as a highlighter fill.
+
+## Type
+
+Bricolage Grotesque for words (variable optical size and width) and Martian Mono for anything measured: sheet numbers, dates, scores. Both SIL Open Font License, self-hosted by `next/font`.
 
 ## Devices
 
-1. **Drafting grid.** 16 px minor, 64 px major, faint blue. Hero backgrounds, films, flashcard fronts. Never behind body text.
-2. **Red pencil.** A hand-drawn underline or loop that draws once on entry. Hero line, each sheet's big idea, the leader node in the films and labs. Never on buttons, quiz options or body copy.
-3. **Registration corners and title blocks.** Cards carry two corner marks; each sheet opens with a title block (sheet, class date, part).
+1. **Highlighter swipe** behind one phrase per view (the hero, each sheet's big idea). Grows left to right once.
+2. **Sheets and title blocks.** Every class is a numbered sheet with a title block; cards carry registration corners.
+3. **Graph paper.** A faint 16 px and 64 px grid behind heroes, films and game cards. Never behind body text.
 
 ## Motion
 
-- Press 120 ms, interface 220 ms, pencil draw 700 ms, all on `cubic-bezier(0.2, 0.7, 0.2, 1)`.
-- Remotion films: the hero builds an organization and redraws it as the four structures from session 3; every sheet has a 16 second recap film generated from its own data.
-- Everything respects `prefers-reduced-motion`: the hero shows a still frame and the pencil appears already drawn.
+Press 120 ms, interface 200 ms, highlighter 650 ms, all on `cubic-bezier(0.2, 0.7, 0.2, 1)`. The Remotion hero film builds an org chart and redraws it as four structures; each sheet has a 16 second recap film. Reduced motion holds still frames and shows marks already drawn.
 
 ## Study and Play
 
-A header switch changes emphasis, never hides content. Play mode leads the home page with the arcade, swaps the hero to "built so you can play it", puts each sheet's game first under See it, and celebrates wins with a burst of red pencil strokes (never under reduced motion). The quizzes use original questions on the public models and say so: for fun, not validated assessments.
-
-## Components
-
-shadcn/ui on Radix, restyled from these tokens: default grays, radius, font, ring and shadows all replaced. Utility pieces (inputs, dialogs, tabs) stay quiet. The signature pieces got custom design: the labs, the films, the sheet cards and the title block.
+A header switch changes emphasis, never hides content. Play mode leads with the arcade, swaps the hero to "play it", puts each sheet's game first, and celebrates wins with a burst in the two inks.
 
 ## Anti-template checks
 
-1. Font: pass. Neither face is on the template-default list.
-2. Accent: pass. Not a category leader's color, not the library default.
-3. Layout: pass. No centered hero with three feature cards; the page is organized as a plan set around the sheet grid.
-4. Device: pass. With the logo covered, the grid, the title blocks and the red pencil still identify it.
-5. Decoration: pass. No gradients, glows or glass; the only shadows are 1 px rings that mark a selected control.
-6. Voice: pass. Headline, error and confirmation read as one voice.
-7. Concept: grid (the drafting table), sheet numbers (a plan set), red pencil (the architect's markup), all trace to the leader as architect.
+1. Font: pass. Neither face is a template default.
+2. Accent: pass. Not a study-category color, not a library default.
+3. Layout: pass. Organized around the sheet grid and the arcade, not a hero plus three cards.
+4. Device: pass. Cover the logo and the highlighter, sheet numbers and title blocks still say Leadersheet.
+5. Decoration: pass. No gradients, glows or glass; shadows are 1 px rings on selected controls.
+6. Voice: pass.
+7. Concept: the highlighter (marking up a cheat sheet), sheets (one per class), the pink fold (a dog-eared page). All trace to the cheat sheet.
