@@ -1,0 +1,1820 @@
+{
+ "course": {
+  "name": "Leadership in Organizations"
+ },
+ "rules": [
+  "Every class ends with a thirty second memo: one takeaway and one link to your real work.",
+  "Leadership is a behavior, not a position."
+ ],
+ "sessions": [
+  {
+   "id": "s1",
+   "n": 1,
+   "date": "2026-09-17",
+   "part": "Leadership foundations",
+   "title": "Leader as architect",
+   "idea": "Leaders shape behavior twice: directly, by what they do, and indirectly, by what they build around people.",
+   "readings": [
+    {
+     "t": "Leader-as-Architect",
+     "a": "Bernstein, Raffaelli and Margolis",
+     "y": "2014",
+     "src": "HBS note",
+     "idea": "A leader is also a designer. The setting you build keeps working when you are not in the room.",
+     "points": [
+      "Most of what people do at work is shaped by the setting they work in, not by direct orders.",
+      "So a big part of leading is designing that setting on purpose: structure, systems, culture and the people you put in roles.",
+      "Good design makes the right behavior the easy behavior."
+     ]
+    },
+    {
+     "t": "What Leaders Really Do",
+     "a": "John P. Kotter",
+     "y": "2001 (first published 1990)",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/2001/12/what-leaders-really-do",
+     "idea": "Management copes with complexity. Leadership copes with change. Organizations need both.",
+     "points": [
+      "Planning and budgeting is management. Setting a direction is leadership.",
+      "Organizing and staffing is management. Aligning people behind the direction is leadership.",
+      "Controlling and problem solving is management. Motivating and inspiring is leadership.",
+      "Most companies are overmanaged and underled, but strong leadership with weak management is no better."
+     ]
+    }
+   ],
+   "videos": [
+    "Welcome to LiO"
+   ],
+   "caseName": "Mount Everest, 1996",
+   "caseBy": "Roberto and Carioggia, HBS",
+   "due": [
+    "Getting to Know You survey",
+    "Pre-class discussion board: Mount Everest"
+   ],
+   "lab": "manage",
+   "fw": [
+    "kotter-lm"
+   ],
+   "checks": [
+    {
+     "q": "Setting a direction is to leadership as ______ is to management.",
+     "o": [
+      "Planning and budgeting",
+      "Motivating",
+      "Aligning people",
+      "Coaching"
+     ],
+     "a": 0,
+     "why": "Kotter pairs them: direction with planning, aligning with organizing, inspiring with controlling."
+    },
+    {
+     "q": "Kotter says most companies are",
+     "o": [
+      "Overmanaged and underled",
+      "Overled and undermanaged",
+      "Balanced",
+      "Run by charisma"
+     ],
+     "a": 0,
+     "why": "He also warns that strong leadership with weak management is no better."
+    },
+    {
+     "q": "Leader as architect means",
+     "o": [
+      "Shaping behavior through the setting you design",
+      "Drawing org charts",
+      "Leading only from the top",
+      "Avoiding hands-on work"
+     ],
+     "a": 0,
+     "why": "Structure, systems, culture and people keep shaping behavior after you leave the room."
+    }
+   ],
+   "prompts": [
+    "Where have you seen a well-designed setting make good behavior easy?",
+    "When did a team you were on have strong management and weak leadership, or the reverse?"
+   ]
+  },
+  {
+   "id": "s2",
+   "n": 2,
+   "date": "2026-09-24",
+   "part": "Leadership foundations",
+   "title": "Leading by doing",
+   "idea": "What separates strong leaders is less IQ or skill than emotional intelligence, and the safety they create for others to speak.",
+   "readings": [
+    {
+     "t": "What Makes a Leader?",
+     "a": "Daniel Goleman",
+     "y": "2004 (first published 1998)",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/2004/01/what-makes-a-leader",
+     "idea": "Emotional intelligence is the threshold that separates star leaders from the rest, and it can be learned.",
+     "points": [
+      "Five components: self-awareness, self-regulation, motivation, empathy and social skill.",
+      "The first three are about managing yourself. The last two are about managing relationships.",
+      "It can be learned, but slowly, through practice and feedback, not a seminar."
+     ]
+    }
+   ],
+   "videos": [
+    "Emotional intelligence",
+    "Psychological safety",
+    "A diversity mindset"
+   ],
+   "due": [
+    "Mindset survey"
+   ],
+   "lab": "ei",
+   "fw": [
+    "goleman-ei",
+    "psych-safety",
+    "mindset"
+   ],
+   "checks": [
+    {
+     "q": "Which Goleman component includes comfort with ambiguity and openness to change?",
+     "o": [
+      "Self-regulation",
+      "Self-awareness",
+      "Empathy",
+      "Social skill"
+     ],
+     "a": 0,
+     "why": "Self-regulation is control of impulses and moods, which shows up as integrity and comfort with ambiguity."
+    },
+    {
+     "q": "Psychological safety is",
+     "o": [
+      "A shared belief that the team is safe for interpersonal risk",
+      "Everyone being nice",
+      "Low standards",
+      "Job security"
+     ],
+     "a": 0,
+     "why": "Edmondson pairs it with high standards. Safety without standards is a comfort zone."
+    },
+    {
+     "q": "Persuasiveness and building teams are hallmarks of",
+     "o": [
+      "Social skill",
+      "Motivation",
+      "Self-awareness",
+      "Self-regulation"
+     ],
+     "a": 0,
+     "why": "Social skill is friendliness with a purpose: moving people in the direction you want."
+    }
+   ],
+   "prompts": [
+    "Which of the five components is strongest for you, and which do others see differently?",
+    "What does a leader do in the first five minutes of a meeting that makes it safe to disagree?"
+   ]
+  },
+  {
+   "id": "s3",
+   "n": 3,
+   "date": "2026-10-01",
+   "part": "Leading organizations",
+   "title": "Leading through design",
+   "idea": "There is no best structure, only a fit between structure, strategy, people and culture.",
+   "readings": [
+    {
+     "t": "Do You Have a Well-Designed Organization?",
+     "a": "Michael Goold and Andrew Campbell",
+     "y": "2002",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/2002/03/do-you-have-a-well-designed-organization",
+     "idea": "Run any design through nine tests: four on fit, five on good design.",
+     "points": [
+      "Fit tests: market advantage, parenting advantage, people, and feasibility.",
+      "Good design tests: specialist cultures, difficult links, redundant hierarchy, accountability, and flexibility.",
+      "Most structures grow by politics and accident. The tests make design a deliberate choice."
+     ]
+    },
+    {
+     "t": "The congruence model",
+     "a": "Nadler and Tushman, via Mercer Delta",
+     "y": "background",
+     "src": "Course file",
+     "idea": "Performance comes from fit between the work, the people, the formal organization and the informal culture.",
+     "points": [
+      "Inputs (environment, resources, history) feed a strategy.",
+      "Four parts turn strategy into output: work, people, formal organization, informal organization.",
+      "The fit between parts matters more than any one part. A great engine in the wrong car still fails."
+     ]
+    }
+   ],
+   "videos": [
+    "What is organization structure",
+    "Types of org structures",
+    "What is the best structure"
+   ],
+   "exercise": "Words in Sentences",
+   "due": [
+    "Reflection memo 1"
+   ],
+   "lab": "structure",
+   "fw": [
+    "nine-tests",
+    "congruence",
+    "structures"
+   ],
+   "checks": [
+    {
+     "q": "A matrix structure trades simplicity for",
+     "o": [
+      "The ability to manage two priorities at once",
+      "Lower cost",
+      "Fewer managers",
+      "Faster decisions"
+     ],
+     "a": 0,
+     "why": "Two reporting lines let you balance function and product, at the cost of clarity and speed."
+    },
+    {
+     "q": "Which is a Goold and Campbell fit test?",
+     "o": [
+      "People",
+      "Redundant hierarchy",
+      "Difficult links",
+      "Flexibility"
+     ],
+     "a": 0,
+     "why": "The four fit tests are market advantage, parenting advantage, people and feasibility."
+    },
+    {
+     "q": "In the congruence model, the informal organization is",
+     "o": [
+      "Culture, norms and unwritten rules",
+      "The org chart",
+      "The product strategy",
+      "The budget"
+     ],
+     "a": 0,
+     "why": "Formal is the chart and systems. Informal is how things really get done."
+    }
+   ],
+   "prompts": [
+    "If you designed your team from scratch tomorrow, what would you change first, and which test does it fail today?",
+    "Where is the informal organization doing work the formal one cannot?"
+   ]
+  },
+  {
+   "id": "s4",
+   "n": 4,
+   "date": "2026-10-08",
+   "part": "Leading organizations",
+   "title": "Leadership through culture",
+   "idea": "Culture is how people behave when no one is telling them what to do, and leaders can map it and shape it.",
+   "readings": [
+    {
+     "t": "The Leader’s Guide to Corporate Culture",
+     "a": "Groysberg, Lee, Price and Cheng",
+     "y": "2018",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/2018/01/the-leaders-guide-to-corporate-culture",
+     "idea": "Eight culture styles sit on two axes: how people interact, and how they respond to change.",
+     "points": [
+      "Interaction runs from independent to interdependent. Response to change runs from flexible to stable.",
+      "The eight styles: caring, purpose, learning, enjoyment, results, authority, safety and order.",
+      "Styles next to each other on the map coexist easily. Styles far apart pull against each other.",
+      "Culture is shaped by what leaders say, what they reward, how they design the organization, and who they hire."
+     ]
+    }
+   ],
+   "videos": [
+    "What is organizational culture?",
+    "Exploring org culture"
+   ],
+   "caseName": "The Lego Group leadership playground, Part A",
+   "caseBy": "Weeks and Duke, IMD",
+   "due": [
+    "Pre-class discussion board: Lego",
+    "First third of semester feedback survey"
+   ],
+   "lab": "culture",
+   "fw": [
+    "culture-8"
+   ],
+   "checks": [
+    {
+     "q": "The two axes of the culture map are",
+     "o": [
+      "People interactions and response to change",
+      "Profit and purpose",
+      "Size and age",
+      "Speed and cost"
+     ],
+     "a": 0,
+     "why": "Independent to interdependent, and flexible to stable."
+    },
+    {
+     "q": "A culture built on planning, caution and preparedness is",
+     "o": [
+      "Safety",
+      "Order",
+      "Authority",
+      "Results"
+     ],
+     "a": 0,
+     "why": "Safety sits on the stable end of the change axis."
+    },
+    {
+     "q": "Which pair is most likely to clash?",
+     "o": [
+      "Learning and safety",
+      "Caring and purpose",
+      "Results and authority",
+      "Safety and order"
+     ],
+     "a": 0,
+     "why": "Learning is flexible and exploratory. Safety is stable and cautious. They sit far apart on the map."
+    }
+   ],
+   "prompts": [
+    "Name the two styles that best describe your current team. Would your manager pick the same two?",
+    "What one behavior gets rewarded where you work that the stated values do not mention?"
+   ]
+  },
+  {
+   "id": "s5",
+   "n": 5,
+   "date": "2026-10-15",
+   "part": "Leading people",
+   "title": "Influence and driving change",
+   "idea": "Change fails at predictable steps, and persuasion is a process of learning and negotiating, not a pitch.",
+   "readings": [
+    {
+     "t": "Leading Change: Why Transformation Efforts Fail",
+     "a": "John P. Kotter",
+     "y": "2007 (first published 1995)",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/2007/01/leading-change-why-transformation-efforts-fail",
+     "idea": "Eight steps, in order. Skipping one creates the illusion of speed and never a good result.",
+     "points": [
+      "Urgency, coalition, vision, communicate the vision, remove obstacles, short-term wins, consolidate, anchor in culture.",
+      "Each step has a matching error. Declaring victory too soon is one of the most common.",
+      "Communicating the vision is usually short by a factor of ten."
+     ]
+    },
+    {
+     "t": "The Necessary Art of Persuasion",
+     "a": "Jay A. Conger",
+     "y": "1998",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/1998/05/the-necessary-art-of-persuasion",
+     "idea": "Persuasion works in four steps: credibility, common ground, vivid evidence and emotional connection.",
+     "points": [
+      "Credibility comes from expertise and from relationships.",
+      "Frame the goal around what the audience already cares about.",
+      "Back the case with vivid stories and examples, not only numbers.",
+      "Read the audience’s emotions and match your intensity to theirs.",
+      "Common mistakes: the hard sell, refusing to compromise, assuming argument alone wins, and treating it as one shot."
+     ]
+    }
+   ],
+   "videos": [
+    "Influence"
+   ],
+   "due": [
+    "Leadership Commitment Plan, Part A",
+    "Bring $1 to class"
+   ],
+   "lab": "kotter",
+   "fw": [
+    "kotter-8",
+    "conger-4",
+    "cialdini"
+   ],
+   "checks": [
+    {
+     "q": "Kotter’s first step is",
+     "o": [
+      "Establish a sense of urgency",
+      "Create a vision",
+      "Form a coalition",
+      "Plan short-term wins"
+     ],
+     "a": 0,
+     "why": "Without urgency, the rest never gets enough energy."
+    },
+    {
+     "q": "Conger’s first step in persuasion is",
+     "o": [
+      "Establish credibility",
+      "Share the data",
+      "Close the deal",
+      "Make an emotional appeal"
+     ],
+     "a": 0,
+     "why": "Expertise and relationships come first; the audience has to trust the messenger."
+    },
+    {
+     "q": "Declaring victory too soon breaks which Kotter step?",
+     "o": [
+      "Consolidate gains and produce more change",
+      "Create a vision",
+      "Establish urgency",
+      "Remove obstacles"
+     ],
+     "a": 0,
+     "why": "Step 7. Celebrate wins, but keep the change going until it is anchored."
+    }
+   ],
+   "prompts": [
+    "Think of a change at work that stalled. Which of Kotter’s steps was skipped?",
+    "Who do you have to persuade without authority, and what is your credibility with them built on?"
+   ]
+  },
+  {
+   "id": "s6",
+   "n": 6,
+   "date": "2026-10-22",
+   "part": "Leading people",
+   "title": "Teaming",
+   "idea": "Team leaders manage tensions that never fully resolve, and they decide which conflict to encourage and which to defuse.",
+   "readings": [
+    {
+     "t": "Managing Your Team",
+     "a": "Linda A. Hill",
+     "y": "2005",
+     "src": "HBS note",
+     "idea": "Leading a team means managing ongoing tensions, not solving them once.",
+     "points": [
+      "Unity and diversity: enough shared identity to act together, enough difference to think well.",
+      "Support and confrontation: back people, and challenge them.",
+      "Performance and learning: deliver now, and build the team’s capacity for later.",
+      "Leader authority and team discretion: when to decide, and when to let the team decide."
+     ]
+    }
+   ],
+   "videos": [
+    "Team conflict",
+    "Integrated model of teamwork"
+   ],
+   "caseName": "(Re)building a Global Team: Tariq Khan at Tek",
+   "caseBy": "Tsedal Neeley, HBS",
+   "due": [
+    "Reflection memo 2",
+    "Pre-class discussion board: Tariq Khan"
+   ],
+   "lab": "team",
+   "fw": [
+    "hill-tensions",
+    "conflict-types"
+   ],
+   "checks": [
+    {
+     "q": "Which conflict type usually helps a team?",
+     "o": [
+      "Task conflict, kept to ideas",
+      "Relationship conflict",
+      "Process conflict over who does what",
+      "None of them"
+     ],
+     "a": 0,
+     "why": "Debate over ideas improves decisions. Personal friction usually hurts them."
+    },
+    {
+     "q": "Adding one person to a team of 6 adds how many new communication links?",
+     "o": [
+      "6",
+      "1",
+      "7",
+      "21"
+     ],
+     "a": 0,
+     "why": "Links are n(n-1)/2. Six people have 15, seven have 21, so the new person adds 6."
+    },
+    {
+     "q": "Hill’s support versus confrontation tension means",
+     "o": [
+      "Back people and challenge them",
+      "Choose between being liked and being respected",
+      "Avoid conflict",
+      "Delegate everything"
+     ],
+     "a": 0,
+     "why": "Both are needed. The skill is the mix and the timing."
+    }
+   ],
+   "prompts": [
+    "Which of Hill’s tensions do you lean too far on?",
+    "How would you rebuild trust on a team that has never met in person?"
+   ]
+  },
+  {
+   "id": "s7",
+   "n": 7,
+   "date": "2026-10-29",
+   "part": "Leading people",
+   "title": "Navigating conflict",
+   "idea": "Hot conflicts are about meaning and identity, not data, so more analysis rarely ends them. Slowing down and inquiring does.",
+   "readings": [
+    {
+     "t": "Too Hot to Handle? How to Manage Relationship Conflict",
+     "a": "Amy Edmondson and Diana McLain Smith",
+     "y": "2006",
+     "src": "California Management Review",
+     "idea": "Cool conflicts yield to data. Hot ones yield to examining your own reasoning and asking about theirs.",
+     "points": [
+      "Cool conflicts are about facts and can be settled by analysis.",
+      "Hot conflicts involve values, interests and identity. Each side reads the same facts differently.",
+      "Leaders first notice their own reactions and the story they are telling themselves.",
+      "Then they share their reasoning and ask about the other person’s, before arguing for a position."
+     ]
+    }
+   ],
+   "videos": [
+    "Conflict"
+   ],
+   "lab2": "Leadership Lab 1",
+   "due": [
+    "Leadership Lab 1"
+   ],
+   "lab": "conflict",
+   "fw": [
+    "hot-cool",
+    "tki"
+   ],
+   "checks": [
+    {
+     "q": "A conflict over whose values the strategy reflects is",
+     "o": [
+      "Hot",
+      "Cool",
+      "A data problem",
+      "A process problem"
+     ],
+     "a": 0,
+     "why": "When identity and values are involved, more data rarely settles it."
+    },
+    {
+     "q": "The first move in a hot conflict is",
+     "o": [
+      "Notice your own reaction and story",
+      "Present more evidence",
+      "Escalate to the boss",
+      "Take a vote"
+     ],
+     "a": 0,
+     "why": "You cannot inquire well into theirs until you see your own."
+    },
+    {
+     "q": "Inquiry means",
+     "o": [
+      "Asking how the other person sees it and why",
+      "Proving them wrong politely",
+      "Agreeing to keep the peace",
+      "Avoiding the topic"
+     ],
+     "a": 0,
+     "why": "Pair advocacy with inquiry: share your reasoning, then ask about theirs."
+    }
+   ],
+   "prompts": [
+    "Think of a disagreement that kept coming back. Was it hot or cool?",
+    "What story were you telling yourself about the other person?"
+   ]
+  },
+  {
+   "id": "s8",
+   "n": 8,
+   "date": "2026-11-05",
+   "part": "Leading people",
+   "title": "Collaborative decision making",
+   "idea": "You cannot see your own biases, but you can spot them in the team that brings you a recommendation.",
+   "readings": [
+    {
+     "t": "Before You Make That Big Decision",
+     "a": "Kahneman, Lovallo and Sibony",
+     "y": "2011",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/2013/06/before-you-make-that-big-decision",
+     "idea": "Twelve questions a decision maker asks to catch bias in a team’s recommendation.",
+     "points": [
+      "Ask about the team: self-interest, falling in love with the idea, groupthink.",
+      "Ask about the proposal: misleading analogies, missing alternatives, missing data, anchors, halo effect, sunk costs.",
+      "Ask about the assessment: an optimistic base case, a worst case that is not bad enough, too much caution."
+     ]
+    }
+   ],
+   "videos": [
+    "Decision making traps"
+   ],
+   "exercise": "A Murder Mystery",
+   "lab2": "Leadership Lab 2",
+   "due": [
+    "Lab reflection, if you shared on Oct 29",
+    "Decision making survey",
+    "Leadership Lab 2"
+   ],
+   "lab": "decision",
+   "fw": [
+    "k12",
+    "traps"
+   ],
+   "checks": [
+    {
+     "q": "“Where did that number come from?” checks for",
+     "o": [
+      "Anchoring",
+      "Halo effect",
+      "Groupthink",
+      "Loss aversion"
+     ],
+     "a": 0,
+     "why": "An early number pulls every later estimate toward it."
+    },
+    {
+     "q": "“Is the worst case bad enough?” checks for",
+     "o": [
+      "Disaster neglect",
+      "Sunk cost",
+      "Self-interest",
+      "Saliency"
+     ],
+     "a": 0,
+     "why": "Teams often set the worst case too close to the base case."
+    },
+    {
+     "q": "A team attached to a past investment shows",
+     "o": [
+      "Sunk-cost fallacy",
+      "Availability bias",
+      "Affect heuristic",
+      "Confirmation bias"
+     ],
+     "a": 0,
+     "why": "Money already spent should not drive the next decision."
+    }
+   ],
+   "prompts": [
+    "Run your last big decision through the twelve questions. Which one stings?",
+    "When did hidden information in a group never get shared?"
+   ]
+  },
+  {
+   "id": "s9",
+   "n": 9,
+   "date": "2026-11-12",
+   "part": "Leading people",
+   "title": "Leading by listening",
+   "idea": "The biggest barrier to communication is the urge to judge, and people overestimate how clearly their own message lands.",
+   "readings": [
+    {
+     "t": "Barriers and Gateways to Communication",
+     "a": "Carl R. Rogers and F. J. Roethlisberger",
+     "y": "1991 (first published 1952)",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/1991/11/barriers-and-gateways-to-communication",
+     "idea": "Listen with understanding: restate the other person’s view to their satisfaction before you reply.",
+     "points": [
+      "The main barrier is our tendency to evaluate what we hear, right away, from our own frame.",
+      "The gateway is listening to understand the other person’s frame, not to rebut it.",
+      "A simple rule: before you speak, summarize what they said until they agree you got it.",
+      "Doing this takes courage, because you may be changed by what you hear."
+     ]
+    }
+   ],
+   "videos": [
+    "Communication and the illusion of transparency"
+   ],
+   "caseName": "Naomi Chen",
+   "caseBy": "Course case",
+   "due": [
+    "Lab reflection, if you shared on Nov 5",
+    "Pre-class discussion board: Naomi Chen"
+   ],
+   "lab": "tap",
+   "fw": [
+    "rogers",
+    "transparency"
+   ],
+   "checks": [
+    {
+     "q": "Rogers says the main barrier to communication is",
+     "o": [
+      "The urge to evaluate and judge",
+      "Bad grammar",
+      "Jargon",
+      "Lack of data"
+     ],
+     "a": 0,
+     "why": "We judge from our frame before understanding theirs."
+    },
+    {
+     "q": "In the tapping study, tappers expected listeners to name about half the songs. Listeners got",
+     "o": [
+      "About 1 in 40",
+      "About half",
+      "About a quarter",
+      "Most of them"
+     ],
+     "a": 0,
+     "why": "About 2.5%. The tapper hears the melody in their head. The listener hears knocks."
+    },
+    {
+     "q": "The illusion of transparency is",
+     "o": [
+      "Believing others can read your thoughts and feelings more than they can",
+      "Hiding information",
+      "Being too open",
+      "A legal disclosure rule"
+     ],
+     "a": 0,
+     "why": "It is why a message that feels obvious to you can land as noise."
+    }
+   ],
+   "prompts": [
+    "When did you think you were clear and found out you were not?",
+    "In your next one on one, restate before you reply. What changed?"
+   ]
+  },
+  {
+   "id": "s10",
+   "n": 10,
+   "date": "2026-11-19",
+   "part": "Leading people",
+   "title": "Motivating yourself and others",
+   "idea": "Money matters, but less and more strangely than most managers assume. Autonomy, mastery and meaning do a lot of the work.",
+   "readings": [
+    {
+     "t": "Do Financial Incentives Drive Company Performance?",
+     "a": "Jeffrey Pfeffer and Robert Sutton",
+     "y": "2006",
+     "src": "Hard Facts, Dangerous Half-Truths, and Total Nonsense, ch. 5",
+     "idea": "Incentives work, sometimes too well. They get you exactly what you pay for, including the gaming.",
+     "points": [
+      "Financial incentives do change behavior, so design them carefully.",
+      "They can crowd out intrinsic motivation and teamwork, and they invite gaming of the measure.",
+      "Pay is also a signal of what the organization values.",
+      "Evidence beats belief: test incentive schemes rather than assume they work."
+     ]
+    }
+   ],
+   "videos": [
+    "Motivational theories, part 1",
+    "Motivational theories, part 2"
+   ],
+   "due": [
+    "Leadership Commitment Plan, Part B",
+    "Reflection memo 3",
+    "Motivators survey"
+   ],
+   "lab": "motivation",
+   "fw": [
+    "herzberg",
+    "expectancy",
+    "jcm",
+    "sdt"
+   ],
+   "checks": [
+    {
+     "q": "In Herzberg’s model, salary is a",
+     "o": [
+      "Hygiene factor",
+      "Motivator",
+      "Need for growth",
+      "Job characteristic"
+     ],
+     "a": 0,
+     "why": "Fixing hygiene removes dissatisfaction but does not create motivation."
+    },
+    {
+     "q": "In expectancy theory, motivation is zero if",
+     "o": [
+      "Any one of expectancy, instrumentality or valence is zero",
+      "Pay is low",
+      "The goal is hard",
+      "The boss is absent"
+     ],
+     "a": 0,
+     "why": "It is a product. One zero sinks it."
+    },
+    {
+     "q": "Which job characteristic multiplies the whole score?",
+     "o": [
+      "Autonomy",
+      "Skill variety",
+      "Task identity",
+      "Task significance"
+     ],
+     "a": 0,
+     "why": "Motivating potential = average of variety, identity and significance, times autonomy, times feedback."
+    }
+   ],
+   "prompts": [
+    "What motivates you that would not show up in a pay review?",
+    "Where have you seen an incentive get people to hit the number and miss the point?"
+   ]
+  },
+  {
+   "id": "s11",
+   "n": 11,
+   "date": "2026-12-03",
+   "part": "Leading people",
+   "title": "Feedback",
+   "idea": "Most feedback fails because the giver states conclusions, not data. Walk down the ladder of inference before you speak.",
+   "readings": [
+    {
+     "t": "Actionable Feedback",
+     "a": "Mark D. Cannon and Robert Witherspoon",
+     "y": "2005",
+     "src": "Academy of Management Executive",
+     "idea": "Feedback is actionable when it leads to learning and results. Most of it attacks the person and stays vague.",
+     "points": [
+      "Five flaws: attacks the person, vague, no examples, no range of application, no clear impact or next step.",
+      "Givers climb the ladder of inference from data to conclusions without noticing.",
+      "Self-serving bias in receivers and actor-observer bias in givers make each side see the other as the problem.",
+      "In a review of studies, 38% of feedback cases made performance worse.",
+      "Fix: ask yourself for examples, conditions, impact and the change you want. Use I statements."
+     ]
+    }
+   ],
+   "videos": [
+    "The importance of feedback",
+    "A feedback model"
+   ],
+   "caseName": "Rob Parson at Morgan Stanley, Part A",
+   "caseBy": "Burton and DeLong, HBS",
+   "due": [
+    "Pre-class discussion board: Rob Parson"
+   ],
+   "lab": "ladder",
+   "fw": [
+    "ladder",
+    "five-flaws",
+    "receiver-q"
+   ],
+   "checks": [
+    {
+     "q": "“Phil is a poor manager” fails mainly because it",
+     "o": [
+      "Attacks the person and gives no example",
+      "Is too long",
+      "Uses an I statement",
+      "Is too specific"
+     ],
+     "a": 0,
+     "why": "It names a trait, not a behavior, with no illustration or impact."
+    },
+    {
+     "q": "The bottom rung of the ladder of inference is",
+     "o": [
+      "Available data",
+      "Select data",
+      "Name what is happening",
+      "Decide what to do"
+     ],
+     "a": 0,
+     "why": "Then select data, paraphrase, name, explain, decide."
+    },
+    {
+     "q": "In the Kluger and DeNisi review, feedback hurt performance in about",
+     "o": [
+      "38% of cases",
+      "5% of cases",
+      "60% of cases",
+      "Never"
+     ],
+     "a": 0,
+     "why": "Feedback that focuses on the self rather than the task often backfires."
+    }
+   ],
+   "prompts": [
+    "Take a piece of feedback you gave recently. Which of the five flaws does it have?",
+    "What questions can you ask when someone gives you vague feedback?"
+   ]
+  },
+  {
+   "id": "s12",
+   "n": 12,
+   "date": "2026-12-10",
+   "part": "Integrating it all",
+   "title": "Integrating it all",
+   "idea": "Time is fixed. Energy is renewable. Leaders who manage energy across body, emotions, mind and purpose sustain performance.",
+   "readings": [
+    {
+     "t": "Manage Your Energy, Not Your Time",
+     "a": "Tony Schwartz and Catherine McCarthy",
+     "y": "2007",
+     "src": "Harvard Business Review",
+     "url": "https://hbr.org/2007/10/manage-your-energy-not-your-time",
+     "idea": "Four sources of energy, each renewed by small rituals.",
+     "points": [
+      "Physical: sleep, movement, and breaks every 90 to 120 minutes.",
+      "Emotional: notice the story you tell, and look at it through other lenses.",
+      "Mental: protect focus. Do the most important task first, without email.",
+      "Spirit: spend time on what you do best, enjoy most and care about."
+     ]
+    }
+   ],
+   "videos": [],
+   "caseName": "Doing deals and leading teams at XAF Partners",
+   "caseBy": "Groysberg and Herman, HBS",
+   "due": [
+    "Pre-class discussion board: XAF Partners",
+    "Lab peer assessment",
+    "Leadership Commitment Plan, final, Dec 12 at 5pm"
+   ],
+   "lab": "energy",
+   "fw": [
+    "energy-4"
+   ],
+   "checks": [
+    {
+     "q": "The core claim of Schwartz and McCarthy is that",
+     "o": [
+      "Time is finite but energy can be renewed",
+      "Longer hours raise output",
+      "Breaks waste time",
+      "Only physical energy matters"
+     ],
+     "a": 0,
+     "why": "Rituals renew energy, so the same hours produce more."
+    },
+    {
+     "q": "Working without email for the first hour targets",
+     "o": [
+      "Mental energy",
+      "Physical energy",
+      "Emotional energy",
+      "Spiritual energy"
+     ],
+     "a": 0,
+     "why": "It protects focus on the most important task."
+    },
+    {
+     "q": "Looking at a frustrating event from the other person’s side renews",
+     "o": [
+      "Emotional energy",
+      "Physical energy",
+      "Mental energy",
+      "None"
+     ],
+     "a": 0,
+     "why": "Reframing the story changes the feeling it produces."
+    }
+   ],
+   "prompts": [
+    "Which of your four energy sources runs lowest at the end of a hard week?",
+    "Which course idea will you still use a year from now?"
+   ]
+  }
+ ],
+ "frameworks": [
+  {
+   "id": "kotter-lm",
+   "s": 1,
+   "name": "Management versus leadership",
+   "by": "Kotter",
+   "one": "Management copes with complexity. Leadership copes with change.",
+   "rows": [
+    [
+     "Planning and budgeting",
+     "Setting a direction"
+    ],
+    [
+     "Organizing and staffing",
+     "Aligning people"
+    ],
+    [
+     "Controlling and problem solving",
+     "Motivating and inspiring"
+    ]
+   ],
+   "head": [
+    "Management",
+    "Leadership"
+   ]
+  },
+  {
+   "id": "goleman-ei",
+   "s": 2,
+   "name": "Five components of emotional intelligence",
+   "by": "Goleman",
+   "one": "Three manage yourself, two manage relationships.",
+   "rows": [
+    [
+     "Self-awareness",
+     "Know your moods, drives and effect on others. Hallmarks: self-confidence, realistic self-assessment, self-deprecating humor."
+    ],
+    [
+     "Self-regulation",
+     "Control impulses, think before acting. Hallmarks: integrity, comfort with ambiguity, openness to change."
+    ],
+    [
+     "Motivation",
+     "Work for reasons beyond money or status. Hallmarks: drive to achieve, optimism after failure, commitment."
+    ],
+    [
+     "Empathy",
+     "Consider others’ feelings in decisions. Hallmarks: building talent, cross-cultural sensitivity, service."
+    ],
+    [
+     "Social skill",
+     "Friendliness with a purpose. Hallmarks: leading change, persuasiveness, building teams."
+    ]
+   ]
+  },
+  {
+   "id": "psych-safety",
+   "s": 2,
+   "name": "Psychological safety",
+   "by": "Edmondson",
+   "one": "A shared belief that the team is safe for interpersonal risk taking.",
+   "rows": [
+    [
+     "Low safety, low standards",
+     "Apathy"
+    ],
+    [
+     "High safety, low standards",
+     "Comfort"
+    ],
+    [
+     "Low safety, high standards",
+     "Anxiety"
+    ],
+    [
+     "High safety, high standards",
+     "Learning and high performance"
+    ]
+   ],
+   "head": [
+    "Mix",
+    "Zone"
+   ]
+  },
+  {
+   "id": "mindset",
+   "s": 2,
+   "name": "Growth mindset",
+   "by": "Dweck",
+   "one": "Believing ability can grow changes how you respond to failure and feedback.",
+   "rows": [
+    [
+     "Fixed",
+     "Ability is set. Failure is a verdict. Feedback is a threat."
+    ],
+    [
+     "Growth",
+     "Ability can grow. Failure is information. Feedback is useful."
+    ]
+   ]
+  },
+  {
+   "id": "nine-tests",
+   "s": 3,
+   "name": "Nine tests of organization design",
+   "by": "Goold and Campbell",
+   "one": "Four fit tests, five good design tests.",
+   "rows": [
+    [
+     "Market advantage",
+     "Does the design put enough attention on the sources of advantage in each market?"
+    ],
+    [
+     "Parenting advantage",
+     "Does it help the corporate center add value?"
+    ],
+    [
+     "People",
+     "Does it fit the strengths and limits of the people you have?"
+    ],
+    [
+     "Feasibility",
+     "Does it work within your real constraints, like law, IT and stakeholders?"
+    ],
+    [
+     "Specialist cultures",
+     "Does it protect units that need a culture different from the rest?"
+    ],
+    [
+     "Difficult links",
+     "Does it give a clear answer for coordination that will not happen on its own?"
+    ],
+    [
+     "Redundant hierarchy",
+     "Does every layer add value?"
+    ],
+    [
+     "Accountability",
+     "Can each unit be held to clear measures?"
+    ],
+    [
+     "Flexibility",
+     "Can it adapt and allow new strategies to emerge?"
+    ]
+   ]
+  },
+  {
+   "id": "congruence",
+   "s": 3,
+   "name": "Congruence model",
+   "by": "Nadler and Tushman",
+   "one": "Performance comes from fit between work, people, formal and informal organization.",
+   "rows": [
+    [
+     "Inputs",
+     "Environment, resources, history"
+    ],
+    [
+     "Strategy",
+     "Where and how to compete"
+    ],
+    [
+     "Work",
+     "The tasks that must get done"
+    ],
+    [
+     "People",
+     "Skills, needs, expectations"
+    ],
+    [
+     "Formal organization",
+     "Structure, systems, processes"
+    ],
+    [
+     "Informal organization",
+     "Culture, norms, relationships"
+    ],
+    [
+     "Output",
+     "System, unit and individual performance"
+    ]
+   ]
+  },
+  {
+   "id": "structures",
+   "s": 3,
+   "name": "Four basic structures",
+   "by": "Course videos",
+   "one": "Each structure optimizes one thing and pays for it somewhere else.",
+   "rows": [
+    [
+     "Functional",
+     "Grouped by expertise. Deep skill and efficiency. Slow across functions."
+    ],
+    [
+     "Divisional",
+     "Grouped by product, region or customer. Focus and speed per market. Duplicated work."
+    ],
+    [
+     "Matrix",
+     "Two bosses: function and product. Balances two priorities. Confusing, slow, political."
+    ],
+    [
+     "Flat or network",
+     "Few layers, teams form around work. Fast and adaptive. Unclear authority as it grows."
+    ]
+   ]
+  },
+  {
+   "id": "culture-8",
+   "s": 4,
+   "name": "Eight culture styles",
+   "by": "Groysberg et al.",
+   "one": "Two axes: independent to interdependent, flexible to stable.",
+   "rows": [
+    [
+     "Caring",
+     "Relationships and mutual trust"
+    ],
+    [
+     "Purpose",
+     "Idealism and altruism"
+    ],
+    [
+     "Learning",
+     "Exploration, expansiveness, creativity"
+    ],
+    [
+     "Enjoyment",
+     "Fun and excitement"
+    ],
+    [
+     "Results",
+     "Achievement and winning"
+    ],
+    [
+     "Authority",
+     "Strength, decisiveness, boldness"
+    ],
+    [
+     "Safety",
+     "Planning, caution, preparedness"
+    ],
+    [
+     "Order",
+     "Respect, structure, shared norms"
+    ]
+   ]
+  },
+  {
+   "id": "kotter-8",
+   "s": 5,
+   "name": "Eight steps of change",
+   "by": "Kotter",
+   "one": "In order. Each step has a matching error.",
+   "rows": [
+    [
+     "1 Establish urgency",
+     "Error: not enough urgency"
+    ],
+    [
+     "2 Form a guiding coalition",
+     "Error: coalition too weak"
+    ],
+    [
+     "3 Create a vision",
+     "Error: no clear vision"
+    ],
+    [
+     "4 Communicate the vision",
+     "Error: undercommunicating by a factor of ten"
+    ],
+    [
+     "5 Remove obstacles",
+     "Error: letting obstacles block the vision"
+    ],
+    [
+     "6 Plan short-term wins",
+     "Error: no visible wins"
+    ],
+    [
+     "7 Consolidate and keep going",
+     "Error: declaring victory too soon"
+    ],
+    [
+     "8 Anchor in culture",
+     "Error: not anchoring the change"
+    ]
+   ]
+  },
+  {
+   "id": "conger-4",
+   "s": 5,
+   "name": "Four steps of persuasion",
+   "by": "Conger",
+   "one": "Persuasion is learning and negotiating, not selling.",
+   "rows": [
+    [
+     "Establish credibility",
+     "Expertise plus relationships"
+    ],
+    [
+     "Frame for common ground",
+     "Tie the goal to what they already care about"
+    ],
+    [
+     "Provide vivid evidence",
+     "Stories, examples, metaphors, plus numbers"
+    ],
+    [
+     "Connect emotionally",
+     "Read their mood and match your intensity"
+    ]
+   ]
+  },
+  {
+   "id": "cialdini",
+   "s": 5,
+   "name": "Principles of influence",
+   "by": "Cialdini, outside reading",
+   "one": "Shortcuts people use to say yes.",
+   "rows": [
+    [
+     "Reciprocity",
+     "People return favors"
+    ],
+    [
+     "Commitment and consistency",
+     "People act in line with what they said before"
+    ],
+    [
+     "Social proof",
+     "People follow what others like them do"
+    ],
+    [
+     "Liking",
+     "People say yes to people they like"
+    ],
+    [
+     "Authority",
+     "People defer to credible experts"
+    ],
+    [
+     "Scarcity",
+     "People want what is rare or ending"
+    ]
+   ]
+  },
+  {
+   "id": "hill-tensions",
+   "s": 6,
+   "name": "Team tensions",
+   "by": "Hill",
+   "one": "Manage the balance; do not try to settle it once.",
+   "rows": [
+    [
+     "Unity and diversity",
+     "Shared identity versus different views"
+    ],
+    [
+     "Support and confrontation",
+     "Backing people versus challenging them"
+    ],
+    [
+     "Performance and learning",
+     "Deliver now versus build capacity"
+    ],
+    [
+     "Authority and discretion",
+     "Leader decides versus team decides"
+    ]
+   ]
+  },
+  {
+   "id": "conflict-types",
+   "s": 6,
+   "name": "Three kinds of team conflict",
+   "by": "Team conflict research",
+   "one": "Encourage the first, defuse the second, settle the third early.",
+   "rows": [
+    [
+     "Task",
+     "Disagreement about ideas and the work. Often helps."
+    ],
+    [
+     "Relationship",
+     "Personal friction. Usually hurts."
+    ],
+    [
+     "Process",
+     "Disagreement about who does what and how. Hurts if it drags on."
+    ]
+   ]
+  },
+  {
+   "id": "hot-cool",
+   "s": 7,
+   "name": "Hot and cool conflict",
+   "by": "Edmondson and Smith",
+   "one": "Cool conflicts yield to data. Hot ones yield to reflection and inquiry.",
+   "rows": [
+    [
+     "Cool",
+     "About facts, settled by analysis"
+    ],
+    [
+     "Hot",
+     "About values, interests, identity. High stakes, strong feelings."
+    ],
+    [
+     "First move",
+     "Notice your own reaction and the story you tell"
+    ],
+    [
+     "Then",
+     "Share your reasoning, and ask about theirs"
+    ]
+   ]
+  },
+  {
+   "id": "tki",
+   "s": 7,
+   "name": "Five conflict modes",
+   "by": "Thomas and Kilmann, outside reading",
+   "one": "Assertiveness on one axis, cooperativeness on the other.",
+   "rows": [
+    [
+     "Competing",
+     "Assertive, uncooperative"
+    ],
+    [
+     "Collaborating",
+     "Assertive, cooperative"
+    ],
+    [
+     "Compromising",
+     "Middle on both"
+    ],
+    [
+     "Avoiding",
+     "Unassertive, uncooperative"
+    ],
+    [
+     "Accommodating",
+     "Unassertive, cooperative"
+    ]
+   ]
+  },
+  {
+   "id": "k12",
+   "s": 8,
+   "name": "Twelve questions before a big decision",
+   "by": "Kahneman, Lovallo and Sibony",
+   "one": "Check the team, the proposal and the assessment.",
+   "rows": [
+    [
+     "Self-interest",
+     "Is there a reason to suspect motivated errors?"
+    ],
+    [
+     "Affect heuristic",
+     "Has the team fallen in love with its proposal?"
+    ],
+    [
+     "Groupthink",
+     "Were there dissenting opinions?"
+    ],
+    [
+     "Saliency",
+     "Is the analysis overly influenced by an analogy?"
+    ],
+    [
+     "Confirmation",
+     "Were credible alternatives considered?"
+    ],
+    [
+     "Availability",
+     "If you made this decision again in a year, what information would you want?"
+    ],
+    [
+     "Anchoring",
+     "Where are the numbers from?"
+    ],
+    [
+     "Halo effect",
+     "Is the team assuming success in one area carries to another?"
+    ],
+    [
+     "Sunk cost",
+     "Are recommenders too attached to past decisions?"
+    ],
+    [
+     "Overconfidence",
+     "Is the base case overly optimistic?"
+    ],
+    [
+     "Disaster neglect",
+     "Is the worst case bad enough?"
+    ],
+    [
+     "Loss aversion",
+     "Is the team overly cautious?"
+    ]
+   ]
+  },
+  {
+   "id": "traps",
+   "s": 8,
+   "name": "Hidden decision traps",
+   "by": "Course video",
+   "one": "Common ways the mind tilts a decision.",
+   "rows": [
+    [
+     "Anchoring",
+     "First number pulls later ones"
+    ],
+    [
+     "Status quo",
+     "Favoring what already is"
+    ],
+    [
+     "Sunk cost",
+     "Protecting past choices"
+    ],
+    [
+     "Confirming evidence",
+     "Seeking support, ignoring disproof"
+    ],
+    [
+     "Framing",
+     "The way it is posed shapes the answer"
+    ],
+    [
+     "Estimating",
+     "Overconfidence and recall bias in forecasts"
+    ]
+   ]
+  },
+  {
+   "id": "rogers",
+   "s": 9,
+   "name": "Listening with understanding",
+   "by": "Rogers and Roethlisberger",
+   "one": "Restate their view to their satisfaction before you reply.",
+   "rows": [
+    [
+     "Barrier",
+     "The urge to evaluate from your own frame"
+    ],
+    [
+     "Gateway",
+     "Understand from their frame"
+    ],
+    [
+     "Rule",
+     "Summarize until they agree you got it"
+    ],
+    [
+     "Cost",
+     "You may be changed by what you hear"
+    ]
+   ]
+  },
+  {
+   "id": "transparency",
+   "s": 9,
+   "name": "Illusion of transparency",
+   "by": "Gilovich and colleagues",
+   "one": "We think our inner state and meaning show more than they do.",
+   "rows": [
+    [
+     "Tapping study",
+     "Tappers predicted 50% of songs named. Listeners got 2.5%."
+    ],
+    [
+     "At work",
+     "A clear message to you can land as noise to them."
+    ],
+    [
+     "Fix",
+     "Ask people to say back what they heard."
+    ]
+   ]
+  },
+  {
+   "id": "herzberg",
+   "s": 10,
+   "name": "Two-factor theory",
+   "by": "Herzberg",
+   "one": "Removing dissatisfaction is not the same as creating motivation.",
+   "rows": [
+    [
+     "Hygiene factors",
+     "Pay, policy, supervision, conditions, security"
+    ],
+    [
+     "Motivators",
+     "Achievement, recognition, the work itself, responsibility, growth"
+    ]
+   ]
+  },
+  {
+   "id": "expectancy",
+   "s": 10,
+   "name": "Expectancy theory",
+   "by": "Vroom",
+   "one": "Motivation = expectancy x instrumentality x valence.",
+   "rows": [
+    [
+     "Expectancy",
+     "If I try, can I perform?"
+    ],
+    [
+     "Instrumentality",
+     "If I perform, will I get the outcome?"
+    ],
+    [
+     "Valence",
+     "Do I value the outcome?"
+    ]
+   ]
+  },
+  {
+   "id": "jcm",
+   "s": 10,
+   "name": "Job characteristics model",
+   "by": "Hackman and Oldham",
+   "one": "MPS = ((variety + identity + significance) / 3) x autonomy x feedback.",
+   "rows": [
+    [
+     "Skill variety",
+     "Range of skills used"
+    ],
+    [
+     "Task identity",
+     "Doing a whole piece of work"
+    ],
+    [
+     "Task significance",
+     "Impact on others"
+    ],
+    [
+     "Autonomy",
+     "Freedom in how to do it"
+    ],
+    [
+     "Feedback",
+     "Knowing how well you did"
+    ]
+   ]
+  },
+  {
+   "id": "sdt",
+   "s": 10,
+   "name": "Self-determination theory",
+   "by": "Deci and Ryan",
+   "one": "Three needs drive intrinsic motivation.",
+   "rows": [
+    [
+     "Autonomy",
+     "Choice over how you work"
+    ],
+    [
+     "Competence",
+     "Getting better at something"
+    ],
+    [
+     "Relatedness",
+     "Connection to others"
+    ]
+   ]
+  },
+  {
+   "id": "ladder",
+   "s": 11,
+   "name": "Ladder of inference",
+   "by": "Argyris, refined by Action Design",
+   "one": "We climb from data to action in seconds without noticing.",
+   "rows": [
+    [
+     "6 Decide what to do",
+     ""
+    ],
+    [
+     "5 Explain or evaluate what is happening",
+     ""
+    ],
+    [
+     "4 Name what is happening",
+     ""
+    ],
+    [
+     "3 Paraphrase the data",
+     ""
+    ],
+    [
+     "2 Select data",
+     ""
+    ],
+    [
+     "1 Available data",
+     ""
+    ]
+   ]
+  },
+  {
+   "id": "five-flaws",
+   "s": 11,
+   "name": "Five flaws of feedback",
+   "by": "Cannon and Witherspoon",
+   "one": "Check your feedback against all five.",
+   "rows": [
+    [
+     "Attacks the person",
+     "Names a trait, not a behavior"
+    ],
+    [
+     "Vague or abstract",
+     "Could mean many things"
+    ],
+    [
+     "No illustrations",
+     "No example of what was seen"
+    ],
+    [
+     "Ill-defined range",
+     "Unclear when it does and does not happen"
+    ],
+    [
+     "Unclear impact",
+     "No consequence and no change asked for"
+    ]
+   ]
+  },
+  {
+   "id": "receiver-q",
+   "s": 11,
+   "name": "Questions to get actionable feedback",
+   "by": "Cannon and Witherspoon",
+   "one": "Help the giver walk down the ladder.",
+   "rows": [
+    [
+     "Example",
+     "Could you give me an example of the behavior that concerns you?"
+    ],
+    [
+     "Reasoning",
+     "Can you help me understand how you came to that conclusion?"
+    ],
+    [
+     "Range and impact",
+     "In which situations have you seen it, and what was the impact?"
+    ],
+    [
+     "Change",
+     "What would you like to see me do differently?"
+    ]
+   ]
+  },
+  {
+   "id": "energy-4",
+   "s": 12,
+   "name": "Four sources of energy",
+   "by": "Schwartz and McCarthy",
+   "one": "Each is renewed by small rituals.",
+   "rows": [
+    [
+     "Physical",
+     "Sleep, movement, food, breaks every 90 to 120 minutes"
+    ],
+    [
+     "Emotional",
+     "Notice the story; use the reverse, long and wide lens"
+    ],
+    [
+     "Mental",
+     "Focus on one important thing first, without interruptions"
+    ],
+    [
+     "Spirit",
+     "Do what you do best, enjoy, and care about"
+    ]
+   ]
+  }
+ ],
+ "resources": [
+  {
+   "t": "What Leaders Really Do",
+   "u": "https://hbr.org/2001/12/what-leaders-really-do",
+   "w": "Kotter, the session 1 reading",
+   "k": "Reading"
+  },
+  {
+   "t": "What Makes a Leader?",
+   "u": "https://hbr.org/2004/01/what-makes-a-leader",
+   "w": "Goleman on the five components",
+   "k": "Reading"
+  },
+  {
+   "t": "Do You Have a Well-Designed Organization?",
+   "u": "https://hbr.org/2002/03/do-you-have-a-well-designed-organization",
+   "w": "Goold and Campbell, the nine tests",
+   "k": "Reading"
+  },
+  {
+   "t": "The Leader’s Guide to Corporate Culture",
+   "u": "https://hbr.org/2018/01/the-leaders-guide-to-corporate-culture",
+   "w": "The eight styles and the culture map",
+   "k": "Reading"
+  },
+  {
+   "t": "Leading Change",
+   "u": "https://hbr.org/2007/01/leading-change-why-transformation-efforts-fail",
+   "w": "Kotter’s eight steps and eight errors",
+   "k": "Reading"
+  },
+  {
+   "t": "The Necessary Art of Persuasion",
+   "u": "https://hbr.org/1998/05/the-necessary-art-of-persuasion",
+   "w": "Conger’s four steps",
+   "k": "Reading"
+  },
+  {
+   "t": "Barriers and Gateways to Communication",
+   "u": "https://hbr.org/1991/11/barriers-and-gateways-to-communication",
+   "w": "Rogers on listening",
+   "k": "Reading"
+  },
+  {
+   "t": "Before You Make That Big Decision",
+   "u": "https://hbr.org/2013/06/before-you-make-that-big-decision",
+   "w": "The twelve question checklist",
+   "k": "Reading"
+  },
+  {
+   "t": "Manage Your Energy, Not Your Time",
+   "u": "https://hbr.org/2007/10/manage-your-energy-not-your-time",
+   "w": "Four sources of energy",
+   "k": "Reading"
+  },
+  {
+   "t": "Building a psychologically safe workplace",
+   "u": "https://www.youtube.com/watch?v=LhoLuui9gX8",
+   "w": "Amy Edmondson, TEDxHGSE, 13 minutes",
+   "k": "Video"
+  },
+  {
+   "t": "The power of believing that you can improve",
+   "u": "https://www.ted.com/talks/carol_dweck_the_power_of_believing_that_you_can_improve",
+   "w": "Carol Dweck on growth mindset, 10 minutes",
+   "k": "Video"
+  }
+ ]
+}
