@@ -23,13 +23,10 @@ const martian = Martian_Mono({
   display: "swap",
 })
 
-// Absolute base for share images. Vercel sets the production URL during its build.
-const site =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined)
+import { SITE_URL } from "@/lib/site-url"
 
 export const metadata: Metadata = {
-  metadataBase: site ? new URL(site) : undefined,
+  metadataBase: new URL(SITE_URL),
   title: {
     default: BRAND.title,
     template: `%s · ${BRAND.name}`,

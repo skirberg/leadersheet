@@ -1,6 +1,6 @@
 # Leadersheet
 
-The cheat sheet for leading people. Every Leadership in Organizations idea as an interactive sheet: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games.
+Leadership, built so you can move it. Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games.
 
 Built by [Sami Kirberg](https://github.com/skirberg). Next.js 16, React 19, Tailwind 4, shadcn/ui on Radix, Remotion Player, Motion, NumberFlow. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
 
@@ -23,6 +23,10 @@ npm run dev
 | `npm run brand <preset>` | Reskin the whole site with another preset in `src/brand/presets/` |
 | `npm run contrast <preset>` | WCAG contrast for every color pair in a preset |
 | `npm run domains a,b com,app,io` | Domain availability straight from the registries |
+
+## Class mode
+
+The public site has no schedule. People taking the course open any link with `?class` once (for example `https://leadersheet.app/?class`) to add this week's sheet, the dates and what is due; the footer switch turns it off.
 
 ## Put it online
 

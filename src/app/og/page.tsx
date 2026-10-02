@@ -15,10 +15,10 @@ export default function OgCard() {
             <LogoMark className="size-14" />
             <span className="text-[34px] font-bold tracking-[-0.03em]">{BRAND.name}</span>
           </span>
-          <span className="label-mono !text-base">Leadership in Organizations · 12 sheets</span>
+          <span className="label-mono !text-base">Twelve big ideas · one sheet each</span>
         </div>
-        <h1 className="max-w-[16ch] text-[92px] leading-[0.95] font-semibold tracking-[-0.04em] [font-stretch:92%]">
-          Every LiO idea, built so you can <Emphasis delay={0}>move it.</Emphasis>
+        <h1 className="max-w-[15ch] text-[100px] leading-[0.95] font-semibold tracking-[-0.04em] [font-stretch:92%]">
+          Leadership, built so you can <Emphasis delay={0}>move it.</Emphasis>
         </h1>
         <p className="label-mono !text-base">Idea · model · frameworks · games · three question check</p>
       </div>

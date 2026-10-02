@@ -1,0 +1,11 @@
+import type { MetadataRoute } from "next"
+import { SESSIONS } from "@/data/course"
+import { GAMES } from "@/data/games"
+import { SITE_URL } from "@/lib/site-url"
+
+export const dynamic = "force-static"
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const paths = ["/", "/learn/", "/play/", "/practice/", "/sheet/", "/built/", ...SESSIONS.map((s) => `/learn/${s.id}/`), ...GAMES.map((g) => `/play/${g.id}/`)]
+  return paths.map((p) => ({ url: SITE_URL + p, changeFrequency: "monthly", priority: p === "/" ? 1 : 0.7 }))
+}

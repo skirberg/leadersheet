@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import { BRAND } from "./brand"
 
 /**
  * Leadersheet mark: a sheet with a dog-eared corner in signal pink and one
@@ -29,7 +30,7 @@ export function Wordmark({ className }: { className?: string }) {
         <span className="text-[17px] font-bold tracking-[-0.025em]">
           Leader<span className="font-medium">sheet</span>
         </span>
-        <span className="label-mono mt-1 !text-[9.5px] !leading-none !normal-case">LiO · 12 sheets</span>
+        <span className="label-mono mt-1 !text-[9.5px] !leading-none">{BRAND.descriptor}</span>
       </span>
     </span>
   )

@@ -4,7 +4,7 @@ import * as React from "react"
 import { Player, type PlayerRef } from "@remotion/player"
 import { HERO, HeroFilm } from "./hero-film"
 import { SESSION_FILM, SessionFilm, type SessionFilmProps } from "./session-film"
-import { useReducedMotion } from "@/lib/store"
+import { useProgress, useReducedMotion } from "@/lib/store"
 import { cn } from "@/lib/utils"
 
 function useMounted() {
@@ -72,6 +72,8 @@ export function HeroPlayer({ className }: { className?: string }) {
 /** Per-session recap film with controls. Starts on its title card; plays on request. */
 export function SessionFilmPlayer({ data, className }: { data: SessionFilmProps; className?: string }) {
   const mounted = useMounted()
+  const { classMode } = useProgress()
+  const props = React.useMemo(() => ({ ...data, date: classMode ? data.date : "" }), [data, classMode])
   return (
     <div
       className={cn("corners relative overflow-hidden border border-border bg-card", className)}
@@ -80,7 +82,7 @@ export function SessionFilmPlayer({ data, className }: { data: SessionFilmProps;
       {mounted && (
         <Player
           component={SessionFilm}
-          inputProps={data}
+          inputProps={props}
           durationInFrames={SESSION_FILM.durationInFrames}
           fps={SESSION_FILM.fps}
           compositionWidth={SESSION_FILM.width}

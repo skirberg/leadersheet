@@ -1,5 +1,6 @@
 // Domain availability, straight from each registry (RDAP), with whois for TLDs that have no RDAP.
 // usage: node scripts/domains.mjs name1,name2 com,app,io,so,co,study,fun
+//    or: node scripts/domains.mjs lead.ing,leader.sh,leade.rs   (exact domains, for hacks)
 // "free" means unregistered. It does not mean purchasable at standard price: premium and reserved
 // names look the same here. Check price at a registrar before you fall in love.
 import { execFileSync } from "node:child_process"
@@ -21,19 +22,44 @@ async function rdap(d, t) {
   }
   return "?"
 }
+// whois fallback: ask IANA for the TLD's own registry server, then ask that server.
+// Answers that match neither pattern come back as "?" so a guess is never shown as "free".
+const whoisServer = {}
+function registryWhois(t) {
+  if (!(t in whoisServer)) {
+    try {
+      const iana = execFileSync("whois", ["-h", "whois.iana.org", t], { encoding: "utf8", timeout: 15000 })
+      whoisServer[t] = iana.match(/^whois:\s*(\S+)/im)?.[1] ?? null
+    } catch {
+      whoisServer[t] = null
+    }
+  }
+  return whoisServer[t]
+}
 function whois(d) {
+  const server = registryWhois(d.split(".").at(-1))
+  if (!server) return "?no-whois"
   try {
-    const out = execFileSync("whois", [d], { encoding: "utf8", timeout: 15000 })
-    if (/No Object Found|NOT FOUND|Domain not found|No match|No Data Found|is available/i.test(out)) return "free"
-    if (/Creation Date|Registry Expiry|Domain Status/i.test(out)) return "taken"
+    const out = execFileSync("whois", ["-h", server, d], { encoding: "utf8", timeout: 20000 })
+    if (/Creation Date|Registry Expiry|Registered on|Registrar:|Domain Status:\s*\w/i.test(out)) return "taken"
+    if (/No Object Found|NOT FOUND|Domain not found|No match|No Data Found|is available|no entries found/i.test(out)) return "free"
   } catch {}
   return "?"
 }
-for (const n of names) {
-  const row = []
-  for (const t of tlds) {
-    row.push(`${t}:${base[t] ? await rdap(`${n}.${t}`, t) : whois(`${n}.${t}`)}`)
+
+// Exact domains (anything with a dot) are checked one per line, for domain hacks like lead.ing.
+if (names.some((n) => n.includes("."))) {
+  for (const d of names) {
+    const t = d.split(".").at(-1)
+    console.log(d.padEnd(22), base[t] ? await rdap(d, t) : whois(d))
     await sleep(300)
   }
-  console.log(n.padEnd(14), row.join("  "))
-}
+} else
+  for (const n of names) {
+    const row = []
+    for (const t of tlds) {
+      row.push(`${t}:${base[t] ? await rdap(`${n}.${t}`, t) : whois(`${n}.${t}`)}`)
+      await sleep(300)
+    }
+    console.log(n.padEnd(14), row.join("  "))
+  }

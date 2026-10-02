@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { SheetClient } from "./sheet-client"
 
-export const metadata: Metadata = { title: "Cheat sheet", description: "Every framework from Leadership in Organizations on one page." }
+export const metadata: Metadata = { title: "Cheat sheet", description: "Every leadership framework on one page." }
 
 export default function SheetPage() {
   return (

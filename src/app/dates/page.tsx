@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import { C } from "@/data/course"
 import { Timeline } from "./timeline"
+import { ClassModeToggle } from "@/components/learn/class-only"
 
-export const metadata: Metadata = { title: "Dates", description: "The Leadership in Organizations schedule and what is due before each class." }
+export const metadata: Metadata = { title: "Dates", description: "Class mode: the class schedule and what is due before each class." }
 
 export default function DatesPage() {
   return (
@@ -10,7 +11,10 @@ export default function DatesPage() {
       <div className="grid gap-2 border-b border-foreground pb-4">
         <p className="label-mono">Dates</p>
         <h1 className="text-4xl leading-none font-semibold tracking-[-0.03em] sm:text-6xl">The schedule</h1>
-        <p className="text-lg text-muted-foreground">Twelve classes, one sheet each, and what is due before every one.</p>
+        <p className="max-w-[60ch] text-lg text-muted-foreground">
+          For people taking the class. Class mode adds this schedule, a This week card on the home page and what is due on every sheet.
+        </p>
+        <ClassModeToggle className="w-fit" />
       </div>
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <section aria-labelledby="sch-h" className="grid content-start gap-4">

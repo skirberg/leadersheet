@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { CheckCount, SheetGrid } from "@/components/learn/sheets"
 
-export const metadata: Metadata = { title: "The set", description: "All twelve sessions of Leadership in Organizations as interactive sheets." }
+export const metadata: Metadata = { title: "The set", description: "Twelve big leadership ideas as interactive sheets." }
 
 export default function LearnIndex() {
   return (
@@ -10,7 +10,7 @@ export default function LearnIndex() {
         <div className="grid gap-2">
           <p className="label-mono">The set</p>
           <h1 className="text-4xl leading-none font-semibold tracking-[-0.03em] sm:text-6xl">Twelve sheets</h1>
-          <p className="max-w-[56ch] text-lg text-muted-foreground">One per class. Pass the three question check to sign a sheet off.</p>
+          <p className="max-w-[56ch] text-lg text-muted-foreground">Twelve big ideas, one sheet each. Pass a sheet’s three question check to sign it off.</p>
         </div>
         <CheckCount />
       </div>

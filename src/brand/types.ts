@@ -11,5 +11,7 @@ export type Brand = {
   emphasis: "underline" | "highlight"
   author: { name: string; url: string }
   repo: string
+  /** Canonical address, used when the build host does not provide one. */
+  url: string
   themeColor: { light: string; dark: string }
 }

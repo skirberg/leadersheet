@@ -32,7 +32,7 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Motion",
     items: [
-      { name: "Remotion Player", version: "4.0", what: "The hero film and the 16 second recap on every sheet, generated from the course data in the browser.", url: "https://www.remotion.dev" },
+      { name: "Remotion Player", version: "4.0", what: "The hero film and the 16 second recap on every sheet, generated from the content in the browser.", url: "https://www.remotion.dev" },
       { name: "Motion", version: "13.5", what: "Spring layout animations: the sliding nav underline, the phone tab bar, the Study and Play pill and the lab toggles.", url: "https://motion.dev" },
       { name: "NumberFlow", version: "0.6", what: "Scores, timers and counts that roll digit by digit.", url: "https://number-flow.barvian.me" },
       { name: "CSS scroll timelines", what: "Sections rise in as they scroll into view, with no JavaScript; the highlighter swipe and the celebration burst are CSS too. All of it turns off with reduced motion." },
@@ -65,8 +65,9 @@ const STACK: { title: string; items: Item[] }[] = [
 const SYSTEM: [string, string][] = [
   ["Brand presets", "Name, logo, colors and emphasis style live in one folder. Swap the folder and the whole site reskins."],
   ["Two inks", "Paper and ink carry the page. A lime highlighter marks one phrase per view; hot pink marks the one thing to look at in a model."],
-  ["Sheets", "Each class is a numbered sheet with a title block, like a set of drawings."],
+  ["Sheets", "Each big idea is a numbered sheet with a title block, like a set of drawings."],
   ["Study and Play", "One switch changes emphasis, never content: Play mode leads with the games."],
+  ["Class mode", "The public site is timeless. People taking the class switch on dates and what is due, once."],
 ]
 
 export default function BuiltPage() {

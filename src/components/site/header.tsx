@@ -6,13 +6,17 @@ import { BRAND, Wordmark } from "@/brand"
 import { ArrowUpRight } from "lucide-react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
-import { NAV, isActive } from "./nav-items"
+import { isActive, navFor } from "./nav-items"
+import { useProgress } from "@/lib/store"
+import { ClassModeToggle } from "@/components/learn/class-only"
 import { SearchButton } from "./command-menu"
 import { ThemeToggle } from "./theme-toggle"
 import { ModeSwitch, ModeToggle } from "@/components/play/mode-switch"
 
 export function SiteHeader() {
   const pathname = usePathname()
+  const { classMode } = useProgress()
+  const NAV = navFor(classMode)
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-border bg-background pt-[env(safe-area-inset-top)]">
@@ -52,7 +56,7 @@ export function SiteHeader() {
         aria-label="Main"
         className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background pb-[env(safe-area-inset-bottom)] md:hidden"
       >
-        <ul className="grid grid-cols-6">
+        <ul className={cn("grid", NAV.length === 6 ? "grid-cols-6" : "grid-cols-5")}>
           {NAV.map((n) => {
             const on = isActive(pathname, n.href)
             return (
@@ -88,8 +92,8 @@ export function SiteFooter() {
             <Wordmark />
           </Link>
           <p className="max-w-[60ch] text-sm text-muted-foreground">
-            An unofficial study companion for Leadership in Organizations. Summaries are for learning; read the originals.
-            Your progress stays in this browser.
+            Built from classic readings on leading people and organizations. Summaries are for learning; read the originals.
+            Not affiliated with any school. Your progress stays in this browser.
           </p>
         </div>
         <nav aria-label="About this site" className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
@@ -105,6 +109,7 @@ export function SiteFooter() {
           <Link href="/built/" className="inline-flex min-h-11 items-center font-semibold underline-offset-4 hover:underline">
             How it’s built
           </Link>
+          <ClassModeToggle />
           <span className="label-mono">© {year}</span>
         </nav>
       </div>

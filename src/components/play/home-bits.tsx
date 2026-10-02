@@ -12,7 +12,7 @@ export function HeroLine() {
   const play = ready && mode === "play"
   return (
     <>
-      Every LiO idea, built so you can{" "}
+      Leadership, built so you can{" "}
       <Emphasis key={play ? "p" : "s"} delay={play ? 100 : 700}>
         {play ? "play it." : "move it."}
       </Emphasis>
@@ -31,7 +31,7 @@ export function HeroCtas({ children }: { children: React.ReactNode }) {
           </Link>
         </Button>
         <Button asChild size="lg" variant="outline">
-          <Link href="#this-week">This week</Link>
+          <Link href="#this-week">The sheets</Link>
         </Button>
       </>
     )

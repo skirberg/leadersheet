@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Arcade } from "@/components/play/arcade"
 
-export const metadata: Metadata = { title: "Play", description: "Quizzes and games built on the Leadership in Organizations frameworks." }
+export const metadata: Metadata = { title: "Play", description: "Quizzes and games built on classic leadership frameworks." }
 
 export default function PlayPage() {
   return (

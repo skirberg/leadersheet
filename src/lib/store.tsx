@@ -10,13 +10,15 @@ export type Mode = "study" | "play"
 
 type State = {
   mode: Mode
+  /** Class mode adds the schedule: this week, dates and what is due. Off for the public. */
+  classMode: boolean
   best: Record<string, number>
   miss: string[]
   due: Record<string, boolean>
   seen: Record<string, 1>
   lab: Record<string, unknown>
 }
-const EMPTY: State = { mode: "study", best: {}, miss: [], due: {}, seen: {}, lab: {} }
+const EMPTY: State = { mode: "study", classMode: false, best: {}, miss: [], due: {}, seen: {}, lab: {} }
 
 type Ctx = {
   ready: boolean
@@ -24,6 +26,8 @@ type Ctx = {
   current: Session
   mode: Mode
   setMode: (m: Mode) => void
+  classMode: boolean
+  setClassMode: (on: boolean) => void
   setBest: (sid: string, n: number) => void
   markMiss: (qid: string, ok: boolean) => void
   setDue: (k: string, v: boolean) => void
@@ -41,6 +45,7 @@ function load(): State {
     if (!v || typeof v !== "object") return EMPTY
     return {
       mode: v.mode === "play" ? "play" : "study",
+      classMode: v.classMode === true,
       best: v.best ?? {},
       miss: Array.isArray(v.miss) ? v.miss : [],
       due: v.due ?? {},
@@ -65,7 +70,11 @@ export function ProgressProvider({
   const [current, setCurrent] = React.useState<Session>(buildCurrent)
 
   React.useEffect(() => {
-    setState(load())
+    const s = load()
+    // A shared link with ?class turns class mode on (and ?class=off turns it off); it is remembered.
+    const q = new URLSearchParams(window.location.search).get("class")
+    if (q !== null) s.classMode = q !== "off" && q !== "0"
+    setState(s)
     setCurrent(currentSession(todayStr()))
     setReady(true)
   }, [])
@@ -84,6 +93,8 @@ export function ProgressProvider({
       current,
       mode: state.mode,
       setMode: (m) => setState((s) => ({ ...s, mode: m })),
+      classMode: ready && state.classMode,
+      setClassMode: (on) => setState((s) => ({ ...s, classMode: on })),
       setBest: (sid, n) =>
         setState((s) => ({ ...s, best: { ...s.best, [sid]: Math.max(s.best[sid] ?? 0, n) } })),
       markMiss: (qid, ok) =>
@@ -98,7 +109,7 @@ export function ProgressProvider({
         setState((s) => (s.seen[sid] ? s : { ...s, seen: { ...s.seen, [sid]: 1 } })),
       lab: <T,>(k: string, fallback: T) => (k in state.lab ? (state.lab[k] as T) : fallback),
       setLab: (k, v) => setState((s) => ({ ...s, lab: { ...s.lab, [k]: v } })),
-      reset: () => setState((s) => ({ ...EMPTY, mode: s.mode })),
+      reset: () => setState((s) => ({ ...EMPTY, mode: s.mode, classMode: s.classMode })),
     }),
     [ready, state, current]
   )

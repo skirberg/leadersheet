@@ -12,7 +12,8 @@ import {
   CommandList,
 } from "@/components/ui/command"
 import { FRAMEWORKS, SESSIONS, sessionById, sheetNo } from "@/data/course"
-import { NAV } from "./nav-items"
+import { navFor } from "./nav-items"
+import { useProgress } from "@/lib/store"
 import { GAMES } from "@/data/games"
 import { cn } from "@/lib/utils"
 
@@ -22,6 +23,8 @@ export const useOpenCommand = () => React.useContext(OpenCtx)
 export function CommandMenuProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false)
   const router = useRouter()
+  const { classMode } = useProgress()
+  const NAV = navFor(classMode)
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {

@@ -17,8 +17,8 @@ function Dots({ n }: { n: number | undefined }) {
 }
 
 export function SheetCard({ s, i = 0 }: { s: Session; i?: number }) {
-  const { state, current, ready } = useProgress()
-  const isNow = ready && current.id === s.id
+  const { state, current, ready, classMode } = useProgress()
+  const isNow = ready && classMode && current.id === s.id
   return (
     <Link
       href={`/learn/${s.id}/`}
@@ -39,7 +39,7 @@ export function SheetCard({ s, i = 0 }: { s: Session; i?: number }) {
       <h3 className="mt-auto pt-6 text-[19px] leading-tight font-semibold">{s.title}</h3>
       <div className="mt-3 flex items-center justify-between gap-3 border-t border-dashed border-border pt-2.5">
         <span className="label-mono !text-[10px]">
-          {fmtMono(s.date)} · {s.part}
+          {classMode ? `${fmtMono(s.date)} · ${s.part}` : s.part}
         </span>
         <Dots n={state.best[s.id]} />
       </div>

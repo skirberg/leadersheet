@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowUpRight, Command } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { HeroPlayer } from "@/components/film/players"
-import { OpenThisWeek, ThisWeek } from "@/components/learn/this-week"
+import { HomeFocus, OpenThisWeek } from "@/components/learn/this-week"
 import { HeroCtas, HeroLine, HomeArcade } from "@/components/play/home-bits"
 import { CheckCount, SheetGrid } from "@/components/learn/sheets"
 import { C, FRAMEWORKS, sheetNo } from "@/data/course"
@@ -15,12 +15,12 @@ export default function Home() {
         <div aria-hidden className="drafting-grid drafting-grid-fade pointer-events-none absolute inset-0" />
         <div className="relative mx-auto grid max-w-[1240px] items-center gap-10 px-4 pt-10 pb-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14 lg:pt-16 lg:pb-20">
           <div className="grid gap-6">
-            <p className="label-mono rise">Leadership in Organizations · 12 sheets</p>
+            <p className="label-mono rise">Twelve big ideas in leadership · one sheet each</p>
             <h1 className="rise text-[44px] leading-[0.98] font-semibold tracking-[-0.035em] [font-stretch:92%] sm:text-[64px] lg:text-[76px]" style={{ ["--delay" as string]: "60ms" }}>
               <HeroLine />
             </h1>
             <p className="rise max-w-[50ch] text-lg leading-snug text-muted-foreground sm:text-xl" style={{ ["--delay" as string]: "120ms" }}>
-              Twelve classes, twelve sheets. Each one gives you the idea, a model you can move, the frameworks, and a three question check. Then the games.
+              Twelve ideas from the leadership classics, one sheet each: the idea, a model you can move, the frameworks, and a three question check. Then the games.
             </p>
             <div className="rise flex flex-wrap items-center gap-2" style={{ ["--delay" as string]: "180ms" }}>
               <HeroCtas>
@@ -42,7 +42,7 @@ export default function Home() {
         <HomeArcade slot="top" />
 
         <div id="this-week" className="scroll-mt-24">
-          <ThisWeek />
+          <HomeFocus />
         </div>
 
         <section aria-labelledby="set-h" className="reveal grid gap-6">
@@ -103,7 +103,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <p className="text-xs text-muted-foreground">HBR articles may need a library login.</p>
+            <p className="text-xs text-muted-foreground">Some articles need a subscription or a library login.</p>
           </div>
         </section>
       </div>

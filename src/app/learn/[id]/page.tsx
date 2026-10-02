@@ -2,12 +2,13 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
-import { TitleBlock } from "@/components/brand/title-block"
 import { Emphasis } from "@/components/brand/emphasis"
 import { SessionFilmPlayer } from "@/components/film/players"
 import { FrameworkCard } from "@/components/learn/framework-card"
 import { SheetRail } from "@/components/learn/sheets"
 import { DueChecklist, SeenMarker, SessionQuiz } from "@/components/learn/session-parts"
+import { ClassOnly } from "@/components/learn/class-only"
+import { SheetTitleBlock } from "@/components/learn/sheet-title-block"
 import { SessionLab } from "@/components/labs"
 import { PlayCallout } from "@/components/play/arcade"
 import { SheetPlaySlot } from "@/components/play/home-bits"
@@ -66,13 +67,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
             <Link href="/learn/" className="label-mono inline-flex w-fit items-center gap-1.5 hover:text-foreground lg:hidden">
               <ArrowLeft className="size-3.5" /> All sheets
             </Link>
-            <TitleBlock
-              cells={[
-                { k: "Sheet", v: `${sheetNo(s.n)} of 12` },
-                { k: "Class", v: fmtMono(s.date) },
-                { k: "Part", v: s.part, wide: true },
-              ]}
-            />
+            <SheetTitleBlock sheet={`${sheetNo(s.n)} of 12`} date={fmtMono(s.date)} part={s.part} />
             <h1 className="text-[42px] leading-[1] font-semibold tracking-[-0.03em] [font-stretch:94%] sm:text-[60px]">{s.title}</h1>
             <p className="text-2xl leading-[1.25] font-medium tracking-[-0.01em] sm:text-[28px]">
               {head} <Emphasis delay={500}>{tail}</Emphasis>
@@ -126,10 +121,10 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
             </div>
             <dl className="grid gap-2 text-[15px] sm:grid-cols-[8rem_minmax(0,1fr)]">
               {s.videos.length > 0 && (
-                <>
+                <ClassOnly>
                   <dt className="label-mono pt-1">Videos</dt>
                   <dd className="text-muted-foreground">{s.videos.join(", ")}.</dd>
-                </>
+                </ClassOnly>
               )}
               {s.caseName && (
                 <>
@@ -140,16 +135,16 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
                 </>
               )}
               {s.exercise && (
-                <>
+                <ClassOnly>
                   <dt className="label-mono pt-1">In class</dt>
                   <dd>{s.exercise}</dd>
-                </>
+                </ClassOnly>
               )}
               {s.lab2 && (
-                <>
+                <ClassOnly>
                   <dt className="label-mono pt-1">Lab</dt>
                   <dd>{s.lab2}</dd>
-                </>
+                </ClassOnly>
               )}
             </dl>
           </Section>
@@ -178,7 +173,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
             <SessionQuiz s={s} />
           </Section>
 
-          <Section no="05" title="Bring to class" id="bring">
+          <Section no="05" title="Think it through" id="bring">
             <ol className="grid gap-3">
               {s.prompts.map((p, k) => (
                 <li key={p} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-2 border-l-2 border-foreground bg-card py-3 pr-4 pl-4 text-[17px]">
@@ -189,9 +184,11 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
             </ol>
           </Section>
 
-          <Section no="06" title={`Due before ${fmt(s.date)}`} id="due">
-            <DueChecklist s={s} />
-          </Section>
+          <ClassOnly>
+            <Section no="06" title={`Due before ${fmt(s.date)}`} id="due">
+              <DueChecklist s={s} />
+            </Section>
+          </ClassOnly>
 
           <nav aria-label="More sheets" className="grid grid-cols-2 gap-3">
             {pv ? (

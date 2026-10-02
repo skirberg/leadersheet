@@ -10,13 +10,23 @@ Proof points: sheets numbered S01 to S12 with title blocks, a highlighter on the
 
 ## Name
 
-Leadersheet: leader plus sheet, read like cheat sheet. Checked on 2 October 2026:
+Leadersheet: leader plus sheet, read like cheat sheet. No product called Leadersheet turned up in a web search.
 
-| | .com | .app | .io | .so | .co | .study | .lol |
-|---|---|---|---|---|---|---|---|
-| leadersheet | taken | free | free | free | free | free | free |
+Domains checked on 2 October 2026 with `npm run domains` (registry RDAP, or the TLD's own whois server):
 
-"Free" means unregistered at the registry (RDAP or whois), not a confirmed price; premium names look the same. No product called Leadersheet turned up in a web search. Runners-up: **Moveset** (moveset.io, .so, .study free; a fighting-game combo app owns moveset.app) and **Orgbox** (orgbox.app, .io free; a university research tool uses the name). Ruled out: Sandtable (a funded defense-AI company) and Orgami (two HR companies). Recheck with `npm run domains leadersheet` before buying.
+| Unregistered | Taken |
+|---|---|
+| leadersheet.app, .io, .so, .co, .sh, .gg, .me, .how, .quest, .page, .study, .ink | leadersheet.com |
+| lead.ing, lead.how, leading.how, leadership.how | leader.sh, lead.sh, lead.gg, lead.quest, lead.to, lead.team |
+| leadership.fun, leadership.study | leadership.gg, leadership.fyi, leadership.guide, leade.rs, leader.ink |
+
+"Unregistered" is a registry lookup, not a price. Short dictionary words on .ing and .how are often premium (writ.ing was priced in the thousands at launch); check at a registrar. Suggested setup: leadersheet.app as the home, with lead.ing or lead.how as a short vanity redirect if either is standard priced.
+
+Runners-up: **Moveset** (moveset.io and .so unregistered; a fighting-game combo app owns moveset.app) and **Orgbox** (orgbox.app and .io unregistered; a university research tool uses the name). Ruled out: Sandtable (a funded defense-AI company) and Orgami (two HR companies).
+
+## Audience
+
+Anyone who wants to learn to lead, not only one class. The public site is timeless: no course codes, no schedule. Class mode (a footer switch, or any link with `?class`) adds the schedule, a This week card and what is due on each sheet for people taking the course.
 
 ## Voice
 
@@ -24,7 +34,7 @@ Register: a sharp classmate's notes. Short, concrete, a little dry, never cute.
 
 - Uses: sheet, move, mark, check, play
 - Never: unlock, journey, empower, leverage, synergy
-- Hero: "Every LiO idea, built so you can move it."
+- Hero: "Leadership, built so you can move it."
 - Error: "No sheet at this address. The set has twelve."
 - Confirmation: "3 of 3. Sheet signed off."
 

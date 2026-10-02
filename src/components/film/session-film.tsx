@@ -92,7 +92,7 @@ export function SessionFilm(p: SessionFilmProps) {
       </svg>
       {/* persistent title strip */}
       <div style={{ position: "absolute", top: 64, left: 110, right: 110, display: "flex", justifyContent: "space-between", font: `500 16px ${mono}`, letterSpacing: "0.1em", color: "var(--muted-foreground)" }}>
-        <span>SHEET {p.sheet} · {p.date}</span>
+        <span>SHEET {p.sheet}{p.date ? ` · ${p.date}` : ""}</span>
         <span>{p.part.toUpperCase()}</span>
       </div>
       <div style={{ position: "absolute", bottom: 60, left: 110, right: 110, height: 3, background: "var(--border)", borderRadius: 2 }}>
@@ -141,7 +141,7 @@ export function SessionFilm(p: SessionFilmProps) {
       <Sequence from={425} durationInFrames={55} layout="none">
         <Beat dur={70}>
           <div style={{ marginTop: 40, display: "grid", gap: 26 }}>
-            <Label>Bring to class</Label>
+            <Label>Think it through</Label>
             <Words text={p.prompt} size={52} start={2} per={1.2} />
           </div>
         </Beat>

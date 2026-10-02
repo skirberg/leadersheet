@@ -265,7 +265,7 @@ function NineTests() {
       </div>
       <Meter label="Tests passed" value={n} max={9} />
       <p role="status" className="text-sm text-muted-foreground">
-        {n < 9 ? "Each failed test is a design problem worth naming in class." : "A rare clean bill. Check it with someone who sees it differently."}
+        {n < 9 ? "Each failed test is a design problem worth naming." : "A rare clean bill. Check it with someone who sees it differently."}
       </p>
     </LabFrame>
   )
