@@ -28,6 +28,22 @@ Unavailable through Vercel: leadersheet.com, leadersheet.so. Cheap first years c
 
 Runners-up: **Moveset** (moveset.io and .so unregistered; a fighting-game combo app owns moveset.app) and **Orgbox** (orgbox.app and .io unregistered; a university research tool uses the name). Ruled out: Sandtable (a funded defense-AI company) and Orgami (two HR companies).
 
+### Naming study (2 October 2026)
+
+Method after Lexicon Branding (David Placek's interview on Lenny's Newsletter): generate wide before judging, use separate territories including unrelated categories ("naming by indirection"), weigh sound symbolism (V alive, B reliable, Z attention), prefer compounds that add up to more than their parts, treat the extension as an area code, and test names as if a competitor had launched them.
+
+About 45 names across seven territories: practice, leading in motion (cycling, flight), wayfinding, sheets and study, tennis, coined, compounds. Every evocative real word is taken on .com, .app, .co and .io.
+
+| Name | Story | Best domain (first year, renewal) | Conflict |
+|---|---|---|---|
+| Leadersheet | The cheat sheet for leading people | leadersheet.app ($9.99, $15) | None found |
+| Sandlot | The lot where you learn the game by playing, no stakes | sandlot.page ($11.99, $11.99) or sandlot.school ($9.99, $30) | Game studio, health IT; no learning product |
+| Paceline | Riders take turns at the front and the group goes faster | paceline.page ($11.99, $11.99) | Fitness rewards app |
+| Waymark | A mark that shows the path to those behind you | waymark.club ($6.99, $18.46) | AI video company |
+| ChalkTalk | The coach's whiteboard session | Several | Ruled out: K-12 learning platform |
+
+Decision: keep Leadersheet. Sandlot is the strongest bold alternative and the closest to the original Sandbox idea. Note: a leadership app called Leaderly uses "Learn to Lead", the same line as our wordmark descriptor.
+
 ## Audience
 
 Anyone who wants to learn to lead, not only one class. The public site is timeless: no course codes, no schedule. Class mode (a footer switch, or any link with `?class`) adds the schedule, a This week card and what is due on each sheet for people taking the course.
