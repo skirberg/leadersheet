@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { ArrowRight, Check as CheckIcon, Copy, RotateCcw, X } from "lucide-react"
+import { ArrowRight, RotateCcw, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Burst } from "./burst"
 import { Num } from "@/components/motion/number"
@@ -12,6 +12,8 @@ import { CULTURE_STYLES, TKI_MODES } from "@/data/labs"
 import { BIAS_ITEMS, BIAS_NAMES, CONFLICT_QUIZ, CULTURE_QUIZ } from "@/data/games"
 import { cn } from "@/lib/utils"
 import { BRAND } from "@/brand"
+import { ShareResult } from "./share"
+import { resultImage, resultPath } from "@/data/results"
 
 const shuffle = <T,>(a: T[]) => {
   const x = [...a]
@@ -62,24 +64,6 @@ function Choice({ children, onClick, k }: { children: React.ReactNode; onClick: 
       </span>
       <span>{children}</span>
     </button>
-  )
-}
-
-function CopyResult({ text }: { text: string }) {
-  const [done, setDone] = React.useState(false)
-  return (
-    <Button
-      variant="outline"
-      onClick={() => {
-        const line = `${text} ${window.location.href}`
-        navigator.clipboard?.writeText(line).then(
-          () => setDone(true),
-          () => setDone(false)
-        )
-      }}
-    >
-      {done ? <CheckIcon className="size-4" /> : <Copy className="size-4" />} {done ? "Copied" : "Copy my result"}
-    </Button>
   )
 }
 
@@ -162,7 +146,7 @@ export function CultureGame() {
               </div>
             </dl>
             <div className="flex flex-wrap gap-2 pt-2">
-              <CopyResult text={`I fit a ${r.top} culture on the ${BRAND.name} culture map.`} />
+              <ShareResult text={`I fit a ${r.top} culture. Which culture fits you?`} path={resultPath("culture", r.top)} image={resultImage("culture", r.top)} fileName={`${BRAND.id}-${r.top.toLowerCase()}-culture.png`} />
               <Button
                 variant="ghost"
                 onClick={() => {
@@ -213,9 +197,9 @@ function resultOf(picks: string[]) {
   return { top: ranked[0], second: ranked[1] as string | undefined, pos }
 }
 
-function CultureMapResult({ you, top }: { you: number[]; top: string }) {
+export function CultureMapResult({ you, top, className }: { you?: number[]; top: string; className?: string }) {
   return (
-    <svg className="viz max-w-[560px]" viewBox="-300 -232 600 470" role="img" aria-label={`Culture map. Your answers land closest to ${top}.`}>
+    <svg className={cn("viz max-w-[560px]", className)} viewBox="-300 -232 600 470" role="img" aria-label={you ? `Culture map. Your answers land closest to ${top}.` : `Culture map with ${top} marked.`}>
       <rect x={-260} y={-200} width={520} height={400} rx={4} className="grid-line" />
       <line className="grid-line" x1={0} y1={-200} x2={0} y2={200} />
       <line className="grid-line" x1={-260} y1={0} x2={260} y2={0} />
@@ -225,17 +209,21 @@ function CultureMapResult({ you, top }: { you: number[]; top: string }) {
       <text x={250} y={-10} textAnchor="end">INTERDEPENDENCE</text>
       {Object.entries(CULTURE_STYLES).map(([k, p]) => (
         <g key={k}>
-          <circle cx={MX(p[0])} cy={MY(p[1])} r={k === top ? 9 : 6} className={k === top ? "fill-ink" : "node"} />
+          <circle cx={MX(p[0])} cy={MY(p[1])} r={k === top ? (you ? 9 : 14) : 6} className={k === top ? (you ? "fill-ink" : "fill-signal") : "node"} />
           <text x={MX(p[0])} y={MY(p[1]) - 15} textAnchor="middle" className="lbl">
             {k}
           </text>
         </g>
       ))}
-      <line x1={MX(you[0])} y1={MY(you[1])} x2={MX(CULTURE_STYLES[top][0])} y2={MY(CULTURE_STYLES[top][1])} className="edge-signal" strokeDasharray="4 5" strokeWidth={2} />
-      <circle cx={MX(you[0])} cy={MY(you[1])} r={13} className="fill-signal" />
-      <text x={MX(you[0])} y={MY(you[1]) + 4} textAnchor="middle" style={{ fill: "var(--signal-foreground)", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 10 }}>
-        YOU
-      </text>
+      {you && (
+        <>
+          <line x1={MX(you[0])} y1={MY(you[1])} x2={MX(CULTURE_STYLES[top][0])} y2={MY(CULTURE_STYLES[top][1])} className="edge-signal" strokeDasharray="4 5" strokeWidth={2} />
+          <circle cx={MX(you[0])} cy={MY(you[1])} r={13} className="fill-signal" />
+          <text x={MX(you[0])} y={MY(you[1]) + 4} textAnchor="middle" style={{ fill: "var(--signal-foreground)", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 10 }}>
+            YOU
+          </text>
+        </>
+      )}
     </svg>
   )
 }
@@ -286,7 +274,7 @@ export function ConflictGame() {
               ))}
             </div>
             <div className="flex flex-wrap gap-2 pt-2">
-              <CopyResult text={`My go-to conflict style is ${top}.`} />
+              <ShareResult text={`My go-to conflict style is ${top}. How do you fight?`} path={resultPath("conflict", top)} image={resultImage("conflict", top)} fileName={`${BRAND.id}-${top.toLowerCase()}.png`} />
               <Button
                 variant="ghost"
                 onClick={() => {
@@ -298,24 +286,7 @@ export function ConflictGame() {
               </Button>
             </div>
           </div>
-          <svg className="viz max-w-[560px]" viewBox="0 0 600 344" role="img" aria-label={`Your answers on the assertiveness and cooperativeness chart, closest to ${top}`}>
-            <line className="grid-line" x1={60} y1={300} x2={580} y2={300} />
-            <line className="grid-line" x1={60} y1={20} x2={60} y2={300} />
-            <text x={320} y={330} textAnchor="middle">COOPERATIVENESS →</text>
-            <text x={22} y={160} textAnchor="middle" transform="rotate(-90 22 160)">ASSERTIVENESS →</text>
-            {Object.entries(TKI_MODES).map(([k, p]) => (
-              <g key={k}>
-                <circle cx={60 + p[1] * 500} cy={300 - p[0] * 270} r={k === top ? 9 : 7} className={k === top ? "fill-ink" : "node"} />
-                <text x={60 + p[1] * 500} y={300 - p[0] * 270 - 16} textAnchor="middle" className="lbl">
-                  {k}
-                </text>
-              </g>
-            ))}
-            <circle cx={60 + pos[1] * 500} cy={300 - pos[0] * 270} r={13} className="fill-signal" />
-            <text x={60 + pos[1] * 500} y={300 - pos[0] * 270 + 4} textAnchor="middle" style={{ fill: "var(--signal-foreground)", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 10 }}>
-              YOU
-            </text>
-          </svg>
+          <ConflictChart top={top} you={pos} />
         </div>
         <Disclaimer>
           For fun, not a validated assessment or the Thomas-Kilmann instrument.{" "}
@@ -340,6 +311,33 @@ export function ConflictGame() {
       </fieldset>
       <p className="text-xs text-muted-foreground">Go with your gut.</p>
     </GameShell>
+  )
+}
+
+export function ConflictChart({ top, you, className }: { top: string; you?: number[]; className?: string }) {
+  return (
+    <svg className={cn("viz max-w-[560px]", className)} viewBox="0 0 600 344" role="img" aria-label={you ? `Your answers on the assertiveness and cooperativeness chart, closest to ${top}` : `Assertiveness and cooperativeness chart with ${top} marked`}>
+      <line className="grid-line" x1={60} y1={300} x2={580} y2={300} />
+      <line className="grid-line" x1={60} y1={20} x2={60} y2={300} />
+      <text x={320} y={330} textAnchor="middle">COOPERATIVENESS →</text>
+      <text x={22} y={160} textAnchor="middle" transform="rotate(-90 22 160)">ASSERTIVENESS →</text>
+      {Object.entries(TKI_MODES).map(([k, p]) => (
+        <g key={k}>
+          <circle cx={60 + p[1] * 500} cy={300 - p[0] * 270} r={k === top ? (you ? 9 : 14) : 7} className={k === top ? (you ? "fill-ink" : "fill-signal") : "node"} />
+          <text x={60 + p[1] * 500} y={300 - p[0] * 270 - (k === top && !you ? 22 : 16)} textAnchor="middle" className="lbl">
+            {k}
+          </text>
+        </g>
+      ))}
+      {you && (
+        <>
+          <circle cx={60 + you[1] * 500} cy={300 - you[0] * 270} r={13} className="fill-signal" />
+          <text x={60 + you[1] * 500} y={300 - you[0] * 270 + 4} textAnchor="middle" style={{ fill: "var(--signal-foreground)", fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 10 }}>
+            YOU
+          </text>
+        </>
+      )}
+    </svg>
   )
 }
 
@@ -475,9 +473,10 @@ export function BiasGame() {
           </ul>
         )}
         <div className="flex flex-wrap gap-2">
-          <Button onClick={start}>
+          <Button onClick={start} variant="outline">
             <RotateCcw className="size-4" /> Play again
           </Button>
+          <ShareResult text={`I spotted ${score} biases in 60 seconds. Can you beat that?`} path="/play/bias/" />
           <Button asChild variant="outline">
             <Link href="/learn/s8/">Open sheet S08</Link>
           </Button>
@@ -660,9 +659,10 @@ export function ClimbGame() {
               <p className="mr-2 text-[15px]">
                 <b className="font-semibold">{secs(final)} seconds.</b> {newBest ? "New best." : `Best: ${secs(best)}s.`}
               </p>
-              <Button onClick={start}>
+              <Button onClick={start} variant="outline">
                 <RotateCcw className="size-4" /> Climb again
               </Button>
+              <ShareResult text={`I climbed Kotter’s 8 steps of change in ${secs(final)} seconds. Can you beat that?`} path="/play/climb/" />
               <Button asChild variant="outline">
                 <Link href="/learn/s5/">Open sheet S05</Link>
               </Button>

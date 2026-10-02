@@ -1,6 +1,6 @@
 # Leadersheet
 
-Leadership, built so you can move it. Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games.
+Leadership, built so you can move it. Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games. Every quiz result has its own shareable page and card.
 
 Next.js 16, React 19, Tailwind 4, shadcn/ui on Radix, Remotion Player, Motion, NumberFlow. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
 
@@ -37,7 +37,9 @@ Publish this folder to a personal GitHub repository named `leadersheet` (GitHub 
 - `src/brand/`: everything brand-specific. `presets/leadersheet` is active; `presets/drafting` is the original look. How to make a new one: `docs/BRAND-KIT.md`
 - `src/data/course.json`, `src/data/labs.ts`, `src/data/games.ts`: all content
 - `src/components/labs/`: the 20 interactive labs
-- `src/components/play/`: the arcade and the Study and Play switch
+- `src/components/play/`: the arcade, the share button and the Study and Play switch
+- `src/data/results.ts`, `src/app/play/results/`: the 13 shareable result pages; `npm run og` renders their cards into `public/og/`
+- `docs/VENTURE.md`: objective, audience, decisions and the next action
 - `src/components/film/`: the Remotion hero and recap films
 - `scripts/`: QA, screenshots, icons, share card, contrast, domains
 - `DESIGN.md`: the reasoning behind the Leadersheet identity
