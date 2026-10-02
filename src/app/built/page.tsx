@@ -76,13 +76,7 @@ export default function BuiltPage() {
       <header className="grid gap-3 border-b border-foreground pb-5">
         <p className="label-mono">Colophon</p>
         <h1 className="text-4xl leading-none font-semibold tracking-[-0.03em] sm:text-6xl">How it’s built</h1>
-        <p className="max-w-[60ch] text-lg text-muted-foreground">
-          {BRAND.name} is a static site: open source tools, a small design system, and a lot of checking. Built by{" "}
-          <a href={BRAND.author.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground underline-offset-4 hover:underline">
-            {BRAND.author.name}
-          </a>
-          .
-        </p>
+        <p className="max-w-[60ch] text-lg text-muted-foreground">A static site: open source tools, a small design system, and a lot of checking.</p>
         <div className="flex flex-wrap gap-2 pt-2">
           <a
             href={BRAND.repo}
@@ -91,14 +85,6 @@ export default function BuiltPage() {
             className="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/88"
           >
             Source code <ArrowUpRight className="size-4" />
-          </a>
-          <a
-            href={BRAND.author.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-11 items-center gap-2 rounded-md border border-rule/50 bg-card px-4 text-sm font-semibold hover:border-foreground/60"
-          >
-            GitHub profile <ArrowUpRight className="size-4" />
           </a>
         </div>
       </header>

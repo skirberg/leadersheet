@@ -87,7 +87,6 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
                 prompt: s.prompts[0],
               }}
             />
-            <figcaption className="label-mono">The sheet in 16 seconds · press play</figcaption>
           </figure>
 
           <Section no="01" title="Readings" id="readings">

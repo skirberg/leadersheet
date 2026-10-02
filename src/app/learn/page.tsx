@@ -10,7 +10,6 @@ export default function LearnIndex() {
         <div className="grid gap-2">
           <p className="label-mono">The set</p>
           <h1 className="text-4xl leading-none font-semibold tracking-[-0.03em] sm:text-6xl">Twelve sheets</h1>
-          <p className="max-w-[56ch] text-lg text-muted-foreground">Twelve big ideas, one sheet each. Pass a sheet’s three question check to sign it off.</p>
         </div>
         <CheckCount />
       </div>

@@ -177,7 +177,7 @@ export function CultureGame() {
           <CultureMapResult you={r.pos} top={r.top} />
         </div>
         <Disclaimer>
-          For fun, not a validated assessment. Original questions placed on the two axes from Groysberg, Lee, Price and Cheng (2018).{" "}
+          For fun, not a validated assessment. Based on Groysberg et al. (2018).{" "}
           <Link href="/learn/s4/" className="font-semibold text-foreground underline-offset-4 hover:underline">
             Open sheet S04
           </Link>
@@ -197,7 +197,6 @@ export function CultureGame() {
           </Choice>
         ))}
       </fieldset>
-      <p className="hidden text-xs text-muted-foreground sm:block">Tip: press 1 to 4.</p>
       {lab<string | null>("g-culture", null) && step === 0 && (
         <p className="text-sm text-muted-foreground">Last time you landed on {lab<string>("g-culture", "")}.</p>
       )}
@@ -319,7 +318,7 @@ export function ConflictGame() {
           </svg>
         </div>
         <Disclaimer>
-          For fun, not a validated assessment and not the Thomas-Kilmann instrument. Original scenarios placed on the model’s two axes. Every style has its moment; the skill is choosing on purpose.{" "}
+          For fun, not a validated assessment or the Thomas-Kilmann instrument.{" "}
           <Link href="/learn/s7/" className="font-semibold text-foreground underline-offset-4 hover:underline">
             Open sheet S07
           </Link>
@@ -339,7 +338,7 @@ export function ConflictGame() {
           </Choice>
         ))}
       </fieldset>
-      <p className="hidden text-xs text-muted-foreground sm:block">Go with your gut, not the textbook answer. Tip: press 1 to 5.</p>
+      <p className="text-xs text-muted-foreground">Go with your gut.</p>
     </GameShell>
   )
 }
@@ -442,7 +441,7 @@ export function BiasGame() {
     return (
       <GameShell kind="60 seconds" title="Bias blitz">
         <p className="max-w-[56ch] text-lg">
-          Each card is a line from a pitch. Name the trap it falls into, from the twelve questions Kahneman, Lovallo and Sibony tell a decision maker to ask. Right answers keep a streak going.
+          Name the trap in each pitch. You have 60 seconds.
         </p>
         <div className="flex flex-wrap items-center gap-4">
           <Button size="lg" onClick={start}>
@@ -605,7 +604,7 @@ export function ClimbGame() {
       {!tiles ? (
         <>
           <p className="max-w-[56ch] text-lg">
-            The eight steps of change are scrambled. Tap them from the bottom of the staircase to the top. A wrong step costs two seconds, like skipping one costs a real change effort.
+            Tap Kotter’s eight steps of change in order. A wrong step costs two seconds.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <Button size="lg" onClick={start}>

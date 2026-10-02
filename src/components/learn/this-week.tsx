@@ -34,7 +34,7 @@ function StartHere() {
           { k: "Check", v: best == null ? "Not taken" : `${best} of 3` },
         ]}
       />
-      <div className="grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+      <div className="grid gap-8 p-5 sm:p-7">
         <div className="grid content-start gap-4">
           <p className="label-mono">{resuming ? "Pick up where you left off" : "Start here"}</p>
           <h2 id="sh-h" className="text-3xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-4xl">
@@ -48,17 +48,6 @@ function StartHere() {
               </Link>
             </Button>
           </div>
-        </div>
-        <div className="grid content-start gap-3 lg:border-l lg:border-dashed lg:border-border lg:pl-8">
-          <p className="label-mono">On every sheet</p>
-          <ul className="grid gap-2 text-[15px]">
-            {["The big idea in one sentence", "The classic readings in 60 seconds", "A model you can move", "The frameworks, side by side", "A three question check", "A 16 second recap film"].map((x) => (
-              <li key={x} className="flex gap-3">
-                <span aria-hidden className="mt-2 block size-1.5 shrink-0 bg-foreground" />
-                {x}
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { BRAND, Wordmark } from "@/brand"
-import { ArrowUpRight } from "lucide-react"
 import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { isActive, navFor } from "./nav-items"
@@ -82,35 +81,38 @@ export function SiteHeader() {
   )
 }
 
+function GitHubIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden className={className} fill="currentColor">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+    </svg>
+  )
+}
+
 export function SiteFooter() {
-  const year = 2026
   return (
     <footer className="mt-24 border-t border-border pb-24 md:pb-0">
-      <div className="mx-auto grid max-w-[1240px] gap-6 px-4 py-10 sm:px-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
-        <div className="grid gap-3">
+      <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-8 sm:px-6">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <Link href="/" className="w-fit" aria-label={`${BRAND.name}, home`}>
             <Wordmark />
           </Link>
-          <p className="max-w-[60ch] text-sm text-muted-foreground">
-            Built from classic readings on leading people and organizations. Summaries are for learning; read the originals.
-            Not affiliated with any school. Your progress stays in this browser.
-          </p>
+          <p className="text-xs text-muted-foreground">Summaries for learning. Read the originals.</p>
         </div>
-        <nav aria-label="About this site" className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-          <span className="text-muted-foreground">
-            Built by{" "}
-            <a href={BRAND.author.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground underline-offset-4 hover:underline">
-              {BRAND.author.name}
-            </a>
-          </span>
-          <a href={BRAND.author.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 font-semibold underline-offset-4 hover:underline">
-            GitHub <ArrowUpRight className="size-3.5" />
-          </a>
-          <Link href="/built/" className="inline-flex min-h-11 items-center font-semibold underline-offset-4 hover:underline">
+        <nav aria-label="About this site" className="flex items-center gap-x-4 text-sm">
+          <ClassModeToggle className="font-normal text-muted-foreground hover:text-foreground" />
+          <Link href="/built/" className="inline-flex min-h-11 items-center text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
             How it’s built
           </Link>
-          <ClassModeToggle />
-          <span className="label-mono">© {year}</span>
+          <a
+            href={BRAND.author.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="grid size-11 place-items-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <GitHubIcon className="size-[18px]" />
+          </a>
         </nav>
       </div>
     </footer>

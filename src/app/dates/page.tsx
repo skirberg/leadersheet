@@ -12,7 +12,7 @@ export default function DatesPage() {
         <p className="label-mono">Dates</p>
         <h1 className="text-4xl leading-none font-semibold tracking-[-0.03em] sm:text-6xl">The schedule</h1>
         <p className="max-w-[60ch] text-lg text-muted-foreground">
-          For people taking the class. Class mode adds this schedule, a This week card on the home page and what is due on every sheet.
+          Adds the class schedule and what’s due to every sheet.
         </p>
         <ClassModeToggle className="w-fit" />
       </div>

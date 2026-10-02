@@ -46,11 +46,10 @@ export function HomeArcade({ slot }: { slot: "top" | "bottom" }) {
     <section aria-labelledby={`arcade-${slot}`} className="reveal grid gap-6">
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-foreground pb-3">
         <div>
-          <p className="label-mono">{play ? "Play mode" : "Take a break"}</p>
+          <p className="label-mono">Play</p>
           <h2 id={`arcade-${slot}`} className="mt-1 text-3xl font-semibold tracking-[-0.02em]">
             The arcade
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">Two quick quizzes about you, two games against the clock.</p>
         </div>
         <Link href="/play/" className="text-sm font-semibold underline-offset-4 hover:underline">
           All games

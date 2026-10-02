@@ -33,7 +33,6 @@ export const metadata: Metadata = {
   },
   description: BRAND.description,
   applicationName: BRAND.name,
-  authors: [{ name: BRAND.author.name, url: BRAND.author.url }],
   openGraph: {
     title: BRAND.name,
     description: BRAND.description,

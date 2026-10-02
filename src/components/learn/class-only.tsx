@@ -1,6 +1,7 @@
 "use client"
 
 import { useProgress } from "@/lib/store"
+import { cn } from "@/lib/utils"
 
 /** Renders only in class mode: schedule, dates and what is due. Public visitors never see it. */
 export function ClassOnly({ children }: { children: React.ReactNode }) {
@@ -16,7 +17,7 @@ export function ClassModeToggle({ className }: { className?: string }) {
       role="switch"
       aria-checked={ready && classMode}
       onClick={() => setClassMode(!classMode)}
-      className={`inline-flex min-h-11 items-center gap-3 text-sm font-semibold ${className ?? ""}`}
+      className={cn("inline-flex min-h-11 items-center gap-3 text-sm font-semibold", className)}
     >
       <span
         aria-hidden
