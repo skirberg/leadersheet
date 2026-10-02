@@ -315,7 +315,7 @@
     .reveal {
       animation: reveal linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 60%;
+      animation-range: entry 0px entry 140px;
     }
   }
   @keyframes reveal {

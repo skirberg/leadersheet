@@ -42,7 +42,7 @@ Two spot inks on paper, like a Riso print. Paper and ink carry the page.
 
 `npm run contrast` checks every pair; all pass in both modes. Pink is never an error color; wrong answers get a strike and an X in ink.
 
-Category check: study tools own indigo (Quizlet), grass green (Duolingo), amber (Chegg), blue (Coursera) and purple (Kahoot). Hot pink and a lime highlighter belong to none of them. The lime is lighter and yellower than Duolingo's green and only ever appears as a highlighter fill.
+Category check: Chegg's amber (#EB7100) was verified; from memory, not verified, Quizlet leans indigo, Duolingo green, Coursera blue and Kahoot purple. Hot pink and a lime highlighter match none of them. The lime is lighter and yellower than a grass green and only ever appears as a highlighter fill.
 
 ## Type
 

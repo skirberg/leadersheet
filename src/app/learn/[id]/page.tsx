@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 function Section({ no, title, id, children }: { no: string; title: string; id: string; children: React.ReactNode }) {
   return (
-    <section aria-labelledby={id} className="reveal grid min-w-0 scroll-mt-24 gap-5">
+    <section aria-labelledby={id} className="grid min-w-0 scroll-mt-24 gap-5">
       <div className="flex items-baseline gap-3 border-b border-foreground pb-2.5">
         <span className="font-mono text-xs text-muted-foreground tnum">{no}</span>
         <h2 id={id} className="text-2xl font-semibold tracking-[-0.015em]">
