@@ -4,6 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { BRAND, Wordmark } from "@/brand"
 import { ArrowUpRight } from "lucide-react"
+import { motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { NAV, isActive } from "./nav-items"
 import { SearchButton } from "./command-menu"
@@ -33,7 +34,7 @@ export function SiteHeader() {
                   )}
                 >
                   {n.label}
-                  {on && <span className="absolute inset-x-3 -bottom-px h-[2px] bg-foreground" />}
+                  {on && <motion.span layoutId="nav-underline" className="absolute inset-x-3 -bottom-px h-[2px] bg-foreground" />}
                 </Link>
               )
             })}
@@ -64,7 +65,7 @@ export function SiteHeader() {
                     on && "font-semibold text-foreground"
                   )}
                 >
-                  {on && <span className="absolute inset-x-3 top-0 h-[2px] bg-foreground" />}
+                  {on && <motion.span layoutId="tab-indicator" className="absolute inset-x-3 top-0 h-[2px] bg-foreground" />}
                   <n.icon className="size-[18px]" strokeWidth={on ? 2.2 : 1.8} />
                   {n.label}
                 </Link>

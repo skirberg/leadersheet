@@ -2,7 +2,7 @@
 
 The cheat sheet for leading people. Every Leadership in Organizations idea as an interactive sheet: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games.
 
-Built by [Sami Kirberg](https://github.com/skirberg). Next.js 16, React 19, Tailwind 4, shadcn/ui on Radix, Remotion Player. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
+Built by [Sami Kirberg](https://github.com/skirberg). Next.js 16, React 19, Tailwind 4, shadcn/ui on Radix, Remotion Player, Motion, NumberFlow. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
 
 ![Leadersheet on desktop](docs/preview-desktop.png)
 

@@ -4,6 +4,7 @@ import * as React from "react"
 import { Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Num } from "@/components/motion/number"
 import { CheckRow, LabFrame, Meter, RangeField, Readout, Sorter } from "./kit"
 import { useProgress, useReducedMotion } from "@/lib/store"
 import { fwById } from "@/data/course"
@@ -130,7 +131,7 @@ export function TeamLab() {
           <div className="grid gap-4">
             <RangeField id="tm-n" label="Team size" value={n} min={2} max={15} onChange={(v) => setLab("tn", v)} />
             <p className="font-mono text-5xl leading-none font-medium tracking-tight tnum">
-              {links}
+              <Num value={links} />
               <span className="ml-2 font-sans text-base font-medium text-muted-foreground">links</span>
             </p>
             <p className="text-sm text-muted-foreground">{n > 2 ? `The newest person, highlighted, adds ${n - 1}.` : "Two people, one conversation."}</p>

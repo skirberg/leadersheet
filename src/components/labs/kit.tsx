@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Check as CheckIcon, X } from "lucide-react"
 import { ToggleGroup as TG } from "radix-ui"
+import { motion } from "motion/react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { cn } from "@/lib/utils"
@@ -21,7 +22,7 @@ export function LabFrame({
   className?: string
 }) {
   return (
-    <section className={cn("corners min-w-0 border border-border bg-card", className)}>
+    <section className={cn("reveal corners min-w-0 border border-border bg-card", className)}>
       <header className="flex items-baseline justify-between gap-4 border-b border-border px-4 py-3 sm:px-5">
         <h3 className="text-[17px] leading-snug font-semibold">{title}</h3>
         <span className="label-mono shrink-0">{code}</span>
@@ -46,6 +47,7 @@ export function Segmented<T extends string>({
   label: string
   className?: string
 }) {
+  const pill = React.useId()
   return (
     <TG.Root
       type="single"
@@ -58,9 +60,10 @@ export function Segmented<T extends string>({
         <TG.Item
           key={o.value}
           value={o.value}
-          className="min-h-10 rounded-[4px] px-3 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground data-[state=on]:bg-card data-[state=on]:font-semibold data-[state=on]:text-foreground data-[state=on]:shadow-[0_0_0_1px_var(--rule)]"
+          className="relative min-h-10 rounded-[4px] px-3 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground data-[state=on]:font-semibold data-[state=on]:text-foreground"
         >
-          {o.label}
+          {value === o.value && <motion.span layoutId={pill} className="absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
+          <span className="relative">{o.label}</span>
         </TG.Item>
       ))}
     </TG.Root>

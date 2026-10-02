@@ -1,6 +1,7 @@
 "use client"
 
 import { BookOpen, Gamepad2 } from "lucide-react"
+import { motion } from "motion/react"
 import { useProgress } from "@/lib/store"
 import { cn } from "@/lib/utils"
 
@@ -45,13 +46,14 @@ export function ModeSwitch({ className }: { className?: string }) {
             aria-pressed={on}
             onClick={() => setMode(m)}
             className={cn(
-              "flex h-full items-center gap-1.5 rounded-[4px] px-2.5 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground",
-              on && "bg-card font-semibold text-foreground shadow-[0_0_0_1px_var(--rule)]",
+              "relative flex h-full items-center gap-1.5 rounded-[4px] px-2.5 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground",
+              on && "font-semibold text-foreground",
               on && m === "play" && "text-signal-text"
             )}
           >
-            <Icon className="size-4" />
-            <span className="hidden sm:inline">{label}</span>
+            {on && <motion.span layoutId="mode-pill" className="absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
+            <Icon className="relative size-4" />
+            <span className="relative hidden sm:inline">{label}</span>
             <span className="sr-only sm:hidden">{label} mode</span>
           </button>
         )

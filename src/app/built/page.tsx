@@ -33,7 +33,9 @@ const STACK: { title: string; items: Item[] }[] = [
     title: "Motion",
     items: [
       { name: "Remotion Player", version: "4.0", what: "The hero film and the 16 second recap on every sheet, generated from the course data in the browser.", url: "https://www.remotion.dev" },
-      { name: "CSS animation", what: "The highlighter swipe, the celebration burst and the lab transitions. All of it turns off with reduced motion." },
+      { name: "Motion", version: "13.5", what: "Spring layout animations: the sliding nav underline, the phone tab bar, the Study and Play pill and the lab toggles.", url: "https://motion.dev" },
+      { name: "NumberFlow", version: "0.6", what: "Scores, timers and counts that roll digit by digit.", url: "https://number-flow.barvian.me" },
+      { name: "CSS scroll timelines", what: "Sections rise in as they scroll into view, with no JavaScript; the highlighter swipe and the celebration burst are CSS too. All of it turns off with reduced motion." },
     ],
   },
   {

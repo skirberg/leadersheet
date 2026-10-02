@@ -43,7 +43,7 @@ export function HomeArcade({ slot }: { slot: "top" | "bottom" }) {
   const play = ready && mode === "play"
   if ((slot === "top") !== play) return null
   return (
-    <section aria-labelledby={`arcade-${slot}`} className="grid gap-6">
+    <section aria-labelledby={`arcade-${slot}`} className="reveal grid gap-6">
       <div className="flex flex-wrap items-end justify-between gap-3 border-b border-foreground pb-3">
         <div>
           <p className="label-mono">{play ? "Play mode" : "Take a break"}</p>

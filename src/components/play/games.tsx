@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowRight, Check as CheckIcon, Copy, RotateCcw, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Burst } from "./burst"
+import { Num } from "@/components/motion/number"
 import { useProgress } from "@/lib/store"
 import { fwById, seededOrder } from "@/data/course"
 import { CULTURE_STYLES, TKI_MODES } from "@/data/labs"
@@ -459,7 +460,7 @@ export function BiasGame() {
       <GameShell kind="Time" title="Bias blitz">
         <div className="relative grid gap-2">
           <Burst fire={fire} />
-          <p className="font-mono text-7xl leading-none font-medium tracking-tight tnum">{score}</p>
+          <p className="font-mono text-7xl leading-none font-medium tracking-tight tnum"><Num value={score} /></p>
           <p className="text-muted-foreground" role="status">
             {newBest ? "New best." : `Best so far: ${best}.`} {uniq.length ? `${uniq.length} to review below.` : "No misses."}
           </p>
@@ -494,12 +495,12 @@ export function BiasGame() {
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-baseline gap-5">
           <span className="font-mono text-4xl font-medium tnum" aria-label={`${score} points`}>
-            {score}
+            <Num value={score} />
           </span>
           {streak >= 3 && <span className="label-mono !text-signal-text">Streak {streak}</span>}
         </div>
         <span className={cn("font-mono text-2xl font-medium tnum", left <= 10 && "text-signal")} aria-hidden>
-          0:{String(left).padStart(2, "0")}
+          <Num value={left} prefix="0:" pad={2} />
         </span>
       </div>
       <div className="h-1 overflow-hidden rounded-full bg-border" aria-hidden>

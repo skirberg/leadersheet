@@ -8,6 +8,7 @@ import { CommandMenuProvider } from "@/components/site/command-menu"
 import { SiteFooter, SiteHeader } from "@/components/site/header"
 import { currentSession } from "@/data/course"
 import { BRAND } from "@/brand"
+import { MotionProvider } from "@/components/motion/motion-provider"
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${martian.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <MotionProvider>
           <TooltipProvider delayDuration={200}>
             <ProgressProvider buildCurrent={buildCurrent}>
               <CommandMenuProvider>
@@ -81,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </CommandMenuProvider>
             </ProgressProvider>
           </TooltipProvider>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -45,7 +45,7 @@ export default function Home() {
           <ThisWeek />
         </div>
 
-        <section aria-labelledby="set-h" className="grid gap-6">
+        <section aria-labelledby="set-h" className="reveal grid gap-6">
           <div className="flex flex-wrap items-end justify-between gap-3 border-b border-foreground pb-3">
             <div>
               <p className="label-mono">The set</p>
@@ -59,7 +59,7 @@ export default function Home() {
 
         <HomeArcade slot="bottom" />
 
-        <section className="grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <section className="reveal grid gap-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
           <div className="grid content-start gap-5">
             <div className="flex items-end justify-between gap-3 border-b border-foreground pb-3">
               <div>

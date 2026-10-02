@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Check as CheckIcon, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Num } from "@/components/motion/number"
 import { CheckRow, LabFrame, Meter, RangeField, Readout, Segmented } from "./kit"
 import { useProgress, useReducedMotion } from "@/lib/store"
 import { fwById } from "@/data/course"
@@ -152,7 +153,7 @@ export function MotivationLab() {
         ))}
         <div className="grid gap-2">
           <p className="font-mono text-5xl leading-none font-medium tracking-tight tnum">
-            {Math.round(mps)}
+            <Num value={Math.round(mps)} />
             <span className="ml-2 font-sans text-base font-medium text-muted-foreground">MPS of 343</span>
           </p>
           <div className="h-2 overflow-hidden rounded-full bg-border">
@@ -179,7 +180,7 @@ export function MotivationLab() {
           />
         ))}
         <p className={cn("font-mono text-5xl leading-none font-medium tracking-tight tnum", prod === 0 && "text-signal")}>
-          {prod.toFixed(2)}
+          <Num value={prod} decimals={2} />
           <span className="ml-2 font-sans text-base font-medium text-muted-foreground">motivation</span>
         </p>
         <p className="text-sm text-muted-foreground">Slide any one to zero and watch the total.</p>
