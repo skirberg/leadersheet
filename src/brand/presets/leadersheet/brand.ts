@@ -4,7 +4,7 @@ export const BRAND: Brand = {
   id: "leadersheet",
   name: "Leadersheet",
   shortName: "Leadersheet",
-  descriptor: "Learn to lead",
+  descriptor: "Leadership, one sheet at a time",
   title: "Leadersheet · Leadership, built so you can move it",
   description:
     "Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, and games. Free, no sign-up.",

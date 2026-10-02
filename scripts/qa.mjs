@@ -1,5 +1,5 @@
 // One-command QA for the exported site. Run `npm run build` first, then `node scripts/qa.mjs`.
-// Checks every page at 375 px and 1280 px in light and dark: crashes, horizontal overflow, and axe (WCAG 2.1 AA).
+// Checks every page at 375, 768, 1024 and 1280 px in light and dark: crashes and horizontal overflow; axe (WCAG 2.1 AA) at 1280.
 import { readFileSync, readdirSync, statSync } from "node:fs"
 import { join, relative } from "node:path"
 import { launch } from "./chrome.mjs"
@@ -23,7 +23,7 @@ const problems = []
 let checks = 0
 for (const scheme of ["light", "dark"]) {
   await page.media({ scheme })
-  for (const width of [375, 1280]) {
+  for (const width of [375, 768, 1024, 1280]) {
     await page.size(width, 900, { mobile: width < 768 })
     for (const r of routes.map((x) => x.replace("//", "/"))) {
       await page.go(srv.url + r, 900)

@@ -42,7 +42,7 @@ About 45 names across seven territories: practice, leading in motion (cycling, f
 | Waymark | A mark that shows the path to those behind you | waymark.club ($6.99, $18.46) | AI video company |
 | ChalkTalk | The coach's whiteboard session | Several | Ruled out: K-12 learning platform |
 
-Decision: keep Leadersheet. Sandlot is the strongest bold alternative and the closest to the original Sandbox idea. Note: a leadership app called Leaderly uses "Learn to Lead", the same line as our wordmark descriptor.
+Decision: keep Leadersheet. Sandlot is the strongest bold alternative and the closest to the original Sandbox idea. A leadership app called Leaderly uses "Learn to Lead", so the wordmark line changed to "Leadership, one sheet at a time" (shown from 640 px up; phones show the name alone).
 
 ## Audience
 

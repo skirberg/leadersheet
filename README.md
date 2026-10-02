@@ -18,7 +18,7 @@ npm run dev
 | Command | What it does |
 |---|---|
 | `npm run build` | Writes the finished static site to `out/` |
-| `npm run check` | Build, render the share card, then QA every page at 375 px and 1280 px in light and dark (crashes, overflow, axe) |
+| `npm run check` | Build, render the share card, then QA every page at phone, tablet and desktop widths in light and dark (crashes, overflow, axe) |
 | `npm run shots` | Screenshots and preview contact sheets in `docs/` |
 | `npm run brand <preset>` | Reskin the whole site with another preset in `src/brand/presets/` |
 | `npm run contrast <preset>` | WCAG contrast for every color pair in a preset |

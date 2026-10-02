@@ -113,9 +113,9 @@ export function SearchButton({ className }: { className?: string }) {
       )}
     >
       <Search className="size-4" />
-      <span className="hidden lg:inline">Search</span>
-      <kbd className="ml-2 hidden rounded-sm border border-border px-1.5 font-mono text-[10px] lg:inline">⌘K</kbd>
-      <span className="sr-only lg:hidden">Search</span>
+      <span className="hidden xl:inline">Search</span>
+      <kbd className="ml-2 hidden rounded-sm border border-border px-1.5 font-mono text-[10px] xl:inline">⌘K</kbd>
+      <span className="sr-only xl:hidden">Search</span>
     </button>
   )
 }

@@ -23,7 +23,7 @@ export function SiteHeader() {
           <Link href="/" className="-ml-1 rounded-md p-1" aria-label={`${BRAND.name}, home`}>
             <Wordmark />
           </Link>
-          <nav aria-label="Main" className="hidden h-full items-stretch md:flex">
+          <nav aria-label="Main" className="hidden h-full items-stretch lg:flex">
             {NAV.map((n) => {
               const on = isActive(pathname, n.href)
               return (
@@ -43,8 +43,8 @@ export function SiteHeader() {
             })}
           </nav>
           <div className="ml-auto flex items-center gap-1.5">
-            <ModeSwitch className="hidden md:flex" />
-            <ModeToggle className="md:hidden" />
+            <ModeSwitch className="hidden lg:flex" />
+            <ModeToggle className="lg:hidden" />
             <SearchButton />
             <ThemeToggle />
           </div>
@@ -53,7 +53,7 @@ export function SiteHeader() {
       {/* Phone: thumb-reach tabs at the bottom */}
       <nav
         aria-label="Main"
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background pb-[env(safe-area-inset-bottom)] md:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background pb-[env(safe-area-inset-bottom)] lg:hidden"
       >
         <ul className={cn("grid", NAV.length === 6 ? "grid-cols-6" : "grid-cols-5")}>
           {NAV.map((n) => {
@@ -91,7 +91,7 @@ function GitHubIcon({ className }: { className?: string }) {
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-border pb-24 md:pb-0">
+    <footer className="mt-24 border-t border-border pb-24 lg:pb-0">
       <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-8 sm:px-6">
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <Link href="/" className="w-fit" aria-label={`${BRAND.name}, home`}>
