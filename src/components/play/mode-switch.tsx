@@ -51,7 +51,8 @@ export function ModeSwitch({ className }: { className?: string }) {
               on && id === "play" && "text-signal-text"
             )}
           >
-            {on && <m.span layoutId="mode-pill" className="absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
+            {/* The pill slides over the other button for a moment; it must not take that button's click. */}
+            {on && <m.span layoutId="mode-pill" className="pointer-events-none absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
             <Icon className="relative size-4" />
             <span className="relative hidden sm:inline">{label}</span>
             <span className="sr-only sm:hidden">{label} mode</span>

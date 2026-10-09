@@ -37,7 +37,7 @@ export function SiteHeader() {
                   )}
                 >
                   {n.label}
-                  {on && <m.span layoutId="nav-underline" className="absolute inset-x-3 -bottom-px h-[2px] bg-foreground" />}
+                  {on && <m.span layoutId="nav-underline" className="pointer-events-none absolute inset-x-3 -bottom-px h-[2px] bg-foreground" />}
                 </Link>
               )
             })}
@@ -68,7 +68,7 @@ export function SiteHeader() {
                     on && "font-semibold text-foreground"
                   )}
                 >
-                  {on && <m.span layoutId="tab-indicator" className="absolute inset-x-3 top-0 h-[2px] bg-foreground" />}
+                  {on && <m.span layoutId="tab-indicator" className="pointer-events-none absolute inset-x-3 top-0 h-[2px] bg-foreground" />}
                   <n.icon className="size-[18px]" strokeWidth={on ? 2.2 : 1.8} />
                   {n.label}
                 </Link>

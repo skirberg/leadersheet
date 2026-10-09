@@ -62,7 +62,8 @@ export function Segmented<T extends string>({
           value={o.value}
           className="relative min-h-10 rounded-[4px] px-3 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground data-[state=on]:font-semibold data-[state=on]:text-foreground"
         >
-          {value === o.value && <m.span layoutId={pill} className="absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
+          {/* Like the mode pill: while it slides it must not take the next option's click. */}
+          {value === o.value && <m.span layoutId={pill} className="pointer-events-none absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
           <span className="relative">{o.label}</span>
         </TG.Item>
       ))}

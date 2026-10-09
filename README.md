@@ -19,6 +19,7 @@ npm run dev
 |---|---|
 | `npm run build` | Writes the finished static site to `out/` |
 | `npm run check` | Build, render the share cards, then QA every page at phone, tablet and desktop widths in light and dark (crashes, overflow, axe) |
+| `npm run smoke` | Behavior checks in real time on the built site: hero film plays, pauses and holds still for reduced motion, search, Play and class modes, sliding pills and underlines let a quick tap through, no page errors, analytics never loads. `npm run smoke -- https://leadersheet.io` checks the live site |
 | `npm run shots` | Screenshots and preview contact sheets in `docs/` |
 | `npm run brand <preset>` | Reskin the whole site with another preset in `src/brand/presets/` |
 | `npm run contrast <preset>` | WCAG contrast for every color pair in a preset |

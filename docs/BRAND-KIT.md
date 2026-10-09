@@ -40,6 +40,7 @@ Check the accent against the category leaders' colors before you commit to it.
 
 ```bash
 npm run check           # build, share card, then 100+ checks: crashes, 375 px overflow, axe in light and dark
+npm run smoke           # behavior in real time: film, search, modes, sliding indicators, page errors (add -- <url> for the live site)
 npm run shots           # docs/shots and the two preview contact sheets for a portfolio
 ```
 

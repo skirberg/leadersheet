@@ -29,12 +29,13 @@ export async function launch({ port = 9333 } = {}) {
   await new Promise((r) => (ws.onopen = r))
   let id = 0
   const pending = new Map()
+  const listeners = new Set()
   ws.onmessage = (m) => {
     const d = JSON.parse(m.data)
     if (d.id && pending.has(d.id)) {
       pending.get(d.id)(d)
       pending.delete(d.id)
-    }
+    } else if (d.method) for (const fn of listeners) fn(d)
   }
   const send = (method, params = {}) =>
     new Promise((r) => {
@@ -46,6 +47,11 @@ export async function launch({ port = 9333 } = {}) {
   await send("Runtime.enable")
   const page = {
     send,
+    /** Calls fn with every DevTools event (console, exceptions, network); returns a function that stops it. */
+    on(fn) {
+      listeners.add(fn)
+      return () => listeners.delete(fn)
+    },
     async size(w, h, { dpr = 1, mobile = false } = {}) {
       await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: dpr, mobile })
     },
