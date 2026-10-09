@@ -15,8 +15,8 @@ export default function Home() {
         <div aria-hidden className="drafting-grid drafting-grid-fade pointer-events-none absolute inset-0" />
         <div className="relative mx-auto grid max-w-[1240px] items-center gap-10 px-4 pt-10 pb-12 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14 lg:pt-16 lg:pb-20">
           <div className="grid gap-6">
-            <p className="label-mono rise">Twelve big ideas in leadership</p>
-            <h1 className="rise text-[44px] leading-[0.98] font-semibold tracking-[-0.035em] [font-stretch:92%] sm:text-[64px] lg:text-[76px]" style={{ ["--delay" as string]: "60ms" }}>
+            <p className="label-mono">Twelve big ideas in leadership</p>
+            <h1 className="text-[44px] leading-[0.98] font-semibold tracking-[-0.035em] [font-stretch:92%] sm:text-[64px] lg:text-[76px]" >
               <HeroLine />
             </h1>
             <p className="rise max-w-[50ch] text-lg leading-snug text-muted-foreground sm:text-xl" style={{ ["--delay" as string]: "120ms" }}>

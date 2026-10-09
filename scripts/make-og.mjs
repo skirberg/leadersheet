@@ -1,11 +1,14 @@
 // Renders the share images from the current build. Run `npm run build` first.
-// public/og.png from /og/, and one card per quiz result from /og/result/<game>/<id>/.
+// public/og.png from /og/, one card per sheet from /og/sheet/<id>/ and one per quiz result from /og/result/<game>/<id>/.
 import { mkdirSync, readdirSync, statSync, writeFileSync, copyFileSync } from "node:fs"
 import { join } from "node:path"
 import { launch } from "./chrome.mjs"
 import { serve } from "./serve.mjs"
 
 const cards = [["/og/", "public/og.png"]]
+try {
+  for (const id of readdirSync("out/og/sheet")) if (statSync(join("out/og/sheet", id)).isDirectory()) cards.push([`/og/sheet/${id}/`, `public/og/sheet-${id}.png`])
+} catch {}
 const base = "out/og/result"
 try {
   for (const game of readdirSync(base)) {

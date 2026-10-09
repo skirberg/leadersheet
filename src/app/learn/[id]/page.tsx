@@ -13,6 +13,7 @@ import { SessionLab } from "@/components/labs"
 import { PlayCallout } from "@/components/play/arcade"
 import { SheetPlaySlot } from "@/components/play/home-bits"
 import { SESSIONS, fmt, fmtMono, fwById, sessionById, sheetNo } from "@/data/course"
+import { BRAND } from "@/brand"
 
 export const dynamicParams = false
 export function generateStaticParams() {
@@ -22,7 +23,15 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
   const s = sessionById(id)
-  return s ? { title: `${sheetNo(s.n)} ${s.title}`, description: s.idea } : {}
+  if (!s) return {}
+  const title = `${sheetNo(s.n)} ${s.title}`
+  const image = `/og/sheet-${s.id}.png`
+  return {
+    title,
+    description: s.idea,
+    openGraph: { title: `${title} · ${BRAND.name}`, description: s.idea, url: "./", siteName: BRAND.name, type: "article", images: [{ url: image, width: 1200, height: 630 }] },
+    twitter: { card: "summary_large_image", images: [image] },
+  }
 }
 
 function Section({ no, title, id, children }: { no: string; title: string; id: string; children: React.ReactNode }) {

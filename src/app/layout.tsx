@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   },
   description: BRAND.description,
   applicationName: BRAND.name,
+  alternates: { canonical: "./" },
   openGraph: {
-    title: BRAND.name,
-    description: BRAND.description,
+    url: "./",
     siteName: BRAND.name,
     images: [{ url: "/og.png", width: 1200, height: 630 }],
     type: "website",

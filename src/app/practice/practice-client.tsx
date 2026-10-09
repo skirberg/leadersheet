@@ -24,15 +24,15 @@ function Stats() {
   const { state, ready } = useProgress()
   const answered = SESSIONS.reduce((a, s) => a + (state.best[s.id] ?? 0), 0)
   const cells = [
-    [ready ? `${answered}/36` : "0/36", "Best check scores"],
-    [ready ? String(state.miss.length) : "0", "Missed, coming back first"],
+    [ready ? `${answered}/36` : "0/36", "Check score"],
+    [ready ? String(state.miss.length) : "0", "To review"],
     [String(FRAMEWORKS.length), "Frameworks"],
   ]
   return (
     <dl className="grid grid-cols-3 border-t border-l border-border">
       {cells.map(([v, k]) => (
-        <div key={k} className="border-r border-b border-border p-3 sm:p-4">
-          <dt className="label-mono order-2 !text-[10px] sm:!text-[11px]">{k}</dt>
+        <div key={k} className="flex flex-col justify-between gap-1 border-r border-b border-border p-3 sm:p-4">
+          <dt className="label-mono !text-[10px] sm:!text-[11px]">{k}</dt>
           <dd className="font-mono text-2xl font-medium tnum sm:text-3xl">{v}</dd>
         </div>
       ))}
@@ -78,11 +78,11 @@ function Drill() {
     s = sessionById(qid.split("-")[0])!
   return (
     <div className="corners grid gap-5 border border-border bg-card p-5 sm:p-6">
-      <div className="flex items-center justify-between gap-3">
-        <span className="font-mono text-xs text-muted-foreground tnum">
+      <div className="flex items-baseline justify-between gap-3">
+        <span className="shrink-0 font-mono text-xs whitespace-nowrap text-muted-foreground tnum">
           {String(i + 1).padStart(2, "0")} / {qs.length}
         </span>
-        <span className="label-mono">
+        <span className="label-mono text-right">
           {sheetNo(s.n)} · {s.title}
         </span>
       </div>

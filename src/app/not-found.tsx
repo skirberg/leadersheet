@@ -1,5 +1,14 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { BRAND } from "@/brand"
+
+export const metadata: Metadata = {
+  title: "No sheet here",
+  robots: { index: false, follow: true },
+  alternates: { canonical: null },
+  openGraph: { siteName: BRAND.name, images: [{ url: "/og.png", width: 1200, height: 630 }] },
+}
 
 export default function NotFound() {
   return (

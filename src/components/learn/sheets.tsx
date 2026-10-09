@@ -23,7 +23,7 @@ export function SheetCard({ s, i = 0 }: { s: Session; i?: number }) {
     <Link
       href={`/learn/${s.id}/`}
       className={cn(
-        "group corners rise relative flex min-h-[188px] flex-col border border-border bg-card p-4 transition-[border-color,transform] duration-(--dur-ui) hover:-translate-y-0.5 hover:border-foreground/70",
+        "group corners rise relative flex min-h-[136px] flex-col sm:min-h-[188px] border border-border bg-card p-4 transition-[border-color,transform] duration-(--dur-ui) hover:-translate-y-0.5 hover:border-foreground/70",
         isNow && "border-foreground"
       )}
       style={{ ["--delay" as string]: `${i * 35}ms` }}
@@ -36,7 +36,7 @@ export function SheetCard({ s, i = 0 }: { s: Session; i?: number }) {
           <ArrowUpRight className="size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
         )}
       </div>
-      <h3 className="mt-auto pt-6 text-[19px] leading-tight font-semibold">{s.title}</h3>
+      <h3 className="mt-auto pt-4 text-[19px] sm:pt-6 leading-tight font-semibold">{s.title}</h3>
       <div className="mt-3 flex items-center justify-between gap-3 border-t border-dashed border-border pt-2.5">
         <span className="label-mono !text-[10px]">
           {classMode ? `${fmtMono(s.date)} · ${s.part}` : s.part}

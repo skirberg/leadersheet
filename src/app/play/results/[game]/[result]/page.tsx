@@ -7,6 +7,7 @@ import { Emphasis } from "@/components/brand/emphasis"
 import { ConflictChart, CultureMapResult } from "@/components/play/games"
 import { RESULT_GAMES, type ResultGame, allResults, resultImage, resultKey, resultPath, resultSlug } from "@/data/results"
 import { sessionById, sheetNo } from "@/data/course"
+import { BRAND } from "@/brand"
 import { cn } from "@/lib/utils"
 
 export const dynamicParams = false
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: P): Promise<Metadata> {
   return {
     title,
     description: g.desc(key),
-    openGraph: { title, description: g.desc(key), images: [{ url: resultImage(game as ResultGame, key), width: 1200, height: 630 }] },
+    openGraph: { title, description: g.desc(key), url: "./", siteName: BRAND.name, images: [{ url: resultImage(game as ResultGame, key), width: 1200, height: 630 }] },
     twitter: { card: "summary_large_image", images: [resultImage(game as ResultGame, key)] },
   }
 }
