@@ -5,23 +5,26 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { TitleBlock } from "@/components/brand/title-block"
 import { useProgress } from "@/lib/store"
-import { SESSIONS, fmtMono, sheetNo } from "@/data/course"
+import type { SheetSummary } from "@/data/course"
+import { fmtMono, sheetNo } from "@/data/schedule"
 
-/** Home focus card: this week's sheet in class mode, otherwise where to start or pick up. */
-export function HomeFocus() {
+type Sheets = { sheets: SheetSummary[] }
+
+/** Home focus card: this week's sheet in class mode, otherwise where to start or pick up. The page passes the sheet summaries in. */
+export function HomeFocus({ sheets }: Sheets) {
   const { classMode } = useProgress()
-  return classMode ? <ThisWeek /> : <StartHere />
+  return classMode ? <ThisWeek sheets={sheets} /> : <StartHere sheets={sheets} />
 }
 
-export function nextSheet(best: Record<string, number>, seen: Record<string, 1>) {
-  const open = SESSIONS.filter((s) => (best[s.id] ?? 0) < 3)
+export function nextSheet(sheets: SheetSummary[], best: Record<string, number>, seen: Record<string, 1>) {
+  const open = sheets.filter((s) => (best[s.id] ?? 0) < 3)
   const started = open.find((s) => seen[s.id])
-  return started ?? open[0] ?? SESSIONS[0]
+  return started ?? open[0] ?? sheets[0]
 }
 
-function StartHere() {
+function StartHere({ sheets }: Sheets) {
   const { state, ready } = useProgress()
-  const s = ready ? nextSheet(state.best, state.seen) : SESSIONS[0]
+  const s = ready ? nextSheet(sheets, state.best, state.seen) : sheets[0]
   const resuming = ready && Object.keys(state.seen).length > 0
   const best = state.best[s.id]
   return (
@@ -54,8 +57,9 @@ function StartHere() {
   )
 }
 
-export function ThisWeek() {
-  const { current: s, state } = useProgress()
+export function ThisWeek({ sheets }: Sheets) {
+  const { current, state } = useProgress()
+  const s = sheets.find((x) => x.id === current.id) ?? sheets[0]
   const best = state.best[s.id]
   return (
     <section aria-labelledby="tw-h" className="corners border border-foreground bg-card">
@@ -116,7 +120,7 @@ export function ThisWeek() {
 }
 
 /** Hero call to action: this week's sheet in class mode, otherwise start or continue. */
-export function OpenThisWeek() {
+export function OpenThisWeek({ sheets }: Sheets) {
   const { current, classMode, state, ready } = useProgress()
   if (classMode)
     return (
@@ -126,7 +130,7 @@ export function OpenThisWeek() {
         </Link>
       </Button>
     )
-  const s = ready ? nextSheet(state.best, state.seen) : SESSIONS[0]
+  const s = ready ? nextSheet(sheets, state.best, state.seen) : sheets[0]
   const resuming = ready && Object.keys(state.seen).length > 0
   return (
     <Button asChild size="lg">

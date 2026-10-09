@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { ProgressProvider } from "@/lib/store"
 import { CommandMenuProvider } from "@/components/site/command-menu"
 import { SiteFooter, SiteHeader } from "@/components/site/header"
-import { currentSession } from "@/data/course"
+import { SCHEDULE, currentSession } from "@/data/course"
 import { BRAND } from "@/brand"
 import { MotionProvider } from "@/components/motion/motion-provider"
 
@@ -57,14 +57,14 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // The build date picks a starting session; the browser's date replaces it after load.
-  const buildCurrent = currentSession()
+  const { id, n, date } = currentSession()
   return (
     <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${martian.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <MotionProvider>
           <TooltipProvider delayDuration={200}>
-            <ProgressProvider buildCurrent={buildCurrent}>
+            <ProgressProvider schedule={SCHEDULE} buildCurrent={{ id, n, date }}>
               <CommandMenuProvider>
                 <a
                   href="#main"

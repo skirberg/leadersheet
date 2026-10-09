@@ -1,35 +1,38 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
+import dynamic from "next/dynamic"
 import { Search } from "lucide-react"
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command"
-import { FRAMEWORKS, SESSIONS, sessionById, sheetNo } from "@/data/course"
-import { navFor } from "./nav-items"
-import { useProgress } from "@/lib/store"
-import { GAMES } from "@/data/games"
 import { cn } from "@/lib/utils"
+
+// cmdk, the dialog and the full index load the first time someone opens search, not with every page.
+const loadPalette = () => import("./command-palette")
+const CommandPalette = dynamic(loadPalette, { ssr: false })
+/** Starts the download early: on hover, focus or touch of the search button, and when ⌘ or Ctrl goes down. */
+const warmPalette = () => {
+  loadPalette().catch(() => {})
+}
 
 const OpenCtx = React.createContext<(v: boolean) => void>(() => {})
 export const useOpenCommand = () => React.useContext(OpenCtx)
 
 export function CommandMenuProvider({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false)
-  const router = useRouter()
-  const { classMode } = useProgress()
-  const NAV = navFor(classMode)
+  // Once search has been opened the palette stays mounted, so later opens are instant.
+  const [used, setUsed] = React.useState(false)
+
+  const openMenu = React.useCallback((v: boolean) => {
+    if (v) setUsed(true)
+    setOpen(v)
+  }, [])
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (!e.metaKey && !e.ctrlKey) return
+      warmPalette()
+      if (e.key === "k") {
         e.preventDefault()
+        setUsed(true)
         setOpen((o) => !o)
       }
     }
@@ -37,66 +40,10 @@ export function CommandMenuProvider({ children }: { children: React.ReactNode })
     return () => document.removeEventListener("keydown", down)
   }, [])
 
-  const go = (href: string) => {
-    setOpen(false)
-    router.push(href)
-  }
-
   return (
-    <OpenCtx.Provider value={setOpen}>
+    <OpenCtx.Provider value={openMenu}>
       {children}
-      <CommandDialog
-        open={open}
-        onOpenChange={setOpen}
-        title="Search the sandbox"
-        description="Jump to a session, a framework or a page"
-      >
-        <CommandInput placeholder="Try urgency, matrix, feedback…" />
-        <CommandList className="max-h-[60vh]">
-          <CommandEmpty>Nothing matches. Try one word.</CommandEmpty>
-          <CommandGroup heading="Sheets">
-            {SESSIONS.map((s) => (
-              <CommandItem
-                key={s.id}
-                value={`${s.title} ${s.idea} session ${s.n}`}
-                onSelect={() => go(`/learn/${s.id}/`)}
-              >
-                <span className="font-mono text-[11px] text-muted-foreground tnum">{sheetNo(s.n)}</span>
-                <span className="truncate">{s.title}</span>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-          <CommandGroup heading="Frameworks">
-            {FRAMEWORKS.map((f) => (
-              <CommandItem
-                key={f.id}
-                value={`${f.name} ${f.by} ${f.one} ${f.rows.map((r) => r[0]).join(" ")}`}
-                onSelect={() => go(`/learn/${sessionById(`s${f.s}`)?.id ?? "s1"}/#fw-${f.id}`)}
-              >
-                <span className="font-mono text-[11px] text-muted-foreground tnum">{sheetNo(f.s)}</span>
-                <span className="truncate">{f.name}</span>
-                <span className="ml-auto truncate pl-2 text-xs text-muted-foreground">{f.by}</span>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-          <CommandGroup heading="Play">
-            {GAMES.map((g) => (
-              <CommandItem key={g.id} value={`game ${g.title} ${g.blurb}`} onSelect={() => go(`/play/${g.id}/`)}>
-                <span className="font-mono text-[11px] text-muted-foreground">{g.kind.toUpperCase()}</span>
-                <span className="truncate">{g.title}</span>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-          <CommandGroup heading="Pages">
-            {NAV.map((n) => (
-              <CommandItem key={n.href} value={`page ${n.label}`} onSelect={() => go(n.href)}>
-                <n.icon className="size-4" />
-                {n.label}
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
+      {used && <CommandPalette open={open} onOpenChange={setOpen} />}
     </OpenCtx.Provider>
   )
 }
@@ -107,6 +54,9 @@ export function SearchButton({ className }: { className?: string }) {
     <button
       type="button"
       onClick={() => setOpen(true)}
+      onPointerEnter={warmPalette}
+      onFocus={warmPalette}
+      onTouchStart={warmPalette}
       className={cn(
         "inline-flex h-11 items-center gap-2 rounded-md border border-rule/50 bg-card px-3 text-sm text-muted-foreground transition-colors hover:border-foreground/60 hover:text-foreground",
         className

@@ -1,13 +1,15 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { HeroPlayer } from "@/components/film/players"
+import { HeroPlayer } from "@/components/film/hero-player"
 import { HomeFocus, OpenThisWeek } from "@/components/learn/this-week"
 import { HeroCtas, HeroLine, HomeArcade } from "@/components/play/home-bits"
 import { CheckCount, SheetGrid } from "@/components/learn/sheets"
-import { C, FRAMEWORKS, sheetNo } from "@/data/course"
+import { C, FRAMEWORKS, sheetNo, sheetSummaries } from "@/data/course"
 
 export default function Home() {
+  // Only what the cards need goes to the browser, not the whole course.
+  const sheets = sheetSummaries()
   return (
     <>
       {/* Hero: the drafting table */}
@@ -24,7 +26,7 @@ export default function Home() {
             </p>
             <div className="rise flex flex-wrap items-center gap-2" style={{ ["--delay" as string]: "180ms" }}>
               <HeroCtas>
-                <OpenThisWeek />
+                <OpenThisWeek sheets={sheets} />
                 <Button asChild size="lg" variant="outline">
                   <Link href="/play/">Play</Link>
                 </Button>
@@ -39,7 +41,7 @@ export default function Home() {
         <HomeArcade slot="top" />
 
         <div id="this-week" className="scroll-mt-24">
-          <HomeFocus />
+          <HomeFocus sheets={sheets} />
         </div>
 
         <section aria-labelledby="set-h" className="reveal grid gap-6">
@@ -48,9 +50,9 @@ export default function Home() {
               <p className="label-mono">The set</p>
               <h2 id="set-h" className="mt-1 text-3xl font-semibold tracking-[-0.02em]">Twelve sheets</h2>
             </div>
-            <CheckCount />
+            <CheckCount sheets={sheets} />
           </div>
-          <SheetGrid />
+          <SheetGrid sheets={sheets} />
         </section>
 
         <HomeArcade slot="bottom" />

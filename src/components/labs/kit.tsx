@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Check as CheckIcon, X } from "lucide-react"
 import { ToggleGroup as TG } from "radix-ui"
-import { motion } from "motion/react"
+import { m } from "framer-motion"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { cn } from "@/lib/utils"
@@ -62,7 +62,7 @@ export function Segmented<T extends string>({
           value={o.value}
           className="relative min-h-10 rounded-[4px] px-3 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground data-[state=on]:font-semibold data-[state=on]:text-foreground"
         >
-          {value === o.value && <motion.span layoutId={pill} className="absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
+          {value === o.value && <m.span layoutId={pill} className="absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
           <span className="relative">{o.label}</span>
         </TG.Item>
       ))}

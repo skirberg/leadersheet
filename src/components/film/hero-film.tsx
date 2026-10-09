@@ -3,9 +3,8 @@ import { STRUCTURE_BARS, STRUCTURES, type StructureKind } from "@/data/labs"
 
 /*
   Hero film: the drafting table builds an organization, then redraws it
-  as each of the four structures from session 3. 1200 x 900, 30 fps, 14 s loop.
+  as each of the four structures from session 3. 1200 x 900, 30 fps, 14 s loop (size and timing in hero-spec.ts).
 */
-export const HERO = { width: 1200, height: 900, fps: 30, durationInFrames: 420 }
 
 const KINDS: StructureKind[] = ["functional", "divisional", "matrix", "flat"]
 const L: Record<StructureKind, { ceo: number[]; a: number[][]; b: number[][]; al: string[] }> = {

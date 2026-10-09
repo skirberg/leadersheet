@@ -1,4 +1,5 @@
 import raw from "./course.json"
+import { currentOf, todayStr, type ScheduleEntry } from "./schedule"
 
 export type Check = { q: string; o: string[]; a: number; why: string }
 export type Reading = {
@@ -55,27 +56,29 @@ export const FRAMEWORKS = C.frameworks
 export const sessionById = (id: string) => SESSIONS.find((s) => s.id === id)
 export const fwById = (id: string) => FRAMEWORKS.find((f) => f.id === id)
 
-const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-const parse = (s: string) => {
-  const [y, m, d] = s.split("-").map(Number)
-  return new Date(y, m - 1, d)
-}
-export const fmt = (s: string) => {
-  const x = parse(s)
-  return `${MON[x.getMonth()]} ${x.getDate()}`
-}
-export const fmtMono = (s: string) => {
-  const x = parse(s)
-  return `${String(x.getDate()).padStart(2, "0")} ${MON[x.getMonth()].toUpperCase()}`
-}
-export const todayStr = (t = new Date()) =>
-  `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, "0")}-${String(t.getDate()).padStart(2, "0")}`
+export { fmt, fmtMono, todayStr, sheetNo, type ScheduleEntry } from "./schedule"
 
 /** The next class on or after today, or the last one once the term is over. */
-export const currentSession = (today = todayStr()) =>
-  SESSIONS.find((s) => s.date >= today) ?? SESSIONS[SESSIONS.length - 1]
+export const currentSession = (today = todayStr()) => currentOf(SESSIONS, today)
 
-export const sheetNo = (n: number) => `S${String(n).padStart(2, "0")}`
+/** Each sheet's place in the schedule, for the client's progress store. */
+export const SCHEDULE: ScheduleEntry[] = SESSIONS.map(({ id, n, date }) => ({ id, n, date }))
+
+/** What the home page shows of a sheet: the grid card, Start here and This week. */
+export type SheetSummary = Pick<Session, "id" | "n" | "date" | "part" | "title" | "idea" | "due"> & {
+  readings: Pick<Reading, "t" | "a">[]
+}
+export const sheetSummaries = (): SheetSummary[] =>
+  SESSIONS.map(({ id, n, date, part, title, idea, due, readings }) => ({
+    id,
+    n,
+    date,
+    part,
+    title,
+    idea,
+    due,
+    readings: readings.map(({ t, a }) => ({ t, a })),
+  }))
 
 /** Deterministic shuffle so server and client render the same option order. */
 export function seededOrder(len: number, key: string) {

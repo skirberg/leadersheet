@@ -2,11 +2,12 @@
 
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-import { SESSIONS, fmtMono, sheetNo, type Session } from "@/data/course"
+import type { SheetSummary } from "@/data/course"
+import { fmtMono, sheetNo } from "@/data/schedule"
 import { useProgress } from "@/lib/store"
 import { cn } from "@/lib/utils"
 
-function Dots({ n }: { n: number | undefined }) {
+export function Dots({ n }: { n: number | undefined }) {
   return (
     <span className="inline-flex gap-1" aria-label={n == null ? "Check not taken" : `Check: ${n} of 3`}>
       {[0, 1, 2].map((i) => (
@@ -16,7 +17,7 @@ function Dots({ n }: { n: number | undefined }) {
   )
 }
 
-export function SheetCard({ s, i = 0 }: { s: Session; i?: number }) {
+export function SheetCard({ s, i = 0 }: { s: SheetSummary; i?: number }) {
   const { state, current, ready, classMode } = useProgress()
   const isNow = ready && classMode && current.id === s.id
   return (
@@ -47,10 +48,11 @@ export function SheetCard({ s, i = 0 }: { s: Session; i?: number }) {
   )
 }
 
-export function SheetGrid() {
+/** The twelve sheets. The page passes their summaries in, so the full course never reaches the browser. */
+export function SheetGrid({ sheets }: { sheets: SheetSummary[] }) {
   return (
     <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {SESSIONS.map((s, i) => (
+      {sheets.map((s, i) => (
         <li key={s.id} className="min-w-0">
           <SheetCard s={s} i={i} />
         </li>
@@ -59,36 +61,9 @@ export function SheetGrid() {
   )
 }
 
-export function SheetRail({ currentId }: { currentId: string }) {
+export function CheckCount({ sheets }: { sheets: SheetSummary[] }) {
   const { state } = useProgress()
-  return (
-    <ol className="border-t border-border">
-      {SESSIONS.map((s) => {
-        const on = s.id === currentId
-        return (
-          <li key={s.id}>
-            <Link
-              href={`/learn/${s.id}/`}
-              aria-current={on ? "page" : undefined}
-              className={cn(
-                "grid min-h-11 grid-cols-[2.6rem_minmax(0,1fr)_auto] items-center gap-2 border-b border-border px-2 py-2 text-sm transition-colors hover:bg-muted",
-                on && "bg-muted font-semibold"
-              )}
-            >
-              <span className={cn("font-mono text-xs text-muted-foreground tnum", on && "text-foreground")}>{sheetNo(s.n)}</span>
-              <span className="truncate">{s.title}</span>
-              <Dots n={state.best[s.id]} />
-            </Link>
-          </li>
-        )
-      })}
-    </ol>
-  )
-}
-
-export function CheckCount() {
-  const { state } = useProgress()
-  const won = SESSIONS.filter((s) => (state.best[s.id] ?? 0) >= 3).length
+  const won = sheets.filter((s) => (state.best[s.id] ?? 0) >= 3).length
   return (
     <span className="font-mono text-xs text-muted-foreground tnum">
       {won} / 12 SIGNED OFF

@@ -2,7 +2,7 @@
 
 import { track } from "@vercel/analytics"
 import * as React from "react"
-import { currentSession, todayStr, type Session } from "@/data/course"
+import { currentOf, todayStr, type ScheduleEntry } from "@/data/schedule"
 
 /* Progress lives in this browser only. Nothing is sent anywhere. */
 const KEY = "lio-sandbox"
@@ -24,7 +24,8 @@ const EMPTY: State = { mode: "study", classMode: false, best: {}, miss: [], due:
 type Ctx = {
   ready: boolean
   state: State
-  current: Session
+  /** This week's sheet (the next class), from the browser's date once ready. */
+  current: ScheduleEntry
   mode: Mode
   setMode: (m: Mode) => void
   classMode: boolean
@@ -60,15 +61,18 @@ function load(): State {
 
 export function ProgressProvider({
   children,
+  schedule,
   buildCurrent,
 }: {
   children: React.ReactNode
-  buildCurrent: Session
+  /** Every sheet's id, number and date, passed from the server so the course itself stays off the client. */
+  schedule: ScheduleEntry[]
+  buildCurrent: ScheduleEntry
 }) {
   const [state, setState] = React.useState<State>(EMPTY)
   const [ready, setReady] = React.useState(false)
   // The build date seeds the first render; the real date takes over after mount.
-  const [current, setCurrent] = React.useState<Session>(buildCurrent)
+  const [current, setCurrent] = React.useState<ScheduleEntry>(buildCurrent)
 
   React.useEffect(() => {
     const s = load()
@@ -76,9 +80,9 @@ export function ProgressProvider({
     const q = new URLSearchParams(window.location.search).get("class")
     if (q !== null) s.classMode = q !== "off" && q !== "0"
     setState(s)
-    setCurrent(currentSession(todayStr()))
+    setCurrent(currentOf(schedule, todayStr()))
     setReady(true)
-  }, [])
+  }, []) // once, on load: the schedule never changes
 
   React.useEffect(() => {
     if (!ready) return

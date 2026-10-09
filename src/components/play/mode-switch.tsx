@@ -1,7 +1,7 @@
 "use client"
 
 import { BookOpen, Gamepad2 } from "lucide-react"
-import { motion } from "motion/react"
+import { m } from "framer-motion"
 import { useProgress } from "@/lib/store"
 import { cn } from "@/lib/utils"
 
@@ -37,21 +37,21 @@ export function ModeSwitch({ className }: { className?: string }) {
           ["study", "Study", BookOpen],
           ["play", "Play", Gamepad2],
         ] as const
-      ).map(([m, label, Icon]) => {
-        const on = m === "play" ? play : !play
+      ).map(([id, label, Icon]) => {
+        const on = id === "play" ? play : !play
         return (
           <button
-            key={m}
+            key={id}
             type="button"
             aria-pressed={on}
-            onClick={() => setMode(m)}
+            onClick={() => setMode(id)}
             className={cn(
               "relative flex h-full items-center gap-1.5 rounded-[4px] px-2.5 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground",
               on && "font-semibold text-foreground",
-              on && m === "play" && "text-signal-text"
+              on && id === "play" && "text-signal-text"
             )}
           >
-            {on && <motion.span layoutId="mode-pill" className="absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
+            {on && <m.span layoutId="mode-pill" className="absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
             <Icon className="relative size-4" />
             <span className="relative hidden sm:inline">{label}</span>
             <span className="sr-only sm:hidden">{label} mode</span>
