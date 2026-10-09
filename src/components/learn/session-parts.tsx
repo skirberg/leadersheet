@@ -1,5 +1,6 @@
 "use client"
 
+import { track } from "@vercel/analytics"
 import * as React from "react"
 import { CheckRow } from "@/components/labs/kit"
 import { Question } from "./quiz"
@@ -22,7 +23,10 @@ export function SessionQuiz({ s }: { s: Session }) {
   const done = Object.keys(answers).length === s.checks.length
   const score = Object.values(answers).filter(Boolean).length
   React.useEffect(() => {
-    if (done) setBest(s.id, score)
+    if (done) {
+      setBest(s.id, score)
+      track("Check finished", { sheet: s.id, score: `${score}/${s.checks.length}` })
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done])
   const best = state.best[s.id]

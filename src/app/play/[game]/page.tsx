@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 import { GAMES, type GameId } from "@/data/games"
 import { GameView } from "./game-view"
+import { FirstUse } from "@/components/site/first-use"
 
 export const dynamicParams = false
 export function generateStaticParams() {
@@ -26,7 +27,9 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
       <Link href="/play/" className="label-mono inline-flex w-fit items-center gap-1.5 hover:text-foreground">
         <ArrowLeft className="size-3.5" /> The arcade
       </Link>
-      <GameView id={g.id as GameId} />
+      <FirstUse event="Game played" props={{ game: g.id }}>
+        <GameView id={g.id as GameId} />
+      </FirstUse>
       <nav aria-label="More games" className="grid gap-3 border-t border-border pt-6 sm:grid-cols-3">
         {others.map((o) => (
           <Link key={o.id} href={`/play/${o.id}/`} className="corners grid gap-1 border border-border bg-card px-4 py-3 transition-colors hover:border-foreground/70">

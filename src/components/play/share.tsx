@@ -1,5 +1,6 @@
 "use client"
 
+import { track } from "@vercel/analytics"
 import * as React from "react"
 import { Check as CheckIcon, Download, Share2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -26,6 +27,7 @@ export function ShareResult({ text, path, image, fileName }: { text: string; pat
         }
         await navigator.share(files ? { files, text: `${text} ${url}` } : { title: text, text, url })
         setStatus("shared")
+        track("Shared", { method: files ? "share sheet with card" : "share sheet" })
         return
       }
     } catch (e) {
@@ -34,6 +36,7 @@ export function ShareResult({ text, path, image, fileName }: { text: string; pat
     try {
       await navigator.clipboard.writeText(`${text} ${url}`)
       setStatus("copied")
+      track("Shared", { method: "copied link" })
     } catch {
       // Clipboard blocked: show the link to copy by hand, never a blocking dialog.
       setStatus("manual")

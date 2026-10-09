@@ -56,7 +56,7 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Hosting",
     items: [
-      { name: "Vercel", what: "Builds the site from GitHub and serves it from the edge.", url: "https://vercel.com" },
+      { name: "Vercel", what: "Builds the site from GitHub and serves it from the edge. Web Analytics counts page views and a few anonymous actions (a check finished, a game played, a share) with no cookies.", url: "https://vercel.com" },
       { name: "GitHub", what: "Source code and history.", url: BRAND.repo },
     ],
   },

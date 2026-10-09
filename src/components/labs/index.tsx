@@ -1,5 +1,6 @@
 "use client"
 
+import { FirstUse } from "@/components/site/first-use"
 import { CultureLab, EiLab, ManageLab, StructureLab } from "./labs-a"
 import { ConflictLab, DecisionLab, KotterLab, TeamLab } from "./labs-b"
 import { EnergyLab, LadderLab, MotivationLab, TapLab } from "./labs-c"
@@ -21,5 +22,9 @@ const LABS: Record<string, () => React.ReactNode> = {
 
 export function SessionLab({ lab }: { lab: string }) {
   const L = LABS[lab]
-  return L ? <L /> : null
+  return L ? (
+    <FirstUse event="Lab used" props={{ lab }}>
+      <L />
+    </FirstUse>
+  ) : null
 }

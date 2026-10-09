@@ -1,5 +1,6 @@
 "use client"
 
+import { track } from "@vercel/analytics"
 import * as React from "react"
 import { currentSession, todayStr, type Session } from "@/data/course"
 
@@ -92,9 +93,15 @@ export function ProgressProvider({
       state,
       current,
       mode: state.mode,
-      setMode: (m) => setState((s) => ({ ...s, mode: m })),
+      setMode: (m) => {
+        setState((s) => ({ ...s, mode: m }))
+        track("Mode switched", { mode: m })
+      },
       classMode: ready && state.classMode,
-      setClassMode: (on) => setState((s) => ({ ...s, classMode: on })),
+      setClassMode: (on) => {
+        setState((s) => ({ ...s, classMode: on }))
+        track("Class mode", { on: on ? "on" : "off" })
+      },
       setBest: (sid, n) =>
         setState((s) => ({ ...s, best: { ...s.best, [sid]: Math.max(s.best[sid] ?? 0, n) } })),
       markMiss: (qid, ok) =>

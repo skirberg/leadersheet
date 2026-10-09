@@ -24,6 +24,7 @@ const martian = Martian_Mono({
 })
 
 import { SITE_URL } from "@/lib/site-url"
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -81,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </TooltipProvider>
           </MotionProvider>
         </ThemeProvider>
+        {/* Vercel Web Analytics: anonymous page views and a few custom events, no cookies. */}
+        <Analytics />
       </body>
     </html>
   )
