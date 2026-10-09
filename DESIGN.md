@@ -12,6 +12,8 @@ Proof points: sheets numbered S01 to S12 with title blocks, a highlighter on the
 
 Leadersheet: leader plus sheet, read like cheat sheet. No product called Leadersheet turned up in a web search.
 
+**Chosen 8 October 2026: leadersheet.io** (the course is Leadership in Organizations, LiO), bought on Vercel ($14.99, then $46 a year). leadersheet.xyz redirects to it (308).
+
 Domains priced on 2 October 2026 with Vercel's public registrar API (first year, then yearly renewal):
 
 | Domain | First year | Renewal | Note |

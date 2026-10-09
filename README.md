@@ -26,7 +26,7 @@ npm run dev
 
 ## Class mode
 
-The public site has no schedule. People taking the course open any link with `?class` once (for example `https://leadersheet.app/?class`) to add this week's sheet, the dates and what is due; the footer switch turns it off.
+The public site has no schedule. People taking the course open any link with `?class` once (for example `https://leadersheet.io/?class`) to add this week's sheet, the dates and what is due; the footer switch turns it off.
 
 ## Put it online
 
