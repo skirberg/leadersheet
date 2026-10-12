@@ -285,6 +285,37 @@ try {
   const shown = await heroText()
   check(still === 1 && shown.length > 0, "reduced motion holds a drawn still", rmMounted ? `${still} different frames in 3.2 s; shows "${shown.slice(0, 60)}"` : "player never loaded")
 
+  // Every icon a page declares must load as the type it claims, and the two files browsers and apps fetch
+  // without reading the page (/favicon.ico, /apple-touch-icon.png) must exist. Icons are found from each
+  // page's own link tags, so one added later is covered without a new check.
+  console.log("\nIcons")
+  const ICON_TYPES = { ico: /icon/, svg: /svg/, png: /png/ }
+  const icons = new Set(["/favicon.ico", "/apple-touch-icon.png"])
+  for (const path of ["/", "/learn/s4/", "/no-such-sheet/"]) {
+    const html = await (await fetch(BASE + path)).text()
+    const hrefs = [...html.matchAll(/<link rel="(?:icon|shortcut icon|apple-touch-icon)" href="([^"]+)"/g)].map((m) => m[1])
+    check(
+      ["\\.ico", "\\.svg", "apple-touch-icon"].every((k) => hrefs.some((h) => new RegExp(k).test(h))),
+      `${path} declares an .ico, an .svg and an apple touch icon`,
+      hrefs.join(", ")
+    )
+    hrefs.forEach((h) => icons.add(h))
+  }
+  for (const href of icons) {
+    const url = new URL(href, BASE)
+    const r = await fetch(url)
+    const body = Buffer.from(await r.arrayBuffer())
+    const type = r.headers.get("content-type") ?? ""
+    let ok = r.ok && body.length > 100 && (ICON_TYPES[url.pathname.split(".").pop()]?.test(type) ?? false)
+    let detail = `${r.status} ${type} ${body.length} B`
+    if (ok && url.pathname.endsWith(".ico")) {
+      const sizes = body.readUInt16LE(2) === 1 ? Array.from({ length: body.readUInt16LE(4) }, (_, i) => body[6 + 16 * i] || 256) : []
+      ok = [16, 32].every((s) => sizes.includes(s))
+      detail += `, sizes ${sizes.join("/") || "none"}`
+    }
+    check(ok, `icon ${url.pathname} loads`, detail)
+  }
+
   console.log("\nPage health")
   check(errors.length === 0, "no console errors or exceptions", errors.slice(0, 3).join("; "))
   const dirs = [...dropped].map((src) => src.slice(0, src.lastIndexOf("/") + 1))

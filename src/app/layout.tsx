@@ -34,6 +34,15 @@ export const metadata: Metadata = {
   },
   description: BRAND.description,
   applicationName: BRAND.name,
+  // Files from scripts/make-icons.mjs. The .ico is for Safari, bookmarks, search results and link
+  // previews; browsers that read SVG take icon.svg, which follows light and dark mode.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   alternates: { canonical: "./" },
   openGraph: {
     url: "./",

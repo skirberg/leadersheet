@@ -25,7 +25,7 @@ Search the web for each survivor; drop any name a live company in a nearby categ
 - `brand.ts`: name, descriptor, title, description, emphasis (`"highlight"` or `"underline"`), author, repo, theme colors
 - `tokens.css`: paper, ink and one signal color (plus an optional second for the emphasis device), light and dark. Tint the neutrals; pure grays read as a template.
 - `logo.tsx`: a mark that works at 16 px and comes from the concept. One idea, three shapes at most.
-- `favicon.svg` (with a dark-mode `@media` block) and `app-icon.svg` (full-bleed square)
+- `favicon.svg` (with a dark-mode `@media` block) and `app-icon.svg` (full-bleed square). `npm run icons` turns them into `public/icon.svg`, `public/favicon.ico` (16, 32, 48 px), `public/apple-touch-icon.png` and the manifest icons
 
 ```bash
 npm run contrast <id>   # every pair must pass
