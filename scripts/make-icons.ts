@@ -1,18 +1,18 @@
 // Renders the active brand's favicons and app icons into public/.
-// usage: node scripts/make-icons.mjs <preset>   (default: leadersheet)
+// usage: node scripts/make-icons.ts <preset>   (default: leadersheet)
 //   public/icon.svg               the favicon, with its dark-mode block (Chrome, Firefox, Edge)
 //   public/favicon.ico            16, 32 and 48 px from the same drawing (Safari, bookmarks, search results, link previews)
 //   public/apple-touch-icon.png   180 px app icon (iOS home screen, iMessage, Safari)
 //   public/icons/icon-192.png, icon-512.png   web app manifest
 import { copyFileSync, readFileSync, writeFileSync, mkdirSync } from "node:fs"
-import { launch } from "./chrome.mjs"
+import { launch } from "./chrome.ts"
 
 const preset = process.argv[2] ?? "leadersheet"
 const dir = `src/brand/presets/${preset}`
 mkdirSync("public/icons", { recursive: true })
 copyFileSync(`${dir}/favicon.svg`, "public/icon.svg")
 
-const page_ = (svg) =>
+const page_ = (svg: string) =>
   `data:text/html,${encodeURIComponent(
     `<!doctype html><body style="margin:0;background:transparent">${svg.replace("<svg", '<svg style="display:block;width:100vw;height:100vh"')}</body>`
   )}`
@@ -22,11 +22,12 @@ await page.media({ scheme: "light" })
 
 // App icons: full-bleed square on paper.
 const app = page_(readFileSync(`${dir}/app-icon.svg`, "utf8"))
-for (const [size, out] of [
+const APP_ICONS: [number, string][] = [
   [180, "public/apple-touch-icon.png"],
   [192, "public/icons/icon-192.png"],
   [512, "public/icons/icon-512.png"],
-]) {
+]
+for (const [size, out] of APP_ICONS) {
   await page.size(size, size)
   await page.go(app, 400)
   writeFileSync(out, await page.png())
@@ -36,7 +37,7 @@ for (const [size, out] of [
 // favicon.ico: the favicon drawing on a transparent background, one PNG per size.
 await page.send("Emulation.setDefaultBackgroundColorOverride", { color: { r: 0, g: 0, b: 0, a: 0 } })
 const fav = page_(readFileSync(`${dir}/favicon.svg`, "utf8"))
-const pngs = []
+const pngs: [number, Buffer][] = []
 for (const size of [16, 32, 48]) {
   await page.size(size, size)
   await page.go(fav, 400)

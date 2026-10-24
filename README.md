@@ -2,7 +2,7 @@
 
 Leadership, built so you can move it. Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games. Every sheet and every quiz result has its own share card.
 
-Next.js 16, React 19, Tailwind 4, shadcn/ui on Radix, Remotion Player, Motion, NumberFlow. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
+Next.js 16.4 with the React Compiler, React 19, TypeScript 7, Tailwind 4, shadcn/ui on Radix, Remotion Player, Motion, NumberFlow. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
 
 ![Leadersheet on desktop](docs/preview-desktop.png)
 
@@ -42,7 +42,7 @@ Publish this folder to a personal GitHub repository named `leadersheet` (GitHub 
 - `src/data/results.ts`, `src/app/play/results/`: the 13 shareable result pages; `npm run og` renders their cards and one per sheet (from `src/app/og/`) into `public/og/`
 - `docs/VENTURE.md`: objective, audience, decisions and the next action
 - `src/components/film/`: the Remotion hero and recap films
-- `scripts/`: QA, screenshots, icons, share card, contrast, domains
+- `scripts/`: QA, smoke test, screenshots, icons, share cards, contrast, domains. TypeScript that Node 22.18+ runs directly, no build step
 - `DESIGN.md`: the reasoning behind the Leadersheet identity
 
 Unofficial study companion. Summaries are for learning; read the originals.

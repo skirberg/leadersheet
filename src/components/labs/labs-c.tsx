@@ -157,7 +157,7 @@ export function MotivationLab() {
             <span className="ml-2 font-sans text-base font-medium text-muted-foreground">MPS of 343</span>
           </p>
           <div className="h-2 overflow-hidden rounded-full bg-border">
-            <div className="h-full rounded-full bg-foreground transition-[width] duration-500" style={{ width: `${(mps / 343) * 100}%` }} />
+            <div className="h-full rounded-full bg-foreground transition-transform duration-500" style={{ transform: `translateX(${Math.min(1, mps / 343) * 100 - 100}%)` }} />
           </div>
         </div>
         <Readout>

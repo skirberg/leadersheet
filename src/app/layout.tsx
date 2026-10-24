@@ -9,6 +9,7 @@ import { SiteFooter, SiteHeader } from "@/components/site/header"
 import { SCHEDULE, currentSession } from "@/data/course"
 import { BRAND } from "@/brand"
 import { MotionProvider } from "@/components/motion/motion-provider"
+import { ThemeColor } from "@/components/site/theme-color"
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -58,6 +59,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  interactiveWidget: "resizes-content",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: BRAND.themeColor.light },
     { media: "(prefers-color-scheme: dark)", color: BRAND.themeColor.dark },
@@ -71,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${martian.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <ThemeColor />
           <MotionProvider>
           <TooltipProvider delayDuration={200}>
             <ProgressProvider schedule={SCHEDULE} buildCurrent={{ id, n, date }}>

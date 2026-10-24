@@ -24,7 +24,7 @@ export function SheetCard({ s, i = 0 }: { s: SheetSummary; i?: number }) {
     <Link
       href={`/learn/${s.id}/`}
       className={cn(
-        "group corners rise relative flex min-h-[136px] flex-col sm:min-h-[188px] border border-border bg-card p-4 transition-[border-color,transform] duration-(--dur-ui) hover:-translate-y-0.5 hover:border-foreground/70",
+        "group corners rise relative flex min-h-[136px] flex-col sm:min-h-[188px] border border-border bg-card p-4 press hover:-translate-y-0.5 hover:border-foreground/70",
         isNow && "border-foreground"
       )}
       style={{ ["--delay" as string]: `${i * 35}ms` }}

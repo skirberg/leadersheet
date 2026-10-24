@@ -68,7 +68,7 @@ export function Arcade({ compact }: { compact?: boolean }) {
           <li key={g.id} className="min-w-0">
             <Link
               href={`/play/${g.id}/`}
-              className="group corners rise drafting-grid flex h-full min-h-[236px] flex-col border border-border bg-card p-4 transition-[border-color,transform] duration-(--dur-ui) hover:-translate-y-0.5 hover:border-foreground/70"
+              className="group corners rise drafting-grid flex h-full min-h-[236px] flex-col border border-border bg-card p-4 press hover:-translate-y-0.5 hover:border-foreground/70"
               style={{ ["--delay" as string]: `${i * 50}ms` }}
             >
               <div className="flex items-start justify-between gap-3">
@@ -101,7 +101,7 @@ export function PlayCallout({ sheet }: { sheet: string }) {
     <Link
       href={`/play/${g.id}/`}
       className={cn(
-        "group corners flex items-center gap-4 border bg-card p-4 transition-colors hover:border-foreground/70",
+        "group corners press flex items-center gap-4 border bg-card p-4 hover:border-foreground/70",
         play ? "border-signal" : "border-border"
       )}
     >

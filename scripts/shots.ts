@@ -1,10 +1,11 @@
 // Screenshots for review and for a portfolio. Run `npm run build` first.
 // Writes docs/shots/*.png plus two contact sheets: docs/preview-desktop.png and docs/preview-phone.png.
 import { mkdirSync, writeFileSync, readFileSync } from "node:fs"
-import { launch, sleep } from "./chrome.mjs"
-import { serve } from "./serve.mjs"
+import { launch, sleep } from "./chrome.ts"
+import { serve } from "./serve.ts"
 
-const SHOTS = [
+type Shot = { name: string; path: string; size: [number, number]; scheme: "light" | "dark"; mobile?: boolean; wait?: number; js?: string }
+const SHOTS: Shot[] = [
   { name: "home-light", path: "/", size: [1440, 900], scheme: "light", wait: 3200 },
   { name: "home-dark", path: "/", size: [1440, 900], scheme: "dark", wait: 7600 },
   { name: "sheet-lab-dark", path: "/learn/s3/", size: [1440, 900], scheme: "dark", js: `document.querySelector("#see-it").scrollIntoView(); scrollBy(0,-90); [...document.querySelectorAll("[role=radio]")].find(b=>b.textContent==="Matrix")?.click()` },
@@ -29,8 +30,8 @@ for (const s of SHOTS) {
   console.log("shot", s.name)
 }
 // contact sheets, laid out in the browser
-const img = (n) => `data:image/png;base64,${readFileSync(`docs/shots/${n}.png`).toString("base64")}`
-const sheet = async (names, cols, w, h, out) => {
+const img = (n: string) => `data:image/png;base64,${readFileSync(`docs/shots/${n}.png`).toString("base64")}`
+const sheet = async (names: string[], cols: number, w: number, h: number, out: string) => {
   const html = `<!doctype html><body style="margin:0;background:#e6e2da;padding:24px;display:grid;grid-template-columns:repeat(${cols},1fr);gap:24px">${names
     .map((n) => `<img src="${img(n)}" style="width:100%;display:block;border-radius:10px;box-shadow:0 0 0 1px rgba(0,0,0,.08)">`)
     .join("")}</body>`

@@ -200,7 +200,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
 
           <nav aria-label="More sheets" className="grid grid-cols-2 gap-3">
             {pv ? (
-              <Link href={`/learn/${pv.id}/`} className="corners grid min-h-20 content-center gap-1 border border-border bg-card px-4 py-3 transition-colors hover:border-foreground/70">
+              <Link href={`/learn/${pv.id}/`} className="corners grid min-h-20 content-center gap-1 border border-border bg-card px-4 py-3 press hover:border-foreground/70">
                 <span className="label-mono inline-flex items-center gap-1">
                   <ArrowLeft className="size-3" /> {sheetNo(pv.n)}
                 </span>
@@ -210,7 +210,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
               <span />
             )}
             {nx ? (
-              <Link href={`/learn/${nx.id}/`} className="corners grid min-h-20 content-center justify-items-end gap-1 border border-border bg-card px-4 py-3 text-right transition-colors hover:border-foreground/70">
+              <Link href={`/learn/${nx.id}/`} className="corners grid min-h-20 content-center justify-items-end gap-1 border border-border bg-card px-4 py-3 text-right press hover:border-foreground/70">
                 <span className="label-mono inline-flex items-center gap-1">
                   {sheetNo(nx.n)} <ArrowRight className="size-3" />
                 </span>

@@ -41,7 +41,7 @@ export function Question({
                 onAnswer?.(i === q.a)
               }}
               className={cn(
-                "flex min-h-11 w-full items-center gap-3 rounded-md border border-border bg-card px-4 py-2.5 text-left text-[15px] transition-[border-color,background-color] duration-(--dur-ui)",
+                "flex min-h-11 w-full items-center gap-3 rounded-md border border-border bg-card px-4 py-2.5 text-left text-[15px] press disabled:active:scale-100",
                 !done && "hover:border-foreground/50",
                 isRight && "border-ok bg-ok/8 text-foreground",
                 isWrong && "text-muted-foreground line-through decoration-1",

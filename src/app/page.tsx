@@ -73,7 +73,7 @@ export default function Home() {
                 <li key={f.id}>
                   <Link
                     href={`/learn/s${f.s}/#fw-${f.id}`}
-                    className="inline-flex min-h-10 items-center gap-2 rounded-full border border-border bg-card px-3.5 text-sm transition-colors hover:border-foreground/70"
+                    className="inline-flex min-h-10 items-center gap-2 rounded-full border border-border bg-card px-3.5 text-sm press hover:border-foreground/70"
                   >
                     <span className="font-mono text-[10px] text-muted-foreground tnum">{sheetNo(f.s)}</span>
                     {f.name}

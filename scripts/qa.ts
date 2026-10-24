@@ -1,9 +1,9 @@
-// One-command QA for the exported site. Run `npm run build` first, then `node scripts/qa.mjs`.
+// One-command QA for the exported site. Run `npm run build` first, then `node scripts/qa.ts`.
 // Checks every page at 375, 768, 1024 and 1280 px in light and dark: crashes and horizontal overflow; axe (WCAG 2.1 AA) at 1280.
 import { readFileSync, readdirSync, statSync } from "node:fs"
 import { join, relative } from "node:path"
-import { launch } from "./chrome.mjs"
-import { serve } from "./serve.mjs"
+import { launch } from "./chrome.ts"
+import { serve } from "./serve.ts"
 
 const routes = []
 ;(function walk(dir) {

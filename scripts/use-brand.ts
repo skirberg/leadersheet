@@ -1,4 +1,4 @@
-// Switch the whole site to another brand preset: node scripts/use-brand.mjs <preset>
+// Switch the whole site to another brand preset: node scripts/use-brand.ts <preset>
 // Rewrites the active brand in src/brand/index.ts and src/app/globals.css, then renders its icons.
 import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { execFileSync } from "node:child_process"
@@ -15,5 +15,5 @@ const idx = "src/brand/index.ts"
 writeFileSync(idx, readFileSync(idx, "utf8").replace(/presets\/[\w-]+\/brand/, `presets/${preset}/brand`).replace(/presets\/[\w-]+\/logo/, `presets/${preset}/logo`))
 const css = "src/app/globals.css"
 writeFileSync(css, readFileSync(css, "utf8").replace(/@import "\.\.\/brand\/presets\/[\w-]+\/tokens\.css";/, `@import "../brand/presets/${preset}/tokens.css";`))
-execFileSync("node", ["scripts/make-icons.mjs", preset], { stdio: "inherit" })
-console.log(`Active brand: ${preset}. Next: npm run build && node scripts/make-og.mjs && node scripts/qa.mjs`)
+execFileSync("node", ["scripts/make-icons.ts", preset], { stdio: "inherit" })
+console.log(`Active brand: ${preset}. Next: npm run build && node scripts/make-og.ts && node scripts/qa.ts`)

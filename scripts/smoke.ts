@@ -10,41 +10,41 @@
 // random first-party path (leadersheet.io/4d6e15c192ab02dc/script.js), not /_vercel/insights/, so a URL
 // pattern alone misses it: the page drops the SDK's script tag before it can load.
 import { existsSync } from "node:fs"
-import { launch, sleep } from "./chrome.mjs"
-import { serve } from "./serve.mjs"
+import { launch, sleep } from "./chrome.ts"
+import { serve } from "./serve.ts"
 
 const REMOTE = process.argv[2]?.replace(/\/$/, "")
 if (!REMOTE && !existsSync("out/index.html")) {
   console.error("No out/ folder: run `npm run build` first, or pass a URL.")
   process.exit(1)
 }
-// Ports apart from qa.mjs (4410, 9333) so both can run at once.
+// Ports apart from qa.ts (4410, 9333) so both can run at once.
 const srv = REMOTE ? null : await serve("out", 4420)
-const BASE = REMOTE ?? srv.url
+const BASE = REMOTE ?? srv!.url
 const ANALYTICS = /\/_vercel\/(speed-)?insights\/|va\.vercel-scripts\.com/
 
-const failures = []
-const check = (ok, label, detail = "") => {
+const failures: string[] = []
+const check = (ok: boolean, label: string, detail = "") => {
   console.log(`${ok ? "  ok  " : "  FAIL"}  ${label}${detail ? `  (${detail})` : ""}`)
   if (!ok) failures.push(label)
 }
 
 const { page, close } = await launch({ port: 9334 })
-const errors = []
-const dropped = new Set()
-const requests = []
+const errors: string[] = []
+const dropped = new Set<string>()
+const requests: string[] = []
 let where = ""
 page.on((m) => {
   const p = m.params
   if (m.method === "Runtime.exceptionThrown") errors.push(`${where}: ${(p.exceptionDetails.exception?.description ?? p.exceptionDetails.text).split("\n")[0]}`)
-  if (m.method === "Runtime.consoleAPICalled" && p.type === "error") errors.push(`${where}: ${p.args.map((a) => a.value ?? a.description).join(" ").slice(0, 200)}`)
+  if (m.method === "Runtime.consoleAPICalled" && p.type === "error") errors.push(`${where}: ${p.args.map((a: { value?: unknown; description?: string }) => a.value ?? a.description).join(" ").slice(0, 200)}`)
   // The blocked analytics requests log a load error of their own; that one is expected.
   if (m.method === "Log.entryAdded" && p.entry.level === "error" && !ANALYTICS.test(p.entry.url ?? "")) errors.push(`${where}: ${p.entry.text} ${p.entry.url ?? ""}`)
   if (m.method === "Runtime.consoleAPICalled" && p.args[0]?.value === "smoke: analytics dropped") dropped.add(p.args[1]?.value)
   if (m.method === "Network.requestWillBeSent") requests.push(p.request.url)
 })
 
-const waitFor = async (expression, timeout = 8000) => {
+const waitFor = async (expression: string, timeout = 8000) => {
   const end = Date.now() + timeout
   while (Date.now() < end) {
     if (await page.eval(expression)) return true
@@ -52,10 +52,11 @@ const waitFor = async (expression, timeout = 8000) => {
   }
   return false
 }
-const go = async (path) => {
+const go = async (path: string) => {
   where = path
-  let off, timer
-  const loaded = new Promise((r) => {
+  let off = () => {}
+  let timer: ReturnType<typeof setTimeout> | undefined
+  const loaded = new Promise<void>((r) => {
     off = page.on((m) => m.method === "Page.loadEventFired" && r())
     timer = setTimeout(r, 20000)
   })
@@ -64,9 +65,9 @@ const go = async (path) => {
   off()
   clearTimeout(timer)
 }
-const keyCodes = { Enter: 13, Escape: 27 }
-const key = async (k, modifiers = 0) => {
-  const p = { key: k, code: k.length === 1 ? `Key${k.toUpperCase()}` : k, modifiers, windowsVirtualKeyCode: keyCodes[k] ?? k.toUpperCase().charCodeAt(0) }
+const keyCodes: Record<string, number> = { Enter: 13, Escape: 27 }
+const key = async (k: string, modifiers = 0) => {
+  const p: Record<string, unknown> = { key: k, code: k.length === 1 ? `Key${k.toUpperCase()}` : k, modifiers, windowsVirtualKeyCode: keyCodes[k] ?? k.toUpperCase().charCodeAt(0) }
   if (k === "Enter") p.text = "\r"
   await page.send("Input.dispatchKeyEvent", { type: "keyDown", ...p })
   await page.send("Input.dispatchKeyEvent", { type: "keyUp", ...p })
@@ -75,13 +76,13 @@ const META = 4
 const CTRL = 2
 // A real mouse click at the element's center, so hover and pointer handlers run as they do for a visitor.
 // It waits until nothing covers the element (the mode pill slides over its neighbour for about 100 ms).
-const click = async (expression) => {
+const click = async (expression: string) => {
   const target = `(() => { const el = ${expression}; if (!el) return null; el.scrollIntoView({ block: "center" }); const r = el.getBoundingClientRect(); const x = r.x + r.width / 2, y = r.y + r.height / 2; return el.contains(document.elementFromPoint(x, y)) ? { x, y } : null })()`
   if (!(await waitFor(target, 3000))) return false
   await clickAt(await page.eval(target))
   return true
 }
-const clickAt = async (at) => {
+const clickAt = async (at: { x: number; y: number }) => {
   await page.send("Input.dispatchMouseEvent", { type: "mouseMoved", ...at })
   await page.send("Input.dispatchMouseEvent", { type: "mousePressed", ...at, button: "left", clickCount: 1 })
   await page.send("Input.dispatchMouseEvent", { type: "mouseReleased", ...at, button: "left", clickCount: 1 })
@@ -92,7 +93,8 @@ const clickAt = async (at) => {
 // there must go through to that option. Every indicator on a page is found this way and tested, so one
 // added later is covered without a new check.
 const SLIDER = `:is(button, a) > span.absolute:empty`
-const findSliders = async () => {
+type Slider = { id: number; tag: string; name: string }
+const findSliders = async (): Promise<Slider[]> => {
   // Hydrated controls carry React's props; before that a tap does nothing.
   await waitFor(`[...document.querySelectorAll("${SLIDER}")].every((s) => Object.keys(s.parentElement).some((k) => k.startsWith("__reactProps")))`, 10000)
   return page.eval(`(() => {
@@ -110,8 +112,8 @@ const findSliders = async () => {
 }
 // Each indicator gets a fresh load of the page, since testing a nav underline navigates. Ones in the header
 // show on every page and are tested once per screen size.
-const tested = new Set()
-const sweep = async (path, screen) => {
+const tested = new Set<string>()
+const sweep = async (path: string, screen: string) => {
   await go(path)
   for (const { name } of await findSliders()) {
     if (tested.has(`${screen} ${name}`)) continue
@@ -122,9 +124,9 @@ const sweep = async (path, screen) => {
     check(ok, `${screen} ${path}: ${name}`, detail)
   }
 }
-const tapBack = async (group, tag) => {
+const tapBack = async (group: string, tag: string): Promise<[boolean, string]> => {
   const controls = `[...(document.querySelector('${group}')?.querySelectorAll("${tag}") ?? [])].filter((c) => c.getBoundingClientRect().width > 0)`
-  const isOn = (i) => `!!${controls}[${i}]?.querySelector(":scope > span.absolute:empty")`
+  const isOn = (i: number) => `!!${controls}[${i}]?.querySelector(":scope > span.absolute:empty")`
   await page.eval(`document.querySelector('${group}').scrollIntoView({ block: "center" })`)
   // The layout animation code loads after hydration, so the first switch may jump instead of slide: try three times.
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -289,7 +291,7 @@ try {
   // without reading the page (/favicon.ico, /apple-touch-icon.png) must exist. Icons are found from each
   // page's own link tags, so one added later is covered without a new check.
   console.log("\nIcons")
-  const ICON_TYPES = { ico: /icon/, svg: /svg/, png: /png/ }
+  const ICON_TYPES: Record<string, RegExp> = { ico: /icon/, svg: /svg/, png: /png/ }
   const icons = new Set(["/favicon.ico", "/apple-touch-icon.png"])
   for (const path of ["/", "/learn/s4/", "/no-such-sheet/"]) {
     const html = await (await fetch(BASE + path)).text()
@@ -306,7 +308,7 @@ try {
     const r = await fetch(url)
     const body = Buffer.from(await r.arrayBuffer())
     const type = r.headers.get("content-type") ?? ""
-    let ok = r.ok && body.length > 100 && (ICON_TYPES[url.pathname.split(".").pop()]?.test(type) ?? false)
+    let ok = r.ok && body.length > 100 && (ICON_TYPES[url.pathname.split(".").pop() ?? ""]?.test(type) ?? false)
     let detail = `${r.status} ${type} ${body.length} B`
     if (ok && url.pathname.endsWith(".ico")) {
       const sizes = body.readUInt16LE(2) === 1 ? Array.from({ length: body.readUInt16LE(4) }, (_, i) => body[6 + 16 * i] || 256) : []

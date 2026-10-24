@@ -24,7 +24,7 @@ export function ClassModeToggle({ className }: { className?: string }) {
         className={`relative h-6 w-10 shrink-0 rounded-full border border-rule/60 transition-colors duration-(--dur-ui) ${ready && classMode ? "bg-foreground" : "bg-muted"}`}
       >
         <span
-          className={`absolute top-0.5 size-[18px] rounded-full bg-background shadow-[0_0_0_1px_var(--rule)] transition-[left] duration-(--dur-ui) ${ready && classMode ? "left-[18px]" : "left-0.5"}`}
+          className={`absolute top-0.5 size-[18px] rounded-full bg-background shadow-[0_0_0_1px_var(--rule)] left-0.5 transition-[translate] duration-(--dur-ui) ease-(--ease-draft) ${ready && classMode ? "translate-x-4" : "translate-x-0"}`}
         />
       </span>
       Class mode

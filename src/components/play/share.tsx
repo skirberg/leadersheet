@@ -61,7 +61,7 @@ export function ShareResult({ text, path, image, fileName }: { text: string; pat
           aria-label="Result link"
           value={link}
           onFocus={(e) => e.currentTarget.select()}
-          className="h-11 w-full min-w-0 basis-full rounded-md border border-rule/60 bg-card px-3 font-mono text-xs"
+          className="h-11 w-full min-w-0 basis-full rounded-md border border-rule/60 bg-card px-3 font-mono text-base pointer-fine:text-xs"
         />
       )}
       <span className="sr-only" role="status">

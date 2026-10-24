@@ -10,6 +10,20 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+  Press feedback for tappable cards, options and chips: they give a little the instant a finger or mouse
+  goes down, like a native control. Owns the element's transition so the press, the hover lift and the
+  color change all ease the same way.
+*/
+@utility press {
+  transition-property: color, background-color, border-color, box-shadow, translate, scale;
+  transition-duration: var(--dur-press);
+  transition-timing-function: var(--ease-draft);
+  &:active {
+    scale: 0.98;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -65,6 +79,33 @@
     @apply font-sans;
     -webkit-text-size-adjust: 100%;
     scroll-padding-top: 5rem;
+    /* No gray flash on tap (iOS Safari, Android Chrome); every control has its own pressed state. */
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Taps fire at once instead of waiting to see whether a double-tap zoom is coming. */
+  a,
+  button,
+  label,
+  summary,
+  input,
+  [role="button"],
+  [role="tab"],
+  [role="radio"],
+  [role="switch"],
+  [role="checkbox"],
+  [role="option"] {
+    touch-action: manipulation;
+  }
+  /* A long press on a control does not select its label or open the link callout. Content stays selectable. */
+  button,
+  [role="button"],
+  [role="tab"],
+  [role="radio"],
+  [role="switch"],
+  [role="checkbox"] {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
   }
   body {
     @apply bg-background text-foreground;

@@ -46,7 +46,7 @@ function ProgressLine({ value, max, label }: { value: number; max: number; label
         </span>
       </div>
       <div className="h-1 overflow-hidden rounded-full bg-border">
-        <div className="h-full bg-foreground transition-[width] duration-300 ease-(--ease-draft)" style={{ width: `${(value / max) * 100}%` }} />
+        <div className="h-full origin-left bg-foreground transition-transform duration-300 ease-(--ease-draft)" style={{ transform: `scaleX(${value / max})` }} />
       </div>
     </div>
   )
@@ -57,7 +57,7 @@ function Choice({ children, onClick, k }: { children: React.ReactNode; onClick: 
     <button
       type="button"
       onClick={onClick}
-      className="group flex min-h-12 w-full items-center gap-3 rounded-md border border-border bg-background/40 px-4 py-3 text-left text-[15px] transition-[border-color,background-color,transform] duration-(--dur-ui) hover:border-foreground/60 hover:bg-background active:scale-[0.99]"
+      className="group flex min-h-12 w-full items-center gap-3 rounded-md border border-border bg-background/40 px-4 py-3 text-left text-[15px] press hover:border-foreground/60 hover:bg-background"
     >
       <span className="grid size-6 shrink-0 place-items-center rounded-[4px] border border-rule/70 font-mono text-[11px] text-muted-foreground group-hover:border-foreground group-hover:text-foreground">
         {k}
@@ -502,7 +502,7 @@ export function BiasGame() {
         </span>
       </div>
       <div className="h-1 overflow-hidden rounded-full bg-border" aria-hidden>
-        <div className="h-full bg-foreground transition-[width] duration-200 ease-linear" style={{ width: `${(left / BLITZ_SECONDS) * 100}%` }} />
+        <div className="h-full origin-left bg-foreground transition-transform duration-200 ease-linear" style={{ transform: `scaleX(${left / BLITZ_SECONDS})` }} />
       </div>
       <p className="sr-only" aria-live="polite">
         {left % 15 === 0 && left > 0 ? `${left} seconds left. Score ${score}.` : ""}
@@ -520,7 +520,7 @@ export function BiasGame() {
               type="button"
               onClick={() => answer(k)}
               className={cn(
-                "flex min-h-12 items-center gap-3 rounded-md border border-border bg-background/40 px-4 py-3 text-left text-[15px] font-medium transition-colors",
+                "flex min-h-12 items-center gap-3 rounded-md border border-border bg-background/40 px-4 py-3 text-left text-[15px] font-medium press",
                 !flash && "hover:border-foreground/60",
                 isAns && "border-ok bg-ok text-background",
                 isWrong && "nudge text-muted-foreground line-through"

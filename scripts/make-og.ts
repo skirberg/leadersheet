@@ -2,8 +2,8 @@
 // public/og.png from /og/, one card per sheet from /og/sheet/<id>/ and one per quiz result from /og/result/<game>/<id>/.
 import { mkdirSync, readdirSync, statSync, writeFileSync, copyFileSync } from "node:fs"
 import { join } from "node:path"
-import { launch } from "./chrome.mjs"
-import { serve } from "./serve.mjs"
+import { launch } from "./chrome.ts"
+import { serve } from "./serve.ts"
 
 const cards = [["/og/", "public/og.png"]]
 try {

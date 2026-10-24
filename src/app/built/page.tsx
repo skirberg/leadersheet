@@ -13,9 +13,10 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Framework",
     items: [
-      { name: "Next.js", version: "16.3", what: "App Router, statically exported. Every page is plain HTML, no server.", url: "https://nextjs.org" },
-      { name: "React", version: "19.2", what: "Components and state for the labs, quizzes and games.", url: "https://react.dev" },
-      { name: "TypeScript", version: "5.9", what: "Typed content, labs and brand config.", url: "https://www.typescriptlang.org" },
+      { name: "Next.js", version: "16.4", what: "App Router, statically exported. Every page is plain HTML, no server.", url: "https://nextjs.org" },
+      { name: "React Compiler", version: "1.0", what: "Memoizes components at build time, so a slider or a score re-renders only what reads it.", url: "https://react.dev/learn/react-compiler" },
+      { name: "React", version: "19.3", what: "Components and state for the labs, quizzes and games.", url: "https://react.dev" },
+      { name: "TypeScript", version: "7.0", what: "Typed content, labs, brand config and every build and QA script, checked by the native compiler.", url: "https://www.typescriptlang.org" },
     ],
   },
   {
@@ -23,7 +24,7 @@ const STACK: { title: string; items: Item[] }[] = [
     items: [
       { name: "Tailwind CSS", version: "4.3", what: "Styling from design tokens.", url: "https://tailwindcss.com" },
       { name: "shadcn/ui", what: "Component recipes, restyled from the brand tokens.", url: "https://ui.shadcn.com" },
-      { name: "Radix UI", version: "1.6", what: "Accessible primitives: dialog, tabs, slider, toggle group, checkbox.", url: "https://www.radix-ui.com" },
+      { name: "Radix UI", version: "1.8", what: "Accessible primitives: dialog, tabs, slider, toggle group, checkbox.", url: "https://www.radix-ui.com" },
       { name: "cmdk", version: "1.1", what: "The ⌘K search across sheets, frameworks and games.", url: "https://cmdk.paco.me" },
       { name: "next-themes", version: "0.4", what: "Light and dark mode that follows your system.", url: "https://github.com/pacocoursey/next-themes" },
       { name: "Lucide", what: "Icons.", url: "https://lucide.dev" },
@@ -33,7 +34,7 @@ const STACK: { title: string; items: Item[] }[] = [
     title: "Motion",
     items: [
       { name: "Remotion Player", version: "4.0", what: "The hero film and the 16 second recap on every sheet, generated from the content in the browser.", url: "https://www.remotion.dev" },
-      { name: "Motion", version: "13.5", what: "Spring layout animations: the sliding nav underline, the phone tab bar, the Study and Play pill and the lab toggles.", url: "https://motion.dev" },
+      { name: "Motion", version: "14.6", what: "Spring layout animations: the sliding nav underline, the phone tab bar, the Study and Play pill and the lab toggles.", url: "https://motion.dev" },
       { name: "NumberFlow", version: "0.6", what: "Scores, timers and counts that roll digit by digit.", url: "https://number-flow.barvian.me" },
       { name: "CSS scroll timelines", what: "Sections rise in as they scroll into view, with no JavaScript; the highlighter swipe and the celebration burst are CSS too. All of it turns off with reduced motion." },
     ],

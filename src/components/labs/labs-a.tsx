@@ -74,8 +74,8 @@ export function EiLab() {
                 </g>
               )
             })}
-            <polygon points={poly(ot)} fill="none" stroke="var(--muted-foreground)" strokeWidth={1.75} strokeDasharray="5 4" className="transition-all duration-300" />
-            <polygon points={poly(me)} fill="var(--signal-soft)" stroke="var(--signal)" strokeWidth={2.25} className="transition-all duration-300" />
+            <polygon points={poly(ot)} fill="none" stroke="var(--muted-foreground)" strokeWidth={1.75} strokeDasharray="5 4" />
+            <polygon points={poly(me)} fill="var(--signal-soft)" stroke="var(--signal)" strokeWidth={2.25} />
           </svg>
           <figcaption className="flex flex-wrap justify-center gap-5 text-sm">
             <span className="inline-flex items-center gap-2"><i className="block h-[3px] w-6 bg-signal" /> You</span>

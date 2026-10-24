@@ -87,7 +87,7 @@ function Drill() {
         </span>
       </div>
       <div className="h-1 overflow-hidden rounded-full bg-border">
-        <div className="h-full bg-foreground transition-[width] duration-300" style={{ width: `${(i / qs.length) * 100}%` }} />
+        <div className="h-full origin-left bg-foreground transition-transform duration-300" style={{ transform: `scaleX(${i / qs.length})` }} />
       </div>
       <Question
         key={qid + i}

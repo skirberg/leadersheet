@@ -77,8 +77,8 @@ export function Meter({ label, value, max, suffix }: { label: string; value: num
       <span className="truncate">{label}</span>
       <div className="h-2 overflow-hidden rounded-full bg-border" role="img" aria-label={`${label}: ${value} of ${max}`}>
         <div
-          className="h-full rounded-full bg-foreground transition-[width] duration-500 ease-(--ease-draft)"
-          style={{ width: `${(value / max) * 100}%` }}
+          className="h-full rounded-full bg-foreground transition-transform duration-500 ease-(--ease-draft)"
+          style={{ transform: `translateX(${(value / max) * 100 - 100}%)` }}
         />
       </div>
       <span className="text-right font-mono text-[13px] font-medium tnum">{suffix ?? `${value}/${max}`}</span>
@@ -189,7 +189,7 @@ export function Sorter({
                       disabled={!!p}
                       onClick={() => setPicks((s) => ({ ...s, [i]: b.key }))}
                       className={cn(
-                        "min-h-10 flex-1 rounded-[4px] border border-border bg-card px-3 text-sm font-medium transition-colors sm:flex-none",
+                        "min-h-10 flex-1 rounded-[4px] border border-border bg-card px-3 text-sm font-medium press disabled:active:scale-100 sm:flex-none",
                         !p && "hover:border-foreground/60",
                         chosen && !ok && "line-through opacity-70",
                         isAnswer && "border-ok bg-ok text-background",

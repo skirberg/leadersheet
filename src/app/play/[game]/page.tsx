@@ -32,7 +32,7 @@ export default async function GamePage({ params }: { params: Promise<{ game: str
       </FirstUse>
       <nav aria-label="More games" className="grid gap-3 border-t border-border pt-6 sm:grid-cols-3">
         {others.map((o) => (
-          <Link key={o.id} href={`/play/${o.id}/`} className="corners grid gap-1 border border-border bg-card px-4 py-3 transition-colors hover:border-foreground/70">
+          <Link key={o.id} href={`/play/${o.id}/`} className="corners grid gap-1 border border-border bg-card px-4 py-3 press hover:border-foreground/70">
             <span className="label-mono">{o.kind}</span>
             <span className="font-semibold">{o.title}</span>
           </Link>

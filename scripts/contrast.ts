@@ -1,26 +1,27 @@
 // Contrast check for a palette. Reads the :root and .dark blocks of a preset's tokens.css
-// and prints WCAG ratios for the pairs that matter. usage: node scripts/contrast.mjs <preset>
+// and prints WCAG ratios for the pairs that matter. usage: node scripts/contrast.ts <preset>
 import { readFileSync } from "node:fs"
 
 const preset = process.argv[2] ?? "leadersheet"
 const css = readFileSync(`src/brand/presets/${preset}/tokens.css`, "utf8")
-const block = (sel) => {
+type Rgb = number[]
+const block = (sel: string): Record<string, string> => {
   const m = css.match(new RegExp(sel.replace(".", "\\.") + "\\s*\\{([^}]*)\\}"))
   return Object.fromEntries([...(m?.[1] ?? "").matchAll(/--([\w-]+):\s*([^;]+);/g)].map((x) => [x[1], x[2].trim()]))
 }
-const hex = (v) => {
+const hex = (v: string): Rgb | null => {
   const h = v.match(/^#([0-9a-f]{6})$/i)?.[1]
   return h ? [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255) : null
 }
-const lum = (c) => {
+const lum = (c: Rgb) => {
   const [r, g, b] = c.map((x) => (x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4))
   return 0.2126 * r + 0.7152 * g + 0.0722 * b
 }
-const ratio = (a, b) => {
+const ratio = (a: Rgb, b: Rgb) => {
   const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p)
   return (x + 0.05) / (y + 0.05)
 }
-const PAIRS = [
+const PAIRS: [string, string, number, string][] = [
   ["foreground", "background", 4.5, "body text"],
   ["muted-foreground", "background", 4.5, "secondary text"],
   ["muted-foreground", "card", 4.5, "secondary text on cards"],

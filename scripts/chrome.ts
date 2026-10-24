@@ -9,9 +9,13 @@ const CANDIDATES = [
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "/Applications/Chromium.app/Contents/MacOS/Chromium",
   "/usr/bin/google-chrome",
-].filter(Boolean)
+].filter((p): p is string => !!p)
 
-export const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+export const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
+
+/** A DevTools Protocol message: the reply to a command (has id) or an event (has method). Params and results are as Chrome sends them. */
+export type CdpMessage = { id?: number; method?: string; params?: any; result?: any; error?: { message: string } }
+export type Page = Awaited<ReturnType<typeof launch>>["page"]
 
 export async function launch({ port = 9333 } = {}) {
   const profile = mkdtempSync(join(tmpdir(), "cdp-"))
@@ -24,21 +28,21 @@ export async function launch({ port = 9333 } = {}) {
       await sleep(200)
     }
   }
-  const target = await (await fetch(`http://127.0.0.1:${port}/json/new?about:blank`, { method: "PUT" })).json()
+  const target = (await (await fetch(`http://127.0.0.1:${port}/json/new?about:blank`, { method: "PUT" })).json()) as { webSocketDebuggerUrl: string }
   const ws = new WebSocket(target.webSocketDebuggerUrl)
   await new Promise((r) => (ws.onopen = r))
   let id = 0
-  const pending = new Map()
-  const listeners = new Set()
+  const pending = new Map<number, (m: CdpMessage) => void>()
+  const listeners = new Set<(m: CdpMessage) => void>()
   ws.onmessage = (m) => {
-    const d = JSON.parse(m.data)
+    const d = JSON.parse(String(m.data)) as CdpMessage
     if (d.id && pending.has(d.id)) {
-      pending.get(d.id)(d)
+      pending.get(d.id)!(d)
       pending.delete(d.id)
     } else if (d.method) for (const fn of listeners) fn(d)
   }
-  const send = (method, params = {}) =>
-    new Promise((r) => {
+  const send = (method: string, params: Record<string, unknown> = {}) =>
+    new Promise<CdpMessage>((r) => {
       const i = ++id
       pending.set(i, r)
       ws.send(JSON.stringify({ id: i, method, params }))
@@ -48,11 +52,11 @@ export async function launch({ port = 9333 } = {}) {
   const page = {
     send,
     /** Calls fn with every DevTools event (console, exceptions, network); returns a function that stops it. */
-    on(fn) {
+    on(fn: (m: CdpMessage) => void) {
       listeners.add(fn)
-      return () => listeners.delete(fn)
+      return () => void listeners.delete(fn)
     },
-    async size(w, h, { dpr = 1, mobile = false } = {}) {
+    async size(w: number, h: number, { dpr = 1, mobile = false } = {}) {
       await send("Emulation.setDeviceMetricsOverride", { width: w, height: h, deviceScaleFactor: dpr, mobile })
     },
     async media({ scheme = "light", reducedMotion = false } = {}) {
@@ -63,22 +67,22 @@ export async function launch({ port = 9333 } = {}) {
         ],
       })
     },
-    async go(url, wait = 1500) {
+    async go(url: string, wait = 1500) {
       await send("Page.navigate", { url })
       await sleep(wait)
     },
-    async eval(expression) {
+    async eval(expression: string): Promise<any> {
       const r = await send("Runtime.evaluate", { expression, awaitPromise: true, returnByValue: true })
       return r.result?.result?.value
     },
-    async png(clip) {
+    async png(clip?: { x: number; y: number; width: number; height: number }) {
       const r = await send("Page.captureScreenshot", { format: "png", ...(clip ? { clip: { ...clip, scale: 1 } } : {}) })
       return Buffer.from(r.result.data, "base64")
     },
   }
   const close = async () => {
     ws.close()
-    const exited = new Promise((r) => proc.once("exit", r))
+    const exited = new Promise<void>((r) => proc.once("exit", () => r()))
     proc.kill()
     await Promise.race([exited, sleep(3000)])
     // the temp Chrome profile this script created; Chrome may still be flushing it
