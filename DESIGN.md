@@ -18,7 +18,7 @@ Domains priced on 2 October 2026 with Vercel's public registrar API (first year,
 
 | Domain | First year | Renewal | Note |
 |---|---|---|---|
-| leadersheet.app | $9.99 | $15 | Recommended home. Exact name, HTTPS only |
+| leadersheet.app | $9.99 | $15 | Recommended at the time; leadersheet.io was chosen |
 | leadersheets.com | $11.25 | $11.25 | Closest .com; leadersheet.com is taken |
 | leadersheet.org | $9.99 | $10.99 | Fits a free learning resource |
 | leading.how | $25 | $25 | Short vanity link |
@@ -38,7 +38,7 @@ About 45 names across seven territories: practice, leading in motion (cycling, f
 
 | Name | Story | Best domain (first year, renewal) | Conflict |
 |---|---|---|---|
-| Leadersheet | The cheat sheet for leading people | leadersheet.app ($9.99, $15) | None found |
+| Leadersheet | The cheat sheet for leading people | leadersheet.io (bought; $14.99, then $46) | None found |
 | Sandlot | The lot where you learn the game by playing, no stakes | sandlot.page ($11.99, $11.99) or sandlot.school ($9.99, $30) | Game studio, health IT; no learning product |
 | Paceline | Riders take turns at the front and the group goes faster | paceline.page ($11.99, $11.99) | Fitness rewards app |
 | Waymark | A mark that shows the path to those behind you | waymark.club ($6.99, $18.46) | AI video company |

@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next"
 import { Bricolage_Grotesque, Martian_Mono } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import "./globals.css"
-import { TooltipProvider } from "@/components/ui/tooltip"
 import { ProgressProvider } from "@/lib/store"
 import { CommandMenuProvider } from "@/components/site/command-menu"
 import { SiteFooter, SiteHeader } from "@/components/site/header"
@@ -75,7 +74,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <ThemeColor />
           <MotionProvider>
-          <TooltipProvider delayDuration={200}>
             <ProgressProvider schedule={SCHEDULE} buildCurrent={{ id, n, date }}>
               <CommandMenuProvider>
                 <a
@@ -91,7 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <SiteFooter />
               </CommandMenuProvider>
             </ProgressProvider>
-          </TooltipProvider>
           </MotionProvider>
         </ThemeProvider>
         {/* Vercel Web Analytics: anonymous page views and a few custom events, no cookies. */}
