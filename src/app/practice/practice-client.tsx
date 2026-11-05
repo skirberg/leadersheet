@@ -41,22 +41,27 @@ function Stats() {
 }
 
 function Drill() {
-  const { state, markMiss } = useProgress()
+  const { state, ready, markMiss } = useProgress()
   const [qs, setQs] = React.useState<string[] | null>(null)
   const [i, setI] = React.useState(0)
   const [score, setScore] = React.useState(0)
   const [answered, setAnswered] = React.useState(false)
+  // The latest miss list, so "Drill again" and a returning visitor both start from what was actually missed.
+  const missRef = React.useRef(state.miss)
+  missRef.current = state.miss
   const start = React.useCallback(() => {
     const pool = SESSIONS.flatMap((s) => s.checks.map((_, k) => `${s.id}-${k}`))
-    const miss = state.miss.filter((x) => pool.includes(x))
+    const miss = shuffle(missRef.current.filter((x) => pool.includes(x)))
     const rest = shuffle(pool.filter((x) => !miss.includes(x)))
     setQs([...miss, ...rest].slice(0, 10))
     setI(0)
     setScore(0)
     setAnswered(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  React.useEffect(() => start(), [start])
+  // The first set waits for saved progress to load, so yesterday's misses come first too.
+  React.useEffect(() => {
+    if (ready) start()
+  }, [ready, start])
   if (!qs) return <div className="h-80" />
   if (i >= qs.length)
     return (
@@ -230,6 +235,8 @@ function Flashcards() {
         onClick={() => setBack((b) => !b)}
         aria-pressed={back}
         aria-label={back ? `${f.name}, answer side. Tap to flip back.` : `${f.name}. Tap to flip.`}
+        // The answer is a table inside this button; the label above would hide it, so it is attached as the description and announced when it appears.
+        aria-describedby={back ? `fw-${f.id}` : undefined}
         className="block w-full text-left [perspective:1400px]"
       >
         <div
@@ -248,8 +255,8 @@ function Flashcards() {
               <span className="text-sm text-muted-foreground">Say the parts out loud, then tap to flip.</span>
             </div>
           </div>
-          <div aria-hidden={!back} className="col-start-1 row-start-1 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-            <FrameworkCard f={f} className="min-h-[320px]" compact />
+          <div aria-hidden={!back} aria-live="polite" className="col-start-1 row-start-1 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+            {back && <FrameworkCard f={f} className="min-h-[320px]" compact />}
           </div>
         </div>
       </button>

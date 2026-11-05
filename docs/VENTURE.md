@@ -1,6 +1,6 @@
 # Leadersheet: venture notes
 
-The small source of truth for what Leadersheet is for and why it is built this way. Updated 24 October 2026.
+The small source of truth for what Leadersheet is for and why it is built this way. Updated 4 November 2026.
 
 ## Objective now
 
@@ -44,6 +44,8 @@ Evidence to watch: shares and quiz completions, in Vercel Web Analytics (custom 
 - `npm run check`: 63 pages, 504 checks, all clear. `npm run smoke`: all behavior checks pass.
 - Lighthouse, mobile, live (12 October 2026): accessibility, best practices and SEO 100; performance about 80.
 - Usage: read Vercel Web Analytics before quoting any number.
+- Usage, Vercel Web Analytics, 12 October to 4 November 2026: 9 to 21 visitors a week, direct. Events: 2 lab uses, 6 mode switches, 1 class-mode visit; no shares, no checks finished, no games played. The share loop has not been tried yet because no card has been posted.
+- 4 November 2026: fixed from the 28 October source review: the drill now starts from the current miss list (it read the first render's), the culture quiz gives every style four questions (Learning and Results had five, Authority and Purpose three), the flashcard answer is attached to the flip control for screen readers, every sheet opens with a Try the model jump, and the hero film has a pause button.
 
 ## Unknowns
 

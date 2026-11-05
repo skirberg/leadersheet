@@ -6,9 +6,18 @@ import { HeroFilm } from "./hero-film"
 import { HERO } from "./hero-spec"
 
 /** The hero film: plays muted on loop while on screen; a still frame for reduced motion. HeroPlayer loads it after the page paints. */
-export default function HeroFilmPlayer({ rm }: { rm: boolean }) {
+export default function HeroFilmPlayer({ rm, paused }: { rm: boolean; paused: boolean }) {
   // The player mounts with this component, so the ref is set before the effects below run.
   const ref = React.useRef<PlayerRef>(null)
+  const pausedRef = React.useRef(paused)
+  pausedRef.current = paused
+
+  // The visitor's pause wins over everything but reduced motion.
+  React.useEffect(() => {
+    if (rm) return
+    if (paused) ref.current?.pause()
+    else ref.current?.play()
+  }, [paused, rm])
 
   // Reduced motion: hold a still, fully drawn frame even if the setting changes while open.
   React.useEffect(() => {
@@ -22,7 +31,7 @@ export default function HeroFilmPlayer({ rm }: { rm: boolean }) {
     const node = ref.current?.getContainerNode()
     if (rm || !node) return
     const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) ref.current?.play()
+      if (e.isIntersecting && !pausedRef.current) ref.current?.play()
       else ref.current?.pause()
     })
     io.observe(node)
@@ -42,7 +51,7 @@ export default function HeroFilmPlayer({ rm }: { rm: boolean }) {
       // The film is silent. Muted and with no shared audio tags, Remotion skips setting up Web Audio (about 130 ms of main thread on a laptop, four times that on a phone).
       initiallyMuted
       numberOfSharedAudioTags={0}
-      autoPlay={!rm}
+      autoPlay={!rm && !paused}
       initialFrame={rm ? 100 : 0}
       controls={false}
       clickToPlay={false}

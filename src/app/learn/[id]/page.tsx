@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import { Emphasis } from "@/components/brand/emphasis"
 import { SessionFilmPlayer } from "@/components/film/players"
 import { FrameworkCard } from "@/components/learn/framework-card"
@@ -81,6 +81,10 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
             <p className="text-2xl leading-[1.25] font-medium tracking-[-0.01em] sm:text-[28px]">
               {head} <Emphasis delay={500}>{tail}</Emphasis>
             </p>
+            {/* The model is the point of the sheet; on a phone it would otherwise sit below the film and the readings. */}
+            <a href="#see-it" className="label-mono inline-flex w-fit items-center gap-1.5 border-b border-foreground pb-0.5 text-foreground hover:text-muted-foreground">
+              Try the model <ArrowDown className="size-3.5" />
+            </a>
           </header>
 
           <figure className="grid gap-2">

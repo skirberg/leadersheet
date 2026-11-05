@@ -22,7 +22,7 @@ export const GAMES: {
 
 export const gameForSheet = (sid: string) => GAMES.find((g) => g.sheet === sid)
 
-/* Culture quiz: every option points at one of the eight styles. */
+/* Culture quiz: every option points at one of the eight styles, and every style appears in exactly four questions, so no style has more chances to win. */
 export const CULTURE_QUIZ: { q: string; o: [string, string][] }[] = [
   {
     q: "Your team gets a free Friday afternoon. You would rather…",
@@ -46,7 +46,7 @@ export const CULTURE_QUIZ: { q: string; o: [string, string][] }[] = [
     q: "A project fails. The best response is to…",
     o: [
       ["Treat it as data and try something different next week", "Learning"],
-      ["Raise the bar and make sure it does not happen twice", "Results"],
+      ["Remind everyone why the work matters and go again", "Purpose"],
       ["Add a review step so it cannot happen again", "Safety"],
       ["Make sure nobody feels blamed and the team stays close", "Caring"],
     ],
@@ -56,7 +56,7 @@ export const CULTURE_QUIZ: { q: string; o: [string, string][] }[] = [
     o: [
       ["You always find a way to win", "Results"],
       ["You make this place better for everyone", "Caring"],
-      ["You are the most creative person here", "Learning"],
+      ["You make the hard calls and people follow", "Authority"],
       ["You are reliable. I never worry about your work", "Order"],
     ],
   },
