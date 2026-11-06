@@ -88,7 +88,7 @@ Bricolage Grotesque for words (variable optical size and width) and Martian Mono
 
 ## Motion
 
-Press 120 ms, interface 200 ms, highlighter 650 ms, all on `cubic-bezier(0.2, 0.7, 0.2, 1)`. The Remotion hero film builds an org chart and redraws it as four structures; each sheet has a 16 second recap film. Reduced motion holds still frames and shows marks already drawn.
+Press 120 ms, interface 200 ms, highlighter 650 ms, all on `cubic-bezier(0.2, 0.7, 0.2, 1)`. The home hero builds an org chart, tours the four structures once, then hands them to the visitor: drag sideways, tap a structure or use the arrow keys, and the lime highlighter slides along the rail; each sheet has a 16 second recap film. Reduced motion holds still frames and shows marks already drawn.
 
 ## Study and Play
 

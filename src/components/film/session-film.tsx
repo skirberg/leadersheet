@@ -18,7 +18,7 @@ export type SessionFilmProps = {
 }
 
 const mono = "var(--font-martian), ui-monospace, monospace"
-const sans = "var(--font-bricolage), system-ui, sans-serif"
+const sans = "var(--font-funnel-display), system-ui, sans-serif"
 const ease = Easing.bezier(0.2, 0.7, 0.2, 1)
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const
 

@@ -58,7 +58,7 @@ export function SearchButton({ className }: { className?: string }) {
       onFocus={warmPalette}
       onTouchStart={warmPalette}
       className={cn(
-        "inline-flex h-11 items-center gap-2 rounded-md border border-rule/50 bg-card px-3 text-sm text-muted-foreground transition-colors hover:border-foreground/60 hover:text-foreground",
+        "inline-flex h-10 items-center gap-2 rounded-full bg-muted px-4 text-sm text-muted-foreground transition-colors hover:text-foreground",
         className
       )}
     >

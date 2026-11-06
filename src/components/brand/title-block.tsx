@@ -9,19 +9,11 @@ export function TitleBlock({
   className?: string
 }) {
   return (
-    <dl
-      className={cn(
-        "grid grid-cols-2 border-t border-l border-rule/60 sm:auto-cols-fr sm:grid-flow-col sm:grid-cols-none",
-        className
-      )}
-    >
+    <dl className={cn("flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] text-muted-foreground", className)}>
       {cells.map((c) => (
-        <div
-          key={c.k}
-          className={cn("min-w-0 border-r border-b border-rule/60 px-3 py-2", c.wide && "col-span-2 sm:col-span-1")}
-        >
-          <dt className="label-mono !text-[10px]">{c.k}</dt>
-          <dd className="mt-0.5 font-mono text-pretty sm:truncate text-[13px] font-medium tnum">{c.v}</dd>
+        <div key={c.k} className="flex items-center gap-2 after:content-['·'] last:after:content-none">
+          <dt className="sr-only">{c.k}</dt>
+          <dd className="tnum">{c.v}</dd>
         </div>
       ))}
     </dl>

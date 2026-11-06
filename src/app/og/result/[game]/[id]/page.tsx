@@ -41,7 +41,7 @@ export default async function ResultCard({ params }: { params: Promise<{ game: s
           </div>
           <p className="label-mono !text-[15px]">Find yours · 2 minute quiz</p>
         </div>
-        <div className="corners border border-border bg-card p-6">
+        <div className="rounded-2xl bg-card p-6">
           {game === "culture" ? <CultureMapResult top={key} className="max-w-none" /> : <ConflictChart top={key} className="max-w-none" />}
         </div>
       </div>

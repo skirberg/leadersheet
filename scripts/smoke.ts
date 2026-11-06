@@ -1,5 +1,5 @@
 // Behavior smoke test for the home page, in real time in headless Chrome. It fails on what a clean
-// `npm run check` cannot see: a hero film that never starts, never pauses or never resumes, a reduced
+// `npm run check` cannot see: a hero that never starts its tour, never pauses or never resumes, cannot be dragged, tapped or keyed, a reduced
 // motion view that moves or shows the empty card, search that does not open or go anywhere, a Play mode
 // that does not swap the hero line, a sliding pill or underline that swallows a quick tap, class mode without this week's work, and page errors.
 //
@@ -65,7 +65,7 @@ const go = async (path: string) => {
   off()
   clearTimeout(timer)
 }
-const keyCodes: Record<string, number> = { Enter: 13, Escape: 27 }
+const keyCodes: Record<string, number> = { Enter: 13, Escape: 27, ArrowRight: 39, ArrowLeft: 37 }
 const key = async (k: string, modifiers = 0) => {
   const p: Record<string, unknown> = { key: k, code: k.length === 1 ? `Key${k.toUpperCase()}` : k, modifiers, windowsVirtualKeyCode: keyCodes[k] ?? k.toUpperCase().charCodeAt(0) }
   if (k === "Enter") p.text = "\r"
@@ -171,10 +171,10 @@ const tapBack = async (group: string, tag: string): Promise<[boolean, string]> =
 }
 
 
-const HERO = `document.querySelector('[role="img"][aria-label^="Animated drawing"]')`
-// The player loads after the page is idle, so its arrival also means the page has hydrated.
+const HERO = `document.querySelector('[role="group"][aria-label^="An org chart"]')`
+// The live hero loads after the page is idle, so its arrival also means the page has hydrated.
 const heroMounted = () => waitFor(`(${HERO}?.innerHTML.length ?? 0) > 1000`, 15000)
-// The film holds still for up to 2 s between structures, so motion is judged over 3.2 s, not one gap.
+// The opening tour holds still for 1.5 s between structures, so motion is judged over 3.2 s, not one gap.
 const framesSeen = async () => {
   const seen = new Set()
   for (let i = 0; i < 9; i++) {
@@ -210,7 +210,7 @@ try {
     }`,
   })
   await page.send("Emulation.setFocusEmulationEnabled", { enabled: true })
-  console.log(`\nLeadersheet smoke test against ${BASE}\n\nHero film, phone 390 x 844`)
+  console.log(`\nLeadersheet smoke test against ${BASE}\n\nHero tour, phone 390 x 844`)
 
   await page.size(390, 844, { dpr: 2, mobile: true })
   await page.media({ scheme: "light" })
@@ -226,6 +226,40 @@ try {
   await sleep(600)
   const back = await framesSeen()
   check(back > 1, "film resumes when scrolled back", `${back} different frames in 3.2 s`)
+
+  console.log("\nHero you can move, desktop 1280 x 900")
+  await page.size(1280, 900)
+  await go("/")
+  await heroMounted()
+  const structure = () => page.eval(`document.querySelector('input[type=range]')?.getAttribute("aria-valuetext")?.split(".")[0]`)
+  const pauseBtn = `[...document.querySelectorAll("button")].find((b) => /tour of the four structures/.test(b.getAttribute("aria-label") ?? ""))`
+  check(await waitFor(`!!${pauseBtn}`, 3000), "the opening tour has a pause button")
+  await click(pauseBtn)
+  await sleep(300)
+  const held = await framesSeen()
+  check(held === 1, "pause stops the tour", `${held} different frames in 3.2 s`)
+  const box = await page.eval(`(() => { const r = ${HERO}.getBoundingClientRect(); return { x: r.x, y: r.y, w: r.width, h: r.height } })()`)
+  const mouse = (type: string, x: number, y: number) => page.send("Input.dispatchMouseEvent", { type, x, y, button: "left", buttons: type === "mouseReleased" ? 0 : 1, clickCount: 1 })
+  const y = box.y + box.h * 0.6
+  await mouse("mousePressed", box.x + box.w * 0.2, y)
+  for (let i = 1; i <= 8; i++) {
+    await mouse("mouseMoved", box.x + box.w * (0.2 + i * 0.05), y)
+    await sleep(25)
+  }
+  await mouse("mouseReleased", box.x + box.w * 0.6, y)
+  await sleep(1000)
+  const dragged = await structure()
+  check(dragged === "Matrix" || dragged === "Flat or network", "dragging sideways restructures the chart", `Functional -> ${dragged}`)
+  check(!(await page.eval(`!!${pauseBtn}`)), "the pause button leaves once the visitor takes over")
+  const fx = box.x + box.w * (222 / 1200), ry = box.y + box.h * (172 / 900)
+  await mouse("mousePressed", fx, ry)
+  await mouse("mouseReleased", fx, ry)
+  await sleep(1200)
+  check((await structure()) === "Functional", "a tap on a structure jumps to it", await structure())
+  await page.eval(`document.querySelector('input[type=range]').focus()`)
+  await key("ArrowRight")
+  await sleep(900)
+  check((await structure()) === "Divisional", "the arrow keys step through the structures", await structure())
 
   console.log("\nSearch, desktop 1280 x 900")
   await page.size(1280, 900)
@@ -252,9 +286,9 @@ try {
   await heroMounted()
   const study = await h1()
   await click(`[...document.querySelectorAll('header [role="group"] button')].find((b) => b.innerText.includes("Play"))`)
-  check(await waitFor(`document.querySelector("h1")?.innerText.includes("play it.")`, 3000), "Play mode swaps the hero line", `${study} -> ${await h1()}`)
+  check(await waitFor(`document.querySelector("h1")?.innerText.includes("by playing")`, 3000), "Play mode swaps the hero line", `${study} -> ${await h1()}`)
   await click(`[...document.querySelectorAll('header [role="group"] button')].find((b) => b.innerText.includes("Study"))`)
-  check(await waitFor(`document.querySelector("h1")?.innerText.includes("move it.")`, 3000), "Study mode swaps it back", await h1())
+  check(await waitFor(`document.querySelector("h1")?.innerText.includes("by doing")`, 3000), "Study mode swaps it back", await h1())
 
   console.log("\nClass mode")
   await go("/?class")
@@ -267,7 +301,7 @@ try {
   })()`)
   check(thisWeek && week.title && week.due > 0 && week.readings > 0, "?class shows This week with its due list and readings", `${week.title ?? "no sheet"}: ${week.due} due, ${week.readings} readings`)
   await go("/?class=off")
-  check(await waitFor(`/start here|pick up where/i.test(document.getElementById("this-week")?.innerText ?? "")`, 8000), "?class=off turns it back off")
+  check(await waitFor(`(document.getElementById("this-week")?.innerText.trim() ?? "") === ""`, 8000), "?class=off turns it back off")
 
   console.log("\nSliding indicators: a quick tap goes through to the option they are leaving")
   // Every page in the sitemap, so an indicator added anywhere is found. Header ones are tested once.

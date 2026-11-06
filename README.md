@@ -1,6 +1,6 @@
 # Leadersheet
 
-Leadership, built so you can move it. Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games. Every sheet and every quiz result has its own share card.
+Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games. Every sheet and every quiz result has its own share card.
 
 Next.js 16.4 with the React Compiler, React 19, TypeScript 7, Tailwind 4, shadcn/ui on Radix, Remotion Player, Motion, NumberFlow. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
 
@@ -19,7 +19,7 @@ npm run dev
 |---|---|
 | `npm run build` | Writes the finished static site to `out/` |
 | `npm run check` | Build, render the share cards, then QA every page at phone, tablet and desktop widths in light and dark (crashes, overflow, axe) |
-| `npm run smoke` | Behavior checks in real time on the built site: hero film plays, pauses and holds still for reduced motion, search, Play and class modes, sliding pills and underlines let a quick tap through, no page errors, analytics never loads. `npm run smoke -- https://leadersheet.io` checks the live site |
+| `npm run smoke` | Behavior checks in real time on the built site: the hero tours once, pauses, drags, taps and steps by key, and holds still for reduced motion, search, Play and class modes, sliding pills and underlines let a quick tap through, no page errors, analytics never loads. `npm run smoke -- https://leadersheet.io` checks the live site |
 | `npm run shots` | Screenshots and preview contact sheets in `docs/` |
 | `npm run brand <preset>` | Reskin the whole site with another preset in `src/brand/presets/` |
 | `npm run contrast <preset>` | WCAG contrast for every color pair in a preset |
@@ -41,7 +41,7 @@ Publish this folder to a personal GitHub repository named `leadersheet` (GitHub 
 - `src/components/play/`: the arcade, the share button and the Study and Play switch
 - `src/data/results.ts`, `src/app/play/results/`: the 13 shareable result pages; `npm run og` renders their cards and one per sheet (from `src/app/og/`) into `public/og/`
 - `docs/VENTURE.md`: objective, audience, decisions and the next action
-- `src/components/film/`: the Remotion hero and recap films
+- `src/components/film/`: the home hero you can drag (`hero-live.tsx` over `hero-scene.tsx`) and the Remotion recap films
 - `scripts/`: QA, smoke test, screenshots, icons, share cards, contrast, domains. TypeScript that Node 22.18+ runs directly, no build step
 - `DESIGN.md`: the reasoning behind the Leadersheet identity
 

@@ -16,7 +16,7 @@ export function ModeToggle({ className }: { className?: string }) {
       aria-label="Play mode"
       onClick={() => setMode(play ? "study" : "play")}
       className={cn(
-        "grid size-11 place-items-center rounded-md border border-rule/50 bg-card text-muted-foreground transition-colors",
+        "grid size-10 place-items-center rounded-full bg-muted text-muted-foreground transition-colors",
         play && "border-signal bg-signal-soft text-signal-text",
         className
       )}
@@ -31,7 +31,7 @@ export function ModeSwitch({ className }: { className?: string }) {
   const { mode, setMode, ready } = useProgress()
   const play = ready && mode === "play"
   return (
-    <div role="group" aria-label="Mode" className={cn("flex h-11 items-center rounded-md border border-rule/50 bg-muted p-1", className)}>
+    <div role="group" aria-label="Mode" className={cn("flex h-10 items-center rounded-full bg-muted p-1", className)}>
       {(
         [
           ["study", "Study", BookOpen],
@@ -46,13 +46,12 @@ export function ModeSwitch({ className }: { className?: string }) {
             aria-pressed={on}
             onClick={() => setMode(id)}
             className={cn(
-              "relative flex h-full items-center gap-1.5 rounded-[4px] px-2.5 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground",
-              on && "font-semibold text-foreground",
-              on && id === "play" && "text-signal-text"
+              "relative flex h-full items-center gap-1.5 rounded-full px-3 text-sm text-muted-foreground transition-colors duration-(--dur-ui) hover:text-foreground",
+              on && "font-semibold text-background hover:text-background"
             )}
           >
             {/* The pill slides over the other button for a moment; it must not take that button's click. */}
-            {on && <m.span layoutId="mode-pill" className="pointer-events-none absolute inset-0 rounded-[4px] bg-card shadow-[0_0_0_1px_var(--rule)]" />}
+            {on && <m.span layoutId="mode-pill" className="pointer-events-none absolute inset-0 rounded-full bg-foreground" />}
             <Icon className="relative size-4" />
             <span className="relative hidden sm:inline">{label}</span>
             <span className="sr-only sm:hidden">{label} mode</span>

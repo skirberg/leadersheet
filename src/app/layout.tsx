@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Bricolage_Grotesque, Martian_Mono } from "next/font/google"
+import { Funnel_Display, Funnel_Sans, Martian_Mono, Source_Serif_4 } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import "./globals.css"
 import { ProgressProvider } from "@/lib/store"
@@ -10,10 +10,24 @@ import { BRAND } from "@/brand"
 import { MotionProvider } from "@/components/motion/motion-provider"
 import { ThemeColor } from "@/components/site/theme-color"
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+// Funnel Display and Funnel Sans (NORD ID and Kristian Möller, SIL Open Font License):
+// the wordmark is drawn from Funnel Display, so the headlines are too.
+const funnelDisplay = Funnel_Display({
+  variable: "--font-funnel-display",
   subsets: ["latin"],
-  axes: ["opsz", "wdth"],
+  display: "swap",
+})
+// Source Serif 4 (Frank Grießhammer for Adobe, SIL Open Font License): the headlines, with real italics.
+const serif = Source_Serif_4({
+  variable: "--font-source-serif",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+})
+const funnelSans = Funnel_Sans({
+  variable: "--font-funnel-sans",
+  subsets: ["latin"],
   display: "swap",
 })
 const martian = Martian_Mono({
@@ -69,9 +83,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // The build date picks a starting session; the browser's date replaces it after load.
   const { id, n, date } = currentSession()
   return (
-    <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${martian.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${funnelDisplay.variable} ${serif.variable} ${funnelSans.variable} ${martian.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <ThemeColor />
           <MotionProvider>
             <ProgressProvider schedule={SCHEDULE} buildCurrent={{ id, n, date }}>

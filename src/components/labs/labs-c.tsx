@@ -142,8 +142,11 @@ export function MotivationLab() {
   const j = lab<number[]>("jcm", [4, 4, 4, 4, 4])
   const e = lab<number[]>("ex", [0.8, 0.6, 0.7])
   const mps = ((j[0] + j[1] + j[2]) / 3) * j[3] * j[4]
-  const w = j.indexOf(Math.min(...j))
   const L = ["skill variety", "task identity", "task significance", "autonomy", "feedback"]
+  // The biggest lever is the one point that raises the score most, not the lowest rating.
+  const score = (v: number[]) => ((v[0] + v[1] + v[2]) / 3) * v[3] * v[4]
+  const gains = j.map((x, i) => (x >= 7 ? -1 : score(j.map((y, k) => (k === i ? y + 1 : y))) - mps))
+  const w = gains.indexOf(Math.max(...gains))
   const prod = e[0] * e[1] * e[2]
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -161,7 +164,9 @@ export function MotivationLab() {
           </div>
         </div>
         <Readout>
-          Weakest lever: {L[w]}. {w >= 3 ? "It multiplies the whole score, so fixing it pays most." : "Raising it helps, but autonomy and feedback multiply the total."}
+          {gains[w] <= 0
+            ? "Every lever is at the top. A perfect score on paper; ask whether the job feels that way."
+            : `Biggest lever: ${L[w]}. One more point adds ${Math.round(gains[w])} to the score. ${w >= 3 ? "It multiplies everything else." : "The other two in the average would add the same."}`}
         </Readout>
         <p className="text-xs text-muted-foreground">MPS = ((variety + identity + significance) / 3) x autonomy x feedback. Range 1 to 343.</p>
       </LabFrame>

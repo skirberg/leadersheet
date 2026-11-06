@@ -26,9 +26,9 @@ const shuffle = <T,>(a: T[]) => {
 
 export function GameShell({ kind, title, children }: { kind: string; title: string; children: React.ReactNode }) {
   return (
-    <section className="corners relative min-w-0 border border-border bg-card">
+    <section className="rounded-2xl relative min-w-0 bg-card">
       <header className="flex items-baseline justify-between gap-4 border-b border-border px-5 py-4 sm:px-7">
-        <h2 className="text-xl leading-tight font-semibold tracking-[-0.01em] sm:text-2xl">{title}</h2>
+        <h2 className="text-xl leading-tight sm:text-2xl">{title}</h2>
         <span className="label-mono shrink-0">{kind}</span>
       </header>
       <div className="grid gap-6 p-5 sm:p-7">{children}</div>
@@ -173,7 +173,7 @@ export function CultureGame() {
   return (
     <GameShell kind="Quiz · 8 questions" title="Which culture fits you?">
       <ProgressLine value={step} max={CULTURE_QUIZ.length} label="QUESTION" />
-      <fieldset key={step} className="grid gap-3 animate-in fade-in slide-in-from-right-2 duration-300">
+      <fieldset key={step} className="grid gap-3 animate-in fade-in slide-in-from-right-1 duration-200 ease-(--ease-draft)">
         <legend className="mb-4 text-2xl leading-snug font-semibold tracking-[-0.01em] text-balance">{Q.q}</legend>
         {order.map((oi, i) => (
           <Choice key={oi} k={i + 1} onClick={() => pick(i)}>
@@ -301,7 +301,7 @@ export function ConflictGame() {
   return (
     <GameShell kind="Quiz · 6 situations" title="How do you fight?">
       <ProgressLine value={step} max={CONFLICT_QUIZ.length} label="SITUATION" />
-      <fieldset key={step} className="grid gap-3 animate-in fade-in slide-in-from-right-2 duration-300">
+      <fieldset key={step} className="grid gap-3 animate-in fade-in slide-in-from-right-1 duration-200 ease-(--ease-draft)">
         <legend className="mb-4 text-2xl leading-snug font-semibold tracking-[-0.01em] text-balance">{Q.q}</legend>
         {order.map((oi, i) => (
           <Choice key={oi} k={i + 1} onClick={() => pick(i)}>

@@ -44,11 +44,11 @@ export function SessionQuiz({ s }: { s: Session }) {
           }}
         />
       ))}
-      <div className="relative flex flex-wrap items-center gap-4 border-t border-dashed border-border pt-4" role="status">
+      <div className="relative flex flex-wrap items-center gap-4 pt-2" role="status">
         <Burst fire={done && score === 3 ? round + 1 : 0} className="!place-items-start" />
         <span className="font-mono text-sm font-medium tnum">
           {done ? `${score} of 3.` : `${Object.keys(answers).length} of 3 answered.`}
-          {done && score === 3 && " Sheet signed off."}
+          {done && score === 3 && " Right today. Try it cold in a few days, in Practice."}
         </span>
         {best != null && <span className="font-mono text-xs text-muted-foreground tnum">BEST {best}/3</span>}
         {done && (

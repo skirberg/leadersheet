@@ -26,4 +26,4 @@ export const todayStr = (t = new Date()) =>
 export const currentOf = <T extends { date: string }>(list: T[], today = todayStr()) =>
   list.find((s) => s.date >= today) ?? list[list.length - 1]
 
-export const sheetNo = (n: number) => `S${String(n).padStart(2, "0")}`
+export const sheetNo = (n: number) => `Sheet ${n}`

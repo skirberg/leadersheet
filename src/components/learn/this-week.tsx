@@ -6,14 +6,14 @@ import { Button } from "@/components/ui/button"
 import { TitleBlock } from "@/components/brand/title-block"
 import { useProgress } from "@/lib/store"
 import type { SheetSummary } from "@/data/course"
-import { fmtMono, sheetNo } from "@/data/schedule"
+import { fmtMono } from "@/data/schedule"
 
 type Sheets = { sheets: SheetSummary[] }
 
 /** Home focus card: this week's sheet in class mode, otherwise where to start or pick up. The page passes the sheet summaries in. */
 export function HomeFocus({ sheets }: Sheets) {
   const { classMode } = useProgress()
-  return classMode ? <ThisWeek sheets={sheets} /> : <StartHere sheets={sheets} />
+  return classMode ? <ThisWeek sheets={sheets} /> : null
 }
 
 export function nextSheet(sheets: SheetSummary[], best: Record<string, number>, seen: Record<string, 1>) {
@@ -22,67 +22,32 @@ export function nextSheet(sheets: SheetSummary[], best: Record<string, number>, 
   return started ?? open[0] ?? sheets[0]
 }
 
-function StartHere({ sheets }: Sheets) {
-  const { state, ready } = useProgress()
-  const s = ready ? nextSheet(sheets, state.best, state.seen) : sheets[0]
-  const resuming = ready && Object.keys(state.seen).length > 0
-  const best = state.best[s.id]
-  return (
-    <section aria-labelledby="sh-h" className="corners border border-foreground bg-card">
-      <TitleBlock
-        className="border-t-0 border-l-0"
-        cells={[
-          { k: "Sheet", v: `${sheetNo(s.n)} of 12` },
-          { k: "Part", v: s.part, wide: true },
-          { k: "Check", v: best == null ? "Not taken" : `${best} of 3` },
-        ]}
-      />
-      <div className="grid gap-8 p-5 sm:p-7">
-        <div className="grid content-start gap-4">
-          <p className="label-mono">{resuming ? "Pick up where you left off" : "Start here"}</p>
-          <h2 id="sh-h" className="text-3xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-4xl">
-            {s.title}
-          </h2>
-          <p className="max-w-[56ch] text-lg leading-snug text-muted-foreground">{s.idea}</p>
-          <div className="flex flex-wrap gap-2 pt-2">
-            <Button asChild size="lg">
-              <Link href={`/learn/${s.id}/`}>
-                Open sheet {sheetNo(s.n)} <ArrowRight className="size-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 export function ThisWeek({ sheets }: Sheets) {
   const { current, state } = useProgress()
   const s = sheets.find((x) => x.id === current.id) ?? sheets[0]
   const best = state.best[s.id]
   return (
-    <section aria-labelledby="tw-h" className="corners border border-foreground bg-card">
+    <section aria-labelledby="tw-h" className="rounded-2xl bg-card">
       <TitleBlock
-        className="border-t-0 border-l-0"
+        className="px-5 pt-5 sm:px-7 sm:pt-7"
         cells={[
-          { k: "Sheet", v: sheetNo(s.n) },
+          { k: "Sheet", v: `Sheet ${s.n}` },
           { k: "Class", v: fmtMono(s.date) },
           { k: "Part", v: s.part, wide: true },
-          { k: "Check", v: best == null ? "Not taken" : `${best} of 3` },
+          { k: "Check", v: best == null ? "Check not taken" : `Check ${best} of 3` },
         ]}
       />
       <div className="grid gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <div className="grid content-start gap-4">
           <p className="label-mono">This week</p>
-          <h2 id="tw-h" className="text-3xl leading-[1.05] font-semibold tracking-[-0.02em] sm:text-4xl">
+          <h2 id="tw-h" className="text-3xl leading-[1.05] sm:text-4xl">
             {s.title}
           </h2>
           <p className="max-w-[56ch] text-lg leading-snug text-muted-foreground">{s.idea}</p>
           <div className="flex flex-wrap gap-2 pt-2">
             <Button asChild size="lg">
               <Link href={`/learn/${s.id}/`}>
-                Open sheet {sheetNo(s.n)} <ArrowRight className="size-4" />
+                Open sheet {s.n} <ArrowRight className="size-4" />
               </Link>
             </Button>
           </div>
@@ -135,7 +100,7 @@ export function OpenThisWeek({ sheets }: Sheets) {
   return (
     <Button asChild size="lg">
       <Link href={`/learn/${s.id}/`}>
-        {resuming ? `Continue with ${sheetNo(s.n)}` : "Start with sheet 1"} <ArrowRight className="size-4" />
+        {resuming ? `Continue with sheet ${s.n}` : "Start with sheet 1"} <ArrowRight className="size-4" />
       </Link>
     </Button>
   )

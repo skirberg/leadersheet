@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { BRAND, LogoMark } from "@/brand"
 import { Emphasis } from "@/components/brand/emphasis"
 import { TitleBlock } from "@/components/brand/title-block"
-import { SESSIONS, sessionById, sheetNo } from "@/data/course"
+import { SESSIONS, sessionById } from "@/data/course"
 
 // Source for public/og/sheet-<id>.png (scripts/make-og.mjs). Not linked anywhere and not indexed.
 export const metadata: Metadata = { title: "Sheet card", robots: { index: false, follow: false } }
@@ -31,13 +31,13 @@ export default async function SheetCard({ params }: { params: Promise<{ id: stri
           <TitleBlock
             className="w-[460px] bg-card [&_dd]:!text-[17px] [&_dt]:!text-[12px]"
             cells={[
-              { k: "Sheet", v: `${sheetNo(s.n)} of 12` },
+              { k: "Sheet", v: `${s.n} of 12` },
               { k: "Part", v: s.part },
             ]}
           />
         </div>
         <div className="grid gap-6">
-          <h1 className="max-w-[18ch] text-[84px] leading-[0.96] font-semibold tracking-[-0.035em] [font-stretch:92%]">{s.title}</h1>
+          <h1 className="max-w-[18ch] text-[84px] leading-[0.96]">{s.title}</h1>
           <p className="max-w-[40ch] text-[32px] leading-[1.22] font-medium tracking-[-0.01em]">
             {head} <Emphasis delay={0}>{tail}</Emphasis>
           </p>

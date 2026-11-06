@@ -12,10 +12,7 @@ export function HeroLine() {
   const play = ready && mode === "play"
   return (
     <>
-      Leadership, built so you can{" "}
-      <Emphasis key={play ? "p" : "s"} delay={play ? 100 : 700}>
-        {play ? "play it." : "move it."}
-      </Emphasis>
+      Learn <Emphasis>leadership</Emphasis> {play ? "by playing" : "by doing"}
     </>
   )
 }
@@ -43,11 +40,10 @@ export function HomeArcade({ slot }: { slot: "top" | "bottom" }) {
   const play = ready && mode === "play"
   if ((slot === "top") !== play) return null
   return (
-    <section aria-labelledby={`arcade-${slot}`} className="reveal grid gap-6">
-      <div className="flex flex-wrap items-end justify-between gap-3 border-b border-foreground pb-3">
+    <section aria-labelledby={`arcade-${slot}`} className="grid gap-6">
+      <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="label-mono">Play</p>
-          <h2 id={`arcade-${slot}`} className="mt-1 text-3xl font-semibold tracking-[-0.02em]">
+          <h2 id={`arcade-${slot}`} className="text-3xl">
             The arcade
           </h2>
         </div>

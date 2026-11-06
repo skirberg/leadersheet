@@ -3,16 +3,14 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react"
 import { Emphasis } from "@/components/brand/emphasis"
-import { SessionFilmPlayer } from "@/components/film/players"
 import { FrameworkCard } from "@/components/learn/framework-card"
 import { SheetRail } from "@/components/learn/sheet-rail"
 import { DueChecklist, SeenMarker, SessionQuiz } from "@/components/learn/session-parts"
 import { ClassOnly } from "@/components/learn/class-only"
-import { SheetTitleBlock } from "@/components/learn/sheet-title-block"
 import { SessionLab } from "@/components/labs"
 import { PlayCallout } from "@/components/play/arcade"
 import { SheetPlaySlot } from "@/components/play/home-bits"
-import { SESSIONS, fmt, fmtMono, fwById, sessionById, sheetNo } from "@/data/course"
+import { SESSIONS, fmt, fwById, sessionById, sheetNo } from "@/data/course"
 import { BRAND } from "@/brand"
 
 export const dynamicParams = false
@@ -24,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params
   const s = sessionById(id)
   if (!s) return {}
-  const title = `${sheetNo(s.n)} ${s.title}`
+  const title = s.title
   const image = `/og/sheet-${s.id}.png`
   return {
     title,
@@ -37,15 +35,29 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 function Section({ no, title, id, children }: { no: string; title: string; id: string; children: React.ReactNode }) {
   return (
     <section aria-labelledby={id} className="grid min-w-0 scroll-mt-24 gap-5">
-      <div className="flex items-baseline gap-3 border-b border-foreground pb-2.5">
-        <span className="font-mono text-xs text-muted-foreground tnum">{no}</span>
-        <h2 id={id} className="text-2xl font-semibold tracking-[-0.015em]">
+      <div data-no={no}>
+        <h2 id={id} className="text-2xl">
           {title}
         </h2>
       </div>
       {children}
     </section>
   )
+}
+
+const EMPHASIS: Record<string, string> = {
+  s1: "what they build",
+  s2: "the safety they create",
+  s3: "no best structure",
+  s4: "how people behave",
+  s5: "predictable steps",
+  s6: "never fully resolve",
+  s7: "meaning and identity",
+  s8: "your own biases",
+  s9: "the urge to judge",
+  s10: "mastery and meaning",
+  s11: "conclusions, not data",
+  s12: "Energy is renewable",
 }
 
 export default async function SessionPage({ params }: { params: Promise<{ id: string }> }) {
@@ -56,9 +68,12 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
   const pv = SESSIONS[i - 1],
     nx = SESSIONS[i + 1]
   const fws = s.fw.map(fwById).filter((f): f is NonNullable<typeof f> => !!f)
-  const words = s.idea.split(" ")
-  const head = words.slice(0, -3).join(" "),
-    tail = words.slice(-3).join(" ")
+  // The phrase that carries each idea, chosen by hand, not the last three words.
+  const key = EMPHASIS[s.id]
+  const at = key ? s.idea.indexOf(key) : -1
+  const head = at >= 0 ? s.idea.slice(0, at) : s.idea,
+    tail = at >= 0 ? key : "",
+    rest = at >= 0 ? s.idea.slice(at + key.length) : ""
 
   return (
     <div className="mx-auto max-w-[1240px] px-4 pt-8 sm:px-6 lg:pt-12">
@@ -66,7 +81,6 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
       <div className="grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-14">
         <aside aria-label="All sheets" className="hidden lg:block">
           <div className="sticky top-24 grid gap-3">
-            <p className="label-mono">The set</p>
             <SheetRail currentId={s.id} />
           </div>
         </aside>
@@ -76,36 +90,24 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
             <Link href="/learn/" className="label-mono inline-flex w-fit items-center gap-1.5 hover:text-foreground lg:hidden">
               <ArrowLeft className="size-3.5" /> All sheets
             </Link>
-            <SheetTitleBlock sheet={`${sheetNo(s.n)} of 12`} date={fmtMono(s.date)} part={s.part} />
-            <h1 className="text-[42px] leading-[1] font-semibold tracking-[-0.03em] [font-stretch:94%] sm:text-[60px]">{s.title}</h1>
+            <h1 className="text-[42px] leading-[1] sm:text-[60px]">{s.title}</h1>
             <p className="text-2xl leading-[1.25] font-medium tracking-[-0.01em] sm:text-[28px]">
-              {head} <Emphasis delay={500}>{tail}</Emphasis>
+              {head}{tail && <Emphasis delay={500}>{tail}</Emphasis>}{rest}
             </p>
             {/* The model is the point of the sheet; on a phone it would otherwise sit below the film and the readings. */}
+            <p className="text-[15px] text-muted-foreground">
+              Sheet {s.n} of 12 · {s.part}
+            </p>
             <a href="#see-it" className="label-mono inline-flex w-fit items-center gap-1.5 border-b border-foreground pb-0.5 text-foreground hover:text-muted-foreground">
               Try the model <ArrowDown className="size-3.5" />
             </a>
           </header>
 
-          <figure className="grid gap-2">
-            <SessionFilmPlayer
-              data={{
-                sheet: sheetNo(s.n),
-                date: fmtMono(s.date),
-                part: s.part,
-                title: s.title,
-                idea: s.idea,
-                readings: s.readings.map((r) => ({ by: `${r.a}, ${r.y.replace(/ \(.*\)/, "")}`, idea: r.idea })),
-                frameworks: fws.map((f) => f.name),
-                prompt: s.prompts[0],
-              }}
-            />
-          </figure>
 
           <Section no="01" title="Readings" id="readings">
             <div className="grid gap-4">
               {s.readings.map((r) => (
-                <div key={r.t} className="corners grid gap-3 border border-border bg-card p-5">
+                <div key={r.t} className="grid gap-3 rounded-xl bg-card p-5 sm:p-6">
                   <p className="label-mono">
                     {r.a} · {r.src}, {r.y}
                   </p>
@@ -204,7 +206,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
 
           <nav aria-label="More sheets" className="grid grid-cols-2 gap-3">
             {pv ? (
-              <Link href={`/learn/${pv.id}/`} className="corners grid min-h-20 content-center gap-1 border border-border bg-card px-4 py-3 press hover:border-foreground/70">
+              <Link href={`/learn/${pv.id}/`} className="rounded-2xl grid min-h-20 content-center gap-1 bg-card px-4 py-3 press hover:border-foreground/70">
                 <span className="label-mono inline-flex items-center gap-1">
                   <ArrowLeft className="size-3" /> {sheetNo(pv.n)}
                 </span>
@@ -214,7 +216,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
               <span />
             )}
             {nx ? (
-              <Link href={`/learn/${nx.id}/`} className="corners grid min-h-20 content-center justify-items-end gap-1 border border-border bg-card px-4 py-3 text-right press hover:border-foreground/70">
+              <Link href={`/learn/${nx.id}/`} className="rounded-2xl grid min-h-20 content-center justify-items-end gap-1 bg-card px-4 py-3 text-right press hover:border-foreground/70">
                 <span className="label-mono inline-flex items-center gap-1">
                   {sheetNo(nx.n)} <ArrowRight className="size-3" />
                 </span>

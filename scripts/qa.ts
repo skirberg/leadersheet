@@ -32,6 +32,10 @@ for (const scheme of ["light", "dark"]) {
         const crash = document.body.innerText.includes("couldn’t load") || document.body.innerText.includes("Application error")
         const overflow = de.scrollWidth > de.clientWidth + 1
         ${width === 1280 ? axe + `
+        // Check colours at rest: a scroll reveal caught mid-fade at the window edge is not what anyone reads.
+        const still = document.createElement("style")
+        still.textContent = ".reveal{animation:none!important;opacity:1!important;transform:none!important}"
+        document.head.appendChild(still)
         const a = await axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa"] } })
         const v = a.violations.map((x) => x.id + " (" + x.nodes.length + ")")` : "const v = []"}
         return { crash, overflow, v }
@@ -42,7 +46,8 @@ for (const scheme of ["light", "dark"]) {
       else {
         if (res.crash) problems.push(`${tag}: crashed`)
         if (res.overflow) problems.push(`${tag}: horizontal overflow`)
-        for (const v of res.v) problems.push(`${tag}: axe ${v}`)
+        if (!Array.isArray(res.v)) problems.push(`${tag}: axe did not run (${JSON.stringify(res).slice(0, 120)})`)
+        else for (const v of res.v) problems.push(`${tag}: axe ${v}`)
       }
     }
   }

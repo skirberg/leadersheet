@@ -466,7 +466,7 @@
    ],
    "checks": [
     {
-     "q": "Which conflict type usually helps a team?",
+     "q": "Which conflict type can help a team?",
      "o": [
       "Task conflict, kept to ideas",
       "Relationship conflict",
@@ -474,7 +474,7 @@
       "None of them"
      ],
      "a": 0,
-     "why": "Debate over ideas improves decisions. Personal friction usually hurts them."
+     "why": "Debate over ideas can improve decisions when trust is high and it stays about the work. The research is mixed, so it is not good on its own. Personal friction usually hurts."
     },
     {
      "q": "Adding one person to a team of 6 adds how many new communication links?",

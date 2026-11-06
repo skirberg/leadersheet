@@ -29,10 +29,10 @@ function Stats() {
     [String(FRAMEWORKS.length), "Frameworks"],
   ]
   return (
-    <dl className="grid grid-cols-3 border-t border-l border-border">
+    <dl className="grid grid-cols-3 gap-3">
       {cells.map(([v, k]) => (
-        <div key={k} className="flex flex-col justify-between gap-1 border-r border-b border-border p-3 sm:p-4">
-          <dt className="label-mono !text-[10px] sm:!text-[11px]">{k}</dt>
+        <div key={k} className="flex flex-col justify-between gap-1 rounded-2xl bg-card p-4 sm:p-5">
+          <dt className="label-mono">{k}</dt>
           <dd className="font-mono text-2xl font-medium tnum sm:text-3xl">{v}</dd>
         </div>
       ))}
@@ -65,7 +65,7 @@ function Drill() {
   if (!qs) return <div className="h-80" />
   if (i >= qs.length)
     return (
-      <div className="corners grid gap-4 border border-border bg-card p-6">
+      <div className="rounded-2xl grid gap-4 bg-card p-6">
         <p className="font-mono text-6xl font-medium tnum">
           {score}
           <span className="text-muted-foreground">/{qs.length}</span>
@@ -82,10 +82,10 @@ function Drill() {
     q = findCheck(qid)!,
     s = sessionById(qid.split("-")[0])!
   return (
-    <div className="corners grid gap-5 border border-border bg-card p-5 sm:p-6">
+    <div className="rounded-2xl grid gap-5 bg-card p-5 sm:p-6">
       <div className="flex items-baseline justify-between gap-3">
         <span className="shrink-0 font-mono text-xs whitespace-nowrap text-muted-foreground tnum">
-          {String(i + 1).padStart(2, "0")} / {qs.length}
+          {i + 1} of {qs.length}
         </span>
         <span className="label-mono text-right">
           {sheetNo(s.n)} · {s.title}
@@ -144,7 +144,7 @@ function Match() {
   if (!order) return <div className="h-80" />
   if (k >= order.length)
     return (
-      <div className="corners grid gap-4 border border-border bg-card p-6">
+      <div className="rounded-2xl grid gap-4 bg-card p-6">
         <p className="font-mono text-6xl font-medium tnum">
           {score}
           <span className="text-muted-foreground">/{order.length}</span>
@@ -159,9 +159,9 @@ function Match() {
   const sc = SCENARIOS[order[k]],
     right = fwById(sc[1])!
   return (
-    <div className="corners grid gap-5 border border-border bg-card p-5 sm:p-6">
+    <div className="rounded-2xl grid gap-5 bg-card p-5 sm:p-6">
       <span className="font-mono text-xs text-muted-foreground tnum">
-        SITUATION {String(k + 1).padStart(2, "0")} / {order.length}
+        Situation {k + 1} of {order.length}
       </span>
       <p className="text-2xl leading-snug font-semibold tracking-[-0.01em]">{sc[0]}</p>
       <p className="text-sm text-muted-foreground">Which framework helps most?</p>
@@ -201,7 +201,7 @@ function Match() {
       {pick && (
         <>
           <p role="status" className="text-sm text-muted-foreground">
-            <b className="font-semibold text-foreground">{right.name}:</b> {right.one} Sheet {sheetNo(right.s)}.
+            <b className="font-semibold text-foreground">{right.name}:</b> {right.one} {sheetNo(right.s)}.
           </p>
           <div>
             <Button autoFocus onClick={() => setK((x) => x + 1)}>
@@ -245,7 +245,7 @@ function Flashcards() {
         >
           <div
             aria-hidden={back}
-            className="corners drafting-grid col-start-1 row-start-1 grid min-h-[320px] place-items-center border border-border bg-card p-6 text-center [backface-visibility:hidden]"
+            className="rounded-2xl drafting-grid col-start-1 row-start-1 grid min-h-[320px] place-items-center bg-card p-6 text-center [backface-visibility:hidden]"
           >
             <div className="grid gap-3">
               <span className="label-mono">
@@ -265,7 +265,7 @@ function Flashcards() {
           <ArrowLeft className="size-4" /> Previous
         </Button>
         <span className="font-mono text-xs text-muted-foreground tnum">
-          {String(i + 1).padStart(2, "0")} / {FRAMEWORKS.length}
+          {i + 1} of {FRAMEWORKS.length}
         </span>
         <Button variant="outline" onClick={() => go(1)}>
           Next <ArrowRight className="size-4" />

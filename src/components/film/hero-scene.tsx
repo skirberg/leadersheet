@@ -1,9 +1,10 @@
-import { AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion"
+import type * as React from "react"
+import { Easing, interpolate, spring } from "remotion"
 import { STRUCTURE_BARS, STRUCTURES, type StructureKind } from "@/data/labs"
 
 /*
-  Hero film: the drafting table builds an organization, then redraws it
-  as each of the four structures from session 3. 1200 x 900, 30 fps, 14 s loop (size and timing in hero-spec.ts).
+  The home hero's drawing: the drafting table builds an organization and can draw it as any blend of the
+  four structures from session 3. 1200 x 900 units; hero-live.tsx drives it from the visitor's hand.
 */
 
 const KINDS: StructureKind[] = ["functional", "divisional", "matrix", "flat"]
@@ -17,36 +18,54 @@ const S = 1.7,
   OX = 640 - 300 * S,
   OY = 230
 const map = (p: number[]) => [p[0] * S + OX, p[1] * S + OY]
-// state k holds from START[k]; transitions take 30 frames
-const START = [0, 120, 210, 300]
 const ease = Easing.bezier(0.2, 0.7, 0.2, 1)
-
-function weights(f: number) {
-  const w = [0, 0, 0, 0]
-  if (f < START[1]) w[0] = 1
-  for (let k = 1; k < 4; k++) {
-    const t = interpolate(f, [START[k], START[k] + 30], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease })
-    if (f >= START[k]) {
-      w.fill(0)
-      w[k - 1] = 1 - t
-      w[k] = t
-    }
-  }
-  return w
-}
 const mix = (w: number[], get: (k: StructureKind) => number[]) =>
   KINDS.reduce((acc, k, i) => [acc[0] + get(k)[0] * w[i], acc[1] + get(k)[1] * w[i]], [0, 0])
 
 const mono = "var(--font-martian), ui-monospace, monospace"
-const sans = "var(--font-bricolage), system-ui, sans-serif"
+const sans = "var(--font-funnel-display), system-ui, sans-serif"
 
-export function HeroFilm() {
-  const f = useCurrentFrame()
-  const { fps } = useVideoConfig()
-  const w = weights(f)
+/** Blend weights for a position t from 0 (functional) to 3 (flat), eased between neighbours. */
+export function weightsAt(t: number) {
+  const w = [0, 0, 0, 0]
+  const i = Math.min(2, Math.floor(t))
+  const u = ease(Math.min(1, Math.max(0, t - i)))
+  w[i] = 1 - u
+  w[i + 1] = u
+  return w
+}
+
+export const HERO_KINDS = KINDS
+
+/**
+  The drawing itself, for any frame and any blend of the four structures.
+  f is the build-in frame (30 per second; fully drawn from 100), w the weight of each structure.
+*/
+export function HeroScene({
+  f,
+  w,
+  cap,
+  out = 1,
+  dimLabels = false,
+  header = "SHEET S03 · LEADING THROUGH DESIGN",
+  counter = true,
+  plain = false,
+  children,
+}: {
+  f: number
+  w: number[]
+  cap: number
+  out?: number
+  dimLabels?: boolean
+  header?: string
+  counter?: boolean
+  /** The home hero: no graph paper, crop marks or monospace captions. */
+  plain?: boolean
+  children?: React.ReactNode
+}) {
+  const fps = 30
   const active = w.indexOf(Math.max(...w))
   const build = (delay: number) => spring({ frame: f - delay, fps, config: { damping: 14, stiffness: 140, mass: 0.6 } })
-  const out = interpolate(f, [384, 412], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.in(Easing.cubic) })
   const gridO = interpolate(f, [0, 18], [0, 1], { extrapolateRight: "clamp" })
 
   const ceo = map(mix(w, (k) => L[k].ceo))
@@ -97,17 +116,12 @@ export function HeroFilm() {
     )
 
   const K = STRUCTURES[KINDS[active]]
-  const capIn = (k: number) =>
-    k === 0 ? interpolate(f, [60, 80], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : interpolate(f, [START[k] + 8, START[k] + 26], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
-  const capOut = active < 3 ? interpolate(f, [START[active + 1] - 4, START[active + 1] + 8], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 1
-  const cap = Math.min(capIn(active), capOut) * out
   const scores = [0, 1, 2, 3].map((i) => KINDS.reduce((acc, k, j) => acc + STRUCTURES[k].score[i] * w[j], 0))
   const loop = build(30) * out
   const leadR = 27
 
   return (
-    <AbsoluteFill style={{ background: "var(--card)" }}>
-      <svg viewBox="0 0 1200 900" width="100%" height="100%">
+      <svg viewBox="0 0 1200 900" width="100%" height="100%" style={{ display: "block", background: "var(--card)" }}>
         <defs>
           <pattern id="hf-minor" width="20" height="20" patternUnits="userSpaceOnUse">
             <path d="M20 0H0V20" fill="none" stroke="var(--grid)" strokeWidth="1" />
@@ -117,8 +131,10 @@ export function HeroFilm() {
             <path d="M100 0H0V100" fill="none" stroke="var(--grid)" strokeWidth="1.5" />
           </pattern>
         </defs>
-        <rect width="1200" height="900" fill="url(#hf-major)" opacity={gridO} />
+        {!plain && <rect width="1200" height="900" fill="url(#hf-major)" opacity={gridO} />}
 
+        {!plain && (
+          <>
         {/* registration corners */}
         {[
           [60, 60, 1, 1],
@@ -140,12 +156,14 @@ export function HeroFilm() {
           )
         })}
         <text x={96} y={112} style={{ font: `500 19px ${mono}`, letterSpacing: "0.08em", fill: "var(--muted-foreground)" }} opacity={gridO}>
-          SHEET S03 · LEADING THROUGH DESIGN
+          {header}
         </text>
-        <text x={1104} y={112} textAnchor="end" style={{ font: `500 19px ${mono}`, letterSpacing: "0.08em", fill: "var(--muted-foreground)" }} opacity={gridO}>
+        <text x={1104} y={112} textAnchor="end" style={{ font: `500 19px ${mono}`, letterSpacing: "0.08em", fill: "var(--muted-foreground)" }} opacity={counter ? gridO : 0}>
           {String(active + 1).padStart(2, "0")} / 04
         </text>
 
+          </>
+        )}
         <g opacity={out}>
           {tree(w[0] + w[1])}
           {matrix(w[2])}
@@ -163,7 +181,7 @@ export function HeroFilm() {
             return (
               <g key={i} transform={`translate(${a[0]} ${a[1]}) scale(${t})`}>
                 <rect x={-92} y={-27} width={184} height={54} rx={6} fill="var(--card)" stroke="var(--foreground)" strokeWidth={2.5} />
-                <text y={9} textAnchor="middle" style={{ font: `600 25px ${sans}`, fill: "var(--foreground)" }} opacity={cap > 0.05 || f < 120 ? 1 : 0.35}>
+                <text y={9} textAnchor="middle" style={{ font: `600 25px ${sans}`, fill: "var(--foreground)" }} opacity={dimLabels ? 0.35 : 1}>
                   {label}
                 </text>
               </g>
@@ -191,9 +209,11 @@ export function HeroFilm() {
 
         {/* caption: the structure and its trade */}
         <g opacity={cap} transform={`translate(0 ${(1 - cap) * 14})`}>
-          <text x={96} y={738} style={{ font: `500 18px ${mono}`, letterSpacing: "0.08em", fill: "var(--muted-foreground)" }}>
-            STRUCTURE {String(active + 1).padStart(2, "0")}
-          </text>
+          {!plain && (
+            <text x={96} y={738} style={{ font: `500 18px ${mono}`, letterSpacing: "0.08em", fill: "var(--muted-foreground)" }}>
+              STRUCTURE {String(active + 1).padStart(2, "0")}
+            </text>
+          )}
           <text x={96} y={790} style={{ font: `650 48px ${sans}`, letterSpacing: "-0.01em", fill: "var(--foreground)" }}>
             {K.name}
           </text>
@@ -201,15 +221,15 @@ export function HeroFilm() {
         <g opacity={interpolate(f, [70, 90], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) * out}>
           {STRUCTURE_BARS.map((l, i) => (
             <g key={l} transform={`translate(700 ${708 + i * 30})`}>
-              <text x={0} y={7} style={{ font: `500 15px ${mono}`, letterSpacing: "0.04em", fill: "var(--muted-foreground)" }}>
-                {l.toUpperCase()}
+              <text x={0} y={7} style={plain ? { font: `500 19px ${sans}`, fill: "var(--muted-foreground)" } : { font: `500 15px ${mono}`, letterSpacing: "0.04em", fill: "var(--muted-foreground)" }}>
+                {plain ? l : l.toUpperCase()}
               </text>
               <rect x={250} y={-6} width={154} height={10} rx={5} fill="var(--border)" />
               <rect x={250} y={-6} width={(154 * scores[i]) / 5} height={10} rx={5} fill="var(--foreground)" />
             </g>
           ))}
         </g>
+        {children}
       </svg>
-    </AbsoluteFill>
   )
 }

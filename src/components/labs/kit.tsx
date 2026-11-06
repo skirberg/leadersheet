@@ -22,13 +22,12 @@ export function LabFrame({
   className?: string
 }) {
   return (
-    <section className={cn("reveal corners min-w-0 border border-border bg-card", className)}>
-      <header className="flex items-baseline justify-between gap-4 border-b border-border px-4 py-3 sm:px-5">
-        <h3 className="text-[17px] leading-snug font-semibold">{title}</h3>
-        <span className="label-mono shrink-0">{code}</span>
+    <section className={cn("min-w-0 rounded-xl bg-card", className)}>
+      <header className="px-5 pt-5 sm:px-6 sm:pt-6" data-lab={code}>
+        <h3 className="text-xl leading-snug font-semibold tracking-[-0.01em]">{title}</h3>
       </header>
-      <div className="grid gap-5 p-4 sm:p-5">{children}</div>
-      {note && <p className="border-t border-dashed border-border px-4 py-3 text-xs text-muted-foreground sm:px-5">{note}</p>}
+      <div className="grid gap-5 p-5 sm:p-6">{children}</div>
+      {note && <p className="px-5 pb-5 text-sm text-muted-foreground sm:px-6">{note}</p>}
     </section>
   )
 }
@@ -169,9 +168,9 @@ export function Sorter({
             <li
               key={i}
               className={cn(
-                "grid gap-3 rounded-md border border-border bg-background/50 p-3 transition-colors duration-(--dur-ui) sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center",
-                p && ok && "border-ok/70",
-                p && !ok && "border-foreground/40"
+                "grid gap-3 rounded-lg bg-background p-3 ring-1 ring-transparent transition-colors duration-(--dur-ui) sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center",
+                p && ok && "ring-ok/70",
+                p && !ok && "ring-foreground/30"
               )}
             >
               <p className="flex items-start gap-2 text-[15px]">

@@ -23,7 +23,7 @@ export function SessionFilmPlayer({ data, className }: { data: SessionFilmProps;
   const seconds = Math.round(SESSION_FILM.durationInFrames / SESSION_FILM.fps)
   return (
     <div
-      className={cn("corners relative overflow-hidden border border-border bg-card", className)}
+      className={cn("rounded-2xl relative overflow-hidden bg-card", className)}
       style={{ aspectRatio: `${SESSION_FILM.width} / ${SESSION_FILM.height}` }}
     >
       {mounted && (

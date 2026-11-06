@@ -68,7 +68,7 @@ export function Arcade({ compact }: { compact?: boolean }) {
           <li key={g.id} className="min-w-0">
             <Link
               href={`/play/${g.id}/`}
-              className="group corners rise drafting-grid flex h-full min-h-[236px] flex-col border border-border bg-card p-4 press hover:-translate-y-0.5 hover:border-foreground/70"
+              className="group rise flex h-full min-h-[236px] flex-col rounded-xl bg-card p-5 press hover:-translate-y-0.5 hover:bg-muted"
               style={{ ["--delay" as string]: `${i * 50}ms` }}
             >
               <div className="flex items-start justify-between gap-3">
@@ -82,7 +82,7 @@ export function Arcade({ compact }: { compact?: boolean }) {
               </div>
               <h3 className="mt-auto text-xl leading-tight font-semibold tracking-[-0.01em]">{g.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{g.blurb}</p>
-              {s && <p className="mt-3 font-mono text-xs font-medium tnum">YOU: {String(s).toUpperCase()}</p>}
+              {s && <p className="mt-3 text-[13px] font-medium">You: {String(s)}</p>}
             </Link>
           </li>
         )
@@ -101,8 +101,8 @@ export function PlayCallout({ sheet }: { sheet: string }) {
     <Link
       href={`/play/${g.id}/`}
       className={cn(
-        "group corners press flex items-center gap-4 border bg-card p-4 hover:border-foreground/70",
-        play ? "border-signal" : "border-border"
+        "group press flex items-center gap-4 rounded-xl bg-card p-5 hover:bg-muted",
+        play && "ring-2 ring-signal"
       )}
     >
       <Glyph id={g.id} />

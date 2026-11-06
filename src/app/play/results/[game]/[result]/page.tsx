@@ -43,10 +43,10 @@ export default async function ResultPage({ params }: P) {
       <Link href="/play/" className="label-mono inline-flex w-fit items-center gap-1.5 hover:text-foreground">
         <ArrowLeft className="size-3.5" /> The arcade
       </Link>
-      <section className="corners grid gap-8 border border-border bg-card p-5 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
+      <section className="rounded-2xl grid gap-8 bg-card p-5 sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
         <div className="grid content-start gap-4">
           <p className="label-mono">{g.question}</p>
-          <h1 className="text-[40px] leading-[1] font-semibold tracking-[-0.035em] sm:text-5xl">
+          <h1 className="text-[40px] leading-[1] sm:text-5xl">
             <Emphasis delay={150}>{key}</Emphasis>
             {g.suffix && ` ${g.suffix}`}
           </h1>
@@ -58,7 +58,7 @@ export default async function ResultPage({ params }: P) {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href={`/learn/${sheet.id}/`}>Sheet {sheetNo(sheet.n)}</Link>
+              <Link href={`/learn/${sheet.id}/`}>{sheetNo(sheet.n)}</Link>
             </Button>
           </div>
         </div>

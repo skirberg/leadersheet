@@ -1,9 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
 import type { SheetSummary } from "@/data/course"
-import { fmtMono, sheetNo } from "@/data/schedule"
+import { fmtMono } from "@/data/schedule"
 import { useProgress } from "@/lib/store"
 import { cn } from "@/lib/utils"
 
@@ -17,33 +16,27 @@ export function Dots({ n }: { n: number | undefined }) {
   )
 }
 
-export function SheetCard({ s, i = 0 }: { s: SheetSummary; i?: number }) {
+export function SheetCard({ s }: { s: SheetSummary; i?: number }) {
   const { state, current, ready, classMode } = useProgress()
   const isNow = ready && classMode && current.id === s.id
   return (
     <Link
       href={`/learn/${s.id}/`}
-      className={cn(
-        "group corners rise relative flex min-h-[136px] flex-col sm:min-h-[188px] border border-border bg-card p-4 press hover:-translate-y-0.5 hover:border-foreground/70",
-        isNow && "border-foreground"
-      )}
-      style={{ ["--delay" as string]: `${i * 35}ms` }}
+      className="group grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-6 py-5 press sm:py-6"
     >
-      <div className="flex items-start justify-between gap-3">
-        <span className="font-mono text-[28px] leading-none font-medium tracking-tight tnum">{sheetNo(s.n)}</span>
-        {isNow ? (
-          <span className="rounded-[3px] bg-foreground px-1.5 py-0.5 font-mono text-[10px] font-medium tracking-wider text-background">THIS WEEK</span>
-        ) : (
-          <ArrowUpRight className="size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
-        )}
-      </div>
-      <h3 className="mt-auto pt-4 text-[19px] sm:pt-6 leading-tight font-semibold">{s.title}</h3>
-      <div className="mt-3 flex items-center justify-between gap-3 border-t border-dashed border-border pt-2.5">
-        <span className="label-mono !text-[10px]">
-          {classMode ? `${fmtMono(s.date)} · ${s.part}` : s.part}
+      <span className="grid gap-1.5">
+        <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span className="text-2xl leading-tight font-semibold tracking-[-0.015em] underline-offset-[6px] decoration-1 group-hover:underline sm:text-[28px]">
+            {s.title}
+          </span>
+          {isNow && <span className="rounded-full bg-foreground px-2.5 py-0.5 text-[13px] font-medium text-background">This week</span>}
+          {classMode && !isNow && <span className="text-[13px] text-muted-foreground">{fmtMono(s.date)}</span>}
         </span>
+        <span className="max-w-[62ch] text-[15px] leading-snug text-muted-foreground sm:text-base">{s.idea}</span>
+      </span>
+      <span className="self-center">
         <Dots n={state.best[s.id]} />
-      </div>
+      </span>
     </Link>
   )
 }
@@ -51,10 +44,10 @@ export function SheetCard({ s, i = 0 }: { s: SheetSummary; i?: number }) {
 /** The twelve sheets. The page passes their summaries in, so the full course never reaches the browser. */
 export function SheetGrid({ sheets }: { sheets: SheetSummary[] }) {
   return (
-    <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {sheets.map((s, i) => (
+    <ol className="divide-y divide-border border-y border-border">
+      {sheets.map((s) => (
         <li key={s.id} className="min-w-0">
-          <SheetCard s={s} i={i} />
+          <SheetCard s={s} />
         </li>
       ))}
     </ol>
@@ -65,8 +58,8 @@ export function CheckCount({ sheets }: { sheets: SheetSummary[] }) {
   const { state } = useProgress()
   const won = sheets.filter((s) => (state.best[s.id] ?? 0) >= 3).length
   return (
-    <span className="font-mono text-xs text-muted-foreground tnum">
-      {won} / 12 SIGNED OFF
+    <span className="text-[15px] text-muted-foreground tnum">
+      {won} of 12 checked
     </span>
   )
 }

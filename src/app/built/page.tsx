@@ -33,7 +33,7 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Motion",
     items: [
-      { name: "Remotion Player", version: "4.0", what: "The hero film and the 16 second recap on every sheet, drawn from the content in the browser. The hero loads once the page is idle; a recap plays when you ask.", url: "https://www.remotion.dev" },
+      { name: "Remotion Player", version: "4.0", what: "The 16 second recap on every sheet, drawn from the content in the browser; it plays when you ask. The home hero shares the same drawing code but runs without the player, so you can drag it.", url: "https://www.remotion.dev" },
       { name: "Motion", version: "14.6", what: "Spring layout animations: the sliding nav underline, the phone tab bar, the Study and Play pill and the lab toggles. Loaded after the page is ready.", url: "https://motion.dev" },
       { name: "NumberFlow", version: "0.6", what: "Scores, timers and counts that roll digit by digit.", url: "https://number-flow.barvian.me" },
       { name: "CSS", what: "Sections rise in on scroll timelines, the highlighter swipes, cards give a little under your finger, and progress bars slide, all without JavaScript. Reduced motion turns it off." },
@@ -42,7 +42,8 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Type",
     items: [
-      { name: "Bricolage Grotesque", what: "Headlines and text. SIL Open Font License.", url: "https://fonts.google.com/specimen/Bricolage+Grotesque" },
+      { name: "Funnel Display", what: "The wordmark and headlines. NORD ID and Kristian Möller, SIL Open Font License.", url: "https://fonts.google.com/specimen/Funnel+Display" },
+      { name: "Funnel Sans", what: "Body text. SIL Open Font License.", url: "https://fonts.google.com/specimen/Funnel+Sans" },
       { name: "Martian Mono", what: "Sheet numbers, dates, scores and labels. SIL Open Font License.", url: "https://fonts.google.com/specimen/Martian+Mono" },
     ],
   },
@@ -68,7 +69,7 @@ const STACK: { title: string; items: Item[] }[] = [
     items: [
       { name: "axe-core", what: "WCAG 2.1 AA checks on every page in light and dark, game and result screens included.", url: "https://github.com/dequelabs/axe-core" },
       { name: "Page checks", what: "Every page at 375, 768, 1024 and 1280 px, in light and dark: 504 checks for crashes, sideways scroll and accessibility before each release." },
-      { name: "Behavior tests", what: "The hero film plays and pauses, reduced motion holds still, search finds and opens, the modes switch, a quick tap on a sliding tab lands, every icon loads, and nothing logs an error. They run again on the live site after each release." },
+      { name: "Behavior tests", what: "The hero tours, pauses, drags, taps and steps by key, reduced motion holds still, search finds and opens, the modes switch, a quick tap on a sliding tab lands, every icon loads, and nothing logs an error. They run again on the live site after each release." },
       { name: "Lighthouse", what: "100 for accessibility, best practices and SEO on a phone.", url: "https://developer.chrome.com/docs/lighthouse" },
       { name: "Contrast checks", what: "Every color pair in the palette measured against WCAG ratios, in light and dark." },
     ],
@@ -94,9 +95,8 @@ const SYSTEM: [string, string][] = [
 export default function BuiltPage() {
   return (
     <div className="mx-auto grid max-w-[1000px] gap-12 px-4 pt-10 sm:px-6 lg:pt-14">
-      <header className="grid gap-3 border-b border-foreground pb-5">
-        <p className="label-mono">Colophon</p>
-        <h1 className="text-4xl leading-none font-semibold tracking-[-0.03em] sm:text-6xl">How it’s built</h1>
+      <header className="grid justify-items-center gap-3 pb-2 text-center">
+        <h1 className="text-5xl leading-[1.05] sm:text-6xl">How it’s built</h1>
         <p className="max-w-[60ch] text-lg text-muted-foreground">A static site: open source tools, a small design system, and a lot of checking.</p>
         <div className="flex flex-wrap gap-2 pt-2">
           <a
@@ -111,12 +111,12 @@ export default function BuiltPage() {
       </header>
 
       <section aria-labelledby="sys-h" className="grid gap-4">
-        <h2 id="sys-h" className="text-2xl font-semibold tracking-[-0.015em]">
+        <h2 id="sys-h" className="text-2xl">
           The design system
         </h2>
         <dl className="grid gap-3 sm:grid-cols-2">
           {SYSTEM.map(([k, v]) => (
-            <div key={k} className="corners grid gap-1 border border-border bg-card p-4">
+            <div key={k} className="rounded-2xl grid gap-1 bg-card p-4">
               <dt className="font-semibold">{k}</dt>
               <dd className="text-[15px] text-muted-foreground">{v}</dd>
             </div>
