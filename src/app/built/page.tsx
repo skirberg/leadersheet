@@ -33,7 +33,7 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Motion",
     items: [
-      { name: "Remotion Player", version: "4.0", what: "The 16 second recap on every lesson, drawn from the content in the browser; it plays when you ask. The org chart on the home page shares the same drawing code but runs without the player, so you can drag it.", url: "https://www.remotion.dev" },
+      { name: "Remotion", version: "4.0", what: "The easing and spring maths behind the draggable org chart on the home page.", url: "https://www.remotion.dev" },
       { name: "Motion", version: "14.6", what: "Spring layout animations: the sliding nav underline, the phone tab bar, the Study and Play pill and the lab toggles. Loaded after the page is ready.", url: "https://motion.dev" },
       { name: "NumberFlow", version: "0.6", what: "Scores, timers and counts that roll digit by digit.", url: "https://number-flow.barvian.me" },
       { name: "CSS", what: "Content rises in on load, buttons press down under your finger, and progress bars slide, all without JavaScript. Reduced motion turns it off." },

@@ -245,7 +245,7 @@ function Flashcards() {
         >
           <div
             aria-hidden={back}
-            className="rounded-2xl drafting-grid col-start-1 row-start-1 grid min-h-[320px] place-items-center bg-card p-6 text-center [backface-visibility:hidden]"
+            className="rounded-2xl col-start-1 row-start-1 grid min-h-[320px] place-items-center bg-card p-6 text-center [backface-visibility:hidden]"
           >
             <div className="grid gap-3">
               <span className="label-mono">

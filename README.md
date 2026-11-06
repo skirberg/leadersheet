@@ -1,8 +1,8 @@
 # Leadersheet
 
-Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, a 16 second recap film, and an arcade of quizzes and games. Every sheet and every quiz result has its own share card.
+Twelve short, hands-on lessons in leadership: the idea, a model you can move, the frameworks, a three question check, and an arcade of quizzes and games. Every lesson and every quiz result has its own share card.
 
-Next.js 16.4 with the React Compiler, React 19, TypeScript 7, Tailwind 4, shadcn/ui on Radix, Remotion Player, Motion, NumberFlow. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
+Next.js 16.4 with the React Compiler, React 19, TypeScript 7, Tailwind 4, shadcn/ui on Radix, Remotion (easing maths), Motion, NumberFlow. Static export: no server, no database, progress saved in each visitor's browser. The full stack is on the site at `/built/`.
 
 ![Leadersheet on desktop](docs/preview-desktop.png)
 
@@ -41,7 +41,7 @@ Publish this folder to a personal GitHub repository named `leadersheet` (GitHub 
 - `src/components/play/`: the arcade, the share button and the Study and Play switch
 - `src/data/results.ts`, `src/app/play/results/`: the 13 shareable result pages; `npm run og` renders their cards and one per sheet (from `src/app/og/`) into `public/og/`
 - `docs/VENTURE.md`: objective, audience, decisions and the next action
-- `src/components/film/`: the home hero you can drag (`hero-live.tsx` over `hero-scene.tsx`) and the Remotion recap films
+- `src/components/film/`: the home hero you can drag (`hero-live.tsx` over `hero-scene.tsx`)
 - `scripts/`: QA, smoke test, screenshots, icons, share cards, contrast, domains. TypeScript that Node 22.18+ runs directly, no build step
 - `DESIGN.md`: the reasoning behind the Leadersheet identity
 
