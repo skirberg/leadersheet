@@ -12,5 +12,5 @@ export const BRAND: Brand = {
   author: { name: "Sami Kirberg", url: "https://github.com/skirberg" },
   repo: "https://github.com/skirberg/leadersheet",
   url: "https://leadersheet.io",
-  themeColor: { light: "#f7f6ef", dark: "#0c0e13" },
+  themeColor: { light: "#f5f3f1", dark: "#0c0e13" },
 }

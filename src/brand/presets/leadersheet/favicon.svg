@@ -1,10 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <style>
-    .sheet{fill:#13161c}.fold{fill:#f1228f}.hl{fill:#ddf93c}.line{fill:#f7f6ef}
-    @media (prefers-color-scheme:dark){.sheet{fill:#f5f3ee}.fold{fill:#ff6fae}.hl{fill:#d4f73e}.line{fill:#0c0e13}}
-  </style>
-  <path class="sheet" d="M7 2.5h13.8L28 9.7V26a3.5 3.5 0 0 1-3.5 3.5H7A3.5 3.5 0 0 1 3.5 26V6A3.5 3.5 0 0 1 7 2.5z"/>
-  <path class="fold" d="M20.8 2.5v5.2a2 2 0 0 0 2 2H28z"/>
-  <rect class="hl" x="7.5" y="12.6" width="14.5" height="6.4" rx="1.3"/>
-  <rect class="line" x="7.5" y="21.8" width="10" height="3" rx="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-700 -700 1400 1400">
+  <style>.t{fill:#000}.s{fill:#fff}@media (prefers-color-scheme:dark){.t{fill:#fff}.s{fill:#000}}</style>
+  <rect class="t" x="-700" y="-700" width="1400" height="1400" rx="308"/>
+  <path class="s" d="M-408 434V-406H-224V434ZM138 446Q2 446 -75 389Q-152 332 -158 230H18Q26 270 57 289Q88 308 146 308Q236 308 236 261Q236 242 222 230Q208 219 178 213L44 187Q-140 151 -140 15Q-140 -73 -70 -126Q2 -178 126 -178Q252 -178 324 -124Q396 -70 402 28H224Q214 -11 189 -28Q164 -46 114 -46Q74 -46 53 -35Q32 -24 32 -2Q32 14 44 25Q58 36 84 41L222 68Q318 87 362 130Q408 173 408 246Q408 340 338 393Q268 446 138 446Z"/>
 </svg>

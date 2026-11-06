@@ -42,7 +42,7 @@ function ProgressLine({ value, max, label }: { value: number; max: number; label
       <div className="flex justify-between font-mono text-xs text-muted-foreground tnum">
         <span>{label}</span>
         <span>
-          {String(Math.min(value + 1, max)).padStart(2, "0")} / {String(max).padStart(2, "0")}
+          {Math.min(value + 1, max)} of {max}
         </span>
       </div>
       <div className="h-1 overflow-hidden rounded-full bg-border">

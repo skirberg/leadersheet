@@ -159,7 +159,7 @@ export function HeroScene({
           {header}
         </text>
         <text x={1104} y={112} textAnchor="end" style={{ font: `500 19px ${mono}`, letterSpacing: "0.08em", fill: "var(--muted-foreground)" }} opacity={counter ? gridO : 0}>
-          {String(active + 1).padStart(2, "0")} / 04
+          {active + 1} of 4
         </text>
 
           </>
@@ -211,7 +211,7 @@ export function HeroScene({
         <g opacity={cap} transform={`translate(0 ${(1 - cap) * 14})`}>
           {!plain && (
             <text x={96} y={738} style={{ font: `500 18px ${mono}`, letterSpacing: "0.08em", fill: "var(--muted-foreground)" }}>
-              STRUCTURE {String(active + 1).padStart(2, "0")}
+              Structure {active + 1}
             </text>
           )}
           <text x={96} y={790} style={{ font: `650 48px ${sans}`, letterSpacing: "-0.01em", fill: "var(--foreground)" }}>

@@ -25,7 +25,7 @@ const STACK: { title: string; items: Item[] }[] = [
       { name: "Tailwind CSS", version: "4.3", what: "Styling from design tokens.", url: "https://tailwindcss.com" },
       { name: "shadcn/ui", what: "Component recipes, restyled from the brand tokens.", url: "https://ui.shadcn.com" },
       { name: "Radix UI", version: "1.8", what: "Accessible primitives: dialog, tabs, slider, toggle group, checkbox.", url: "https://www.radix-ui.com" },
-      { name: "cmdk", version: "1.1", what: "The ⌘K search across sheets, frameworks and games. It loads the first time you open it.", url: "https://cmdk.paco.me" },
+      { name: "cmdk", version: "1.1", what: "The ⌘K search across lessons, frameworks and games. It loads the first time you open it.", url: "https://cmdk.paco.me" },
       { name: "next-themes", version: "0.4", what: "Light and dark mode that follows your system, or your pick.", url: "https://github.com/pacocoursey/next-themes" },
       { name: "Lucide", version: "1.61", what: "Icons.", url: "https://lucide.dev" },
     ],
@@ -33,10 +33,10 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Motion",
     items: [
-      { name: "Remotion Player", version: "4.0", what: "The 16 second recap on every sheet, drawn from the content in the browser; it plays when you ask. The home hero shares the same drawing code but runs without the player, so you can drag it.", url: "https://www.remotion.dev" },
+      { name: "Remotion Player", version: "4.0", what: "The 16 second recap on every lesson, drawn from the content in the browser; it plays when you ask. The org chart on the home page shares the same drawing code but runs without the player, so you can drag it.", url: "https://www.remotion.dev" },
       { name: "Motion", version: "14.6", what: "Spring layout animations: the sliding nav underline, the phone tab bar, the Study and Play pill and the lab toggles. Loaded after the page is ready.", url: "https://motion.dev" },
       { name: "NumberFlow", version: "0.6", what: "Scores, timers and counts that roll digit by digit.", url: "https://number-flow.barvian.me" },
-      { name: "CSS", what: "Sections rise in on scroll timelines, the highlighter swipes, cards give a little under your finger, and progress bars slide, all without JavaScript. Reduced motion turns it off." },
+      { name: "CSS", what: "Content rises in on load, buttons press down under your finger, and progress bars slide, all without JavaScript. Reduced motion turns it off." },
     ],
   },
   {
@@ -45,7 +45,7 @@ const STACK: { title: string; items: Item[] }[] = [
       { name: "Funnel Display", what: "The wordmark. NORD ID and Kristian Möller, SIL Open Font License.", url: "https://fonts.google.com/specimen/Funnel+Display" },
       { name: "Noticia Text", what: "Headlines. JM Solé, SIL Open Font License.", url: "https://fonts.google.com/specimen/Noticia+Text" },
       { name: "Instrument Sans", what: "Body text. Rodrigo Fuenzalida and Jordan Egstad, SIL Open Font License.", url: "https://fonts.google.com/specimen/Instrument+Sans" },
-      { name: "Martian Mono", what: "Sheet numbers, dates, scores and labels. SIL Open Font License.", url: "https://fonts.google.com/specimen/Martian+Mono" },
+      { name: "Martian Mono", what: "Dates, scores and small labels. SIL Open Font License.", url: "https://fonts.google.com/specimen/Martian+Mono" },
     ],
   },
   {
@@ -60,7 +60,7 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Sharing",
     items: [
-      { name: "Share cards", what: "26 preview images, made at build time: one for the site, one for each sheet and one for each quiz result. A shared link shows the card." },
+      { name: "Share cards", what: "26 preview images, made at build time: one for the site, one for each lesson and one for each quiz result. A shared link shows the card." },
       { name: "Result pages", what: "Every quiz result has its own page, so the next person lands one tap from the same quiz." },
       { name: "Search engines", what: "A canonical address on every page, a sitemap, and an icon set for every browser, bookmark and search result." },
     ],
@@ -86,8 +86,8 @@ const STACK: { title: string; items: Item[] }[] = [
 
 const SYSTEM: [string, string][] = [
   ["Brand presets", "Name, logo, colors, icons and emphasis style live in one folder. Swap the folder and the whole site reskins."],
-  ["Two inks", "Paper and ink carry the page. A lime highlighter marks one phrase per view; hot pink marks the one thing to look at in a model."],
-  ["Sheets", "Each big idea is a numbered sheet with a title block, like a set of drawings."],
+  ["Colour", "Black text on a warm grey page with white cards, after Brilliant's system. Pink marks the one thing to look at in a drawing."],
+  ["Lessons", "Each big idea is one lesson: the idea, a model you can move, the frameworks, three check questions and a game."],
   ["Study and Play", "One switch changes emphasis, never content: Play mode leads with the games."],
   ["Class mode", "The public site is timeless. People taking the class switch on dates and what is due, once."],
   ["Made to share", "Every quiz result is a page with its own card, so the link does the explaining."],
