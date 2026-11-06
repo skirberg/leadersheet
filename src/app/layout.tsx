@@ -87,6 +87,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${funnelDisplay.variable} ${serif.variable} ${instrument.variable} ${martian.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
+        {/* Focus rings are for keyboard users: a tap or click marks the page as pointer-driven until a key moves focus. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "addEventListener('pointerdown',function(){document.documentElement.dataset.pointer=''},true);addEventListener('keydown',function(e){if(e.key==='Tab'||e.key.indexOf('Arrow')===0)delete document.documentElement.dataset.pointer},true)",
+          }}
+        />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <ThemeColor />
           <MotionProvider>

@@ -359,3 +359,14 @@
   }
 }
 
+
+/* After a tap or click, no focus ring: it is only there to show keyboard users where they are.
+   Unlayered and important so it also beats the components' own focus-visible utilities. */
+html[data-pointer] :focus-visible {
+  outline: none !important;
+}
+html[data-pointer] [role="tab"]:focus-visible,
+html[data-pointer] button:focus-visible {
+  border-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}

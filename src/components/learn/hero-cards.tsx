@@ -123,7 +123,7 @@ const CARDS: Card[] = [
 export function HeroCards() {
   return (
     <div className="relative w-full overflow-hidden px-4 pt-6 pb-16 sm:px-6 lg:pb-24" aria-label="Questions from the lessons">
-      <ol className="flex justify-center gap-4 [perspective:1400px] max-sm:justify-start max-sm:overflow-x-auto max-sm:pb-4">
+      <ol className="pointer-events-auto flex justify-center gap-3 [perspective:1400px] sm:gap-4">
         {CARDS.map((c, i) => (
           <li
             key={c.href}
@@ -132,9 +132,9 @@ export function HeroCards() {
           >
             <Link
               href={c.href}
-              className="flex h-[248px] w-[176px] flex-col gap-3 rounded-[28px] bg-card p-4 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_32px_-12px_rgb(0_0_0/0.12)] transition-transform duration-200 ease-(--ease-draft) hover:-translate-y-1 sm:w-[184px]"
+              className="flex h-[200px] w-[140px] flex-col gap-2 rounded-[24px] bg-card p-3.5 sm:h-[248px] sm:w-[184px] sm:gap-3 sm:rounded-[28px] sm:p-4 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_12px_32px_-12px_rgb(0_0_0/0.12)] transition-transform duration-200 ease-(--ease-draft) hover:-translate-y-1 sm:w-[184px]"
             >
-              <span className="text-[13px] leading-snug text-muted-foreground">{c.prompt}</span>
+              <span className="text-[12px] leading-snug text-muted-foreground sm:text-[13px]">{c.prompt}</span>
               <svg viewBox="0 0 180 130" className="mt-auto w-full" aria-hidden>
                 {c.art}
               </svg>
