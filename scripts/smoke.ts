@@ -216,13 +216,16 @@ try {
   await page.media({ scheme: "light" })
   await go("/")
   const mounted = await heroMounted()
+  // The film sits in the section under the lesson cards: bring it into view first.
+  await page.eval(`${HERO}?.scrollIntoView({ block: "center" })`)
+  await sleep(800)
   const playing = mounted ? await framesSeen() : 0
   check(playing > 1, "film moves without a click", mounted ? `${playing} different frames in 3.2 s` : "player never loaded")
   await page.eval(`window.scrollTo(0, document.body.scrollHeight)`)
   await sleep(1000)
   const away = await framesSeen()
   check(mounted && away === 1, "film pauses when scrolled away", `${away} different frames in 3.2 s`)
-  await page.eval(`window.scrollTo(0, 0)`)
+  await page.eval(`${HERO}?.scrollIntoView({ block: "center" })`)
   await sleep(600)
   const back = await framesSeen()
   check(back > 1, "film resumes when scrolled back", `${back} different frames in 3.2 s`)
@@ -231,6 +234,8 @@ try {
   await page.size(1280, 900)
   await go("/")
   await heroMounted()
+  await page.eval(`${HERO}?.scrollIntoView({ block: "center" })`)
+  await sleep(600)
   const structure = () => page.eval(`document.querySelector('input[type=range]')?.getAttribute("aria-valuetext")?.split(".")[0]`)
   const pauseBtn = `[...document.querySelectorAll("button")].find((b) => /tour of the four structures/.test(b.getAttribute("aria-label") ?? ""))`
   check(await waitFor(`!!${pauseBtn}`, 3000), "the opening tour has a pause button")
