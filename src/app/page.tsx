@@ -3,6 +3,7 @@ import { HomeFocus, OpenThisWeek } from "@/components/learn/this-week"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { HeroPlayer } from "@/components/film/hero-player"
+import { HeroCards } from "@/components/learn/hero-cards"
 import { HeroCtas, HeroLine, HomeArcade } from "@/components/play/home-bits"
 import { CheckCount, SheetGrid } from "@/components/learn/sheets"
 import { C, sheetSummaries } from "@/data/course"
@@ -29,12 +30,24 @@ export default function Home() {
             </HeroCtas>
           </div>
         </div>
-        <div className="mx-auto max-w-[820px] px-4 pb-16 sm:px-6 lg:pb-24">
-          <HeroPlayer />
+        <HeroCards />
+      </section>
+
+      <section className="bg-card">
+        <div className="mx-auto grid max-w-[1240px] items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16 lg:py-24">
+          <div className="grid gap-4">
+            <h2 className="text-[34px] leading-[1.15] sm:text-[40px]">Move the model, see what changes</h2>
+            <p className="max-w-[44ch] text-lg leading-relaxed text-muted-foreground">
+              Every lesson has a model you can drag, tap or change. Restructure a company and watch what it gains and what it gives up.
+            </p>
+          </div>
+          <div className="rounded-[28px] bg-background p-2">
+            <HeroPlayer />
+          </div>
         </div>
       </section>
 
-      <div className="mx-auto grid max-w-[980px] gap-20 px-4 sm:px-6">
+      <div className="mx-auto grid max-w-[980px] gap-20 px-4 pt-16 sm:px-6 lg:pt-24">
 
         <HomeArcade slot="top" />
 

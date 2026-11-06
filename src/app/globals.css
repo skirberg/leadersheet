@@ -53,11 +53,11 @@
   --color-rule: var(--rule);
   --color-grid: var(--grid);
 
-  --font-sans: var(--font-funnel-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-funnel-display), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+  --font-serif: var(--font-noticia), ui-serif, Georgia, serif;
   /* One family across the site: numbers and labels use the text face, with tabular figures. */
-  --font-mono: var(--font-funnel-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -135,7 +135,7 @@
   h1,
   h2 {
     font-family: var(--font-serif);
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: -0.02em;
   }
 }

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils"
 
 /**
  * Leadersheet wordmark: the name set in Funnel Display ExtraBold (NORD ID and
- * Kristian Möller, SIL Open Font License), turned into outlines, in one colour. The icon is "ls" on the lime.
+ * Kristian Möller, SIL Open Font License), turned into outlines, in one colour. The icon is "ls" in white on a black tile.
  * Outlines come from docs/marks/funnel/build.py.
  */
 const VIEWBOX = "-10 -860 6490 880"
@@ -19,8 +19,8 @@ export function LogoMark({ className, title }: { className?: string; title?: str
       aria-hidden={title ? undefined : true}
       aria-label={title}
     >
-      <rect x="-700" y="-700" width="1400" height="1400" rx="308" fill="var(--signal-2)" />
-      <path d={S} fill="var(--signal-2-foreground)" />
+      <rect x="-700" y="-700" width="1400" height="1400" rx="308" fill="var(--foreground)" />
+      <path d={S} fill="var(--background)" />
     </svg>
   )
 }

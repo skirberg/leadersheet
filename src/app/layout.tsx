@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Funnel_Display, Funnel_Sans, Martian_Mono, Source_Serif_4 } from "next/font/google"
+import { Funnel_Display, Instrument_Sans, Martian_Mono, Noticia_Text } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import "./globals.css"
 import { ProgressProvider } from "@/lib/store"
@@ -17,16 +17,18 @@ const funnelDisplay = Funnel_Display({
   subsets: ["latin"],
   display: "swap",
 })
-// Source Serif 4 (Frank Grießhammer for Adobe, SIL Open Font License): the headlines, with real italics.
-const serif = Source_Serif_4({
-  variable: "--font-source-serif",
+// Brilliant sets headlines in CoFo Robert, a Clarendon-style slab serif, and text in CoFo Sans (both paid).
+// The closest open matches, compared side by side: Noticia Text (JM Solé) and Instrument Sans
+// (Rodrigo Fuenzalida and Jordan Egstad), both SIL Open Font License.
+const serif = Noticia_Text({
+  variable: "--font-noticia",
   subsets: ["latin"],
+  weight: ["400", "700"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
   display: "swap",
 })
-const funnelSans = Funnel_Sans({
-  variable: "--font-funnel-sans",
+const instrument = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
   display: "swap",
 })
@@ -83,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // The build date picks a starting session; the browser's date replaces it after load.
   const { id, n, date } = currentSession()
   return (
-    <html lang="en" suppressHydrationWarning className={`${funnelDisplay.variable} ${serif.variable} ${funnelSans.variable} ${martian.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${funnelDisplay.variable} ${serif.variable} ${instrument.variable} ${martian.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <ThemeColor />

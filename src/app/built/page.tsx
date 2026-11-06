@@ -42,8 +42,9 @@ const STACK: { title: string; items: Item[] }[] = [
   {
     title: "Type",
     items: [
-      { name: "Funnel Display", what: "The wordmark and headlines. NORD ID and Kristian Möller, SIL Open Font License.", url: "https://fonts.google.com/specimen/Funnel+Display" },
-      { name: "Funnel Sans", what: "Body text. SIL Open Font License.", url: "https://fonts.google.com/specimen/Funnel+Sans" },
+      { name: "Funnel Display", what: "The wordmark. NORD ID and Kristian Möller, SIL Open Font License.", url: "https://fonts.google.com/specimen/Funnel+Display" },
+      { name: "Noticia Text", what: "Headlines. JM Solé, SIL Open Font License.", url: "https://fonts.google.com/specimen/Noticia+Text" },
+      { name: "Instrument Sans", what: "Body text. Rodrigo Fuenzalida and Jordan Egstad, SIL Open Font License.", url: "https://fonts.google.com/specimen/Instrument+Sans" },
       { name: "Martian Mono", what: "Sheet numbers, dates, scores and labels. SIL Open Font License.", url: "https://fonts.google.com/specimen/Martian+Mono" },
     ],
   },
