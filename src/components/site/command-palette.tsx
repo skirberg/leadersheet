@@ -35,7 +35,7 @@ export default function CommandPalette({ open, onOpenChange }: { open: boolean; 
       <CommandInput placeholder="Try urgency, matrix, feedback…" />
       <CommandList className="max-h-[60vh]">
         <CommandEmpty>Nothing matches. Try one word.</CommandEmpty>
-        <CommandGroup heading="Sheets">
+        <CommandGroup heading="Lessons">
           {SESSIONS.map((s) => (
             <CommandItem
               key={s.id}

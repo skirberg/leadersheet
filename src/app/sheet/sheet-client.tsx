@@ -44,7 +44,7 @@ export function SheetClient() {
               {s.title}
             </h2>
             <Link href={`/learn/${s.id}/`} className="shrink-0 text-sm font-semibold underline-offset-4 hover:underline">
-              Open sheet
+              Open lesson
             </Link>
           </div>
           <div className="grid gap-4 md:grid-cols-2">

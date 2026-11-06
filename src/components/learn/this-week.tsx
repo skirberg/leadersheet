@@ -31,7 +31,7 @@ export function ThisWeek({ sheets }: Sheets) {
       <TitleBlock
         className="px-5 pt-5 sm:px-7 sm:pt-7"
         cells={[
-          { k: "Sheet", v: `Sheet ${s.n}` },
+          { k: "Lesson", v: `Lesson ${s.n}` },
           { k: "Class", v: fmtMono(s.date) },
           { k: "Part", v: s.part, wide: true },
           { k: "Check", v: best == null ? "Check not taken" : `Check ${best} of 3` },
@@ -47,7 +47,7 @@ export function ThisWeek({ sheets }: Sheets) {
           <div className="flex flex-wrap gap-2 pt-2">
             <Button asChild size="lg">
               <Link href={`/learn/${s.id}/`}>
-                Open sheet {s.n} <ArrowRight className="size-4" />
+                Open lesson {s.n} <ArrowRight className="size-4" />
               </Link>
             </Button>
           </div>
@@ -91,7 +91,7 @@ export function OpenThisWeek({ sheets }: Sheets) {
     return (
       <Button asChild size="lg">
         <Link href={`/learn/${current.id}/`}>
-          Open this week’s sheet <ArrowRight className="size-4" />
+          Open this week’s lesson <ArrowRight className="size-4" />
         </Link>
       </Button>
     )
@@ -100,7 +100,7 @@ export function OpenThisWeek({ sheets }: Sheets) {
   return (
     <Button asChild size="lg">
       <Link href={`/learn/${s.id}/`}>
-        {resuming ? `Continue with sheet ${s.n}` : "Start with sheet 1"} <ArrowRight className="size-4" />
+        {resuming ? `Continue with lesson ${s.n}` : "Start learning"} <ArrowRight className="size-4" />
       </Link>
     </Button>
   )

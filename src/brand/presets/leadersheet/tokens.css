@@ -1,8 +1,9 @@
 /*
   Preset: Leadersheet.
-  Concept: the cheat sheet for leading people, printed in two fluorescent inks.
-  Paper and ink do the work. Lime is the highlighter (behind words, ink text on top, one per view).
-  Pink is the signal (lines, data marks, focus). Pink text only at 24px and up, or use --signal-text.
+  Built on Brilliant's system, measured from brilliant.org (Nov 2026): pure black text, black at about
+  60% for secondary text, an oat page (#f5f3f1) with white cards, #e4e4e4 rules, pills for every
+  control and 28px corners on large cards. Pink marks data in the drawings (the selected point).
+  Lime appears only in the app icon.
 */
 
 :root {
@@ -11,22 +12,22 @@
   --dur-ui: 200ms;
   --dur-draw: 650ms;
 
-  --background: #f5f5f3;
-  --foreground: #13161c;
+  --background: #f5f3f1;
+  --foreground: #000000;
   --card: #ffffff;
-  --card-foreground: #13161c;
+  --card-foreground: #000000;
   --popover: #ffffff;
-  --popover-foreground: #13161c;
-  --primary: #13161c;
+  --popover-foreground: #000000;
+  --primary: #000000;
   --primary-foreground: #ffffff;
-  --secondary: #ececea;
-  --secondary-foreground: #13161c;
-  --muted: #ececea;
-  --muted-foreground: #4a4d55;
+  --secondary: #ebe9e6;
+  --secondary-foreground: #000000;
+  --muted: #ebe9e6;
+  --muted-foreground: #5c5c5c;
   --accent: #e8e8e5;
-  --accent-foreground: #13161c;
+  --accent-foreground: #000000;
   --destructive: #a5122d;
-  --border: #e2e2df;
+  --border: #e4e4e4;
   --rule: #7d8088;
   --input: #7d8088;
   --ring: #f1228f;

@@ -132,7 +132,7 @@ export function SessionFilm(p: SessionFilmProps) {
       <Sequence from={345} durationInFrames={80} layout="none">
         <Beat dur={80}>
           <div style={{ marginTop: 20, display: "grid", gap: 26 }}>
-            <Label>Frameworks on this sheet</Label>
+            <Label>Frameworks in this lesson</Label>
             <FrameworkTree names={fws} sheet={p.sheet} />
           </div>
         </Beat>
@@ -177,7 +177,7 @@ function FrameworkTree({ names, sheet }: { names: string[]; sheet: string }) {
     <svg width={W} height={330} viewBox={`0 0 ${W} 330`} style={{ overflow: "visible" }}>
       <rect x={W / 2 - 90} y={10} width={180} height={56} rx={6} fill="var(--signal)" />
       <text x={W / 2} y={46} textAnchor="middle" style={{ font: `600 24px ${sans}`, fill: "var(--signal-foreground)" }}>
-        Sheet {sheet}
+        Lesson {sheet}
       </text>
       {xs.map((x, i) => (
         <path key={i} d={`M${W / 2} 66 C${W / 2} 120 ${x} 110 ${x} 168`} stroke="var(--foreground)" strokeWidth={2.5} fill="none" pathLength={1} strokeDasharray={1} strokeDashoffset={draw} />

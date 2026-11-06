@@ -280,13 +280,13 @@ export function PracticeClient() {
     <div className="grid gap-6">
       <Stats />
       <Tabs defaultValue="drill" className="gap-5">
-        <TabsList className="h-auto w-full justify-start rounded-md border border-border bg-muted p-1 sm:w-fit">
+        <TabsList className="h-auto w-full justify-start rounded-full bg-muted p-1 sm:w-fit">
           {[
             ["drill", "Drill"],
             ["match", "Which framework?"],
             ["flash", "Flashcards"],
           ].map(([v, l]) => (
-            <TabsTrigger key={v} value={v} className="min-h-10 flex-1 rounded-[4px] px-4 text-sm text-muted-foreground hover:text-foreground data-[state=active]:text-foreground data-[state=active]:bg-card data-[state=active]:font-semibold data-[state=active]:shadow-[0_0_0_1px_var(--rule)] sm:flex-none">
+            <TabsTrigger key={v} value={v} className="min-h-10 flex-1 rounded-full px-4 text-sm text-muted-foreground hover:text-foreground data-[state=active]:bg-foreground data-[state=active]:font-semibold data-[state=active]:text-background sm:flex-none">
               {l}
             </TabsTrigger>
           ))}

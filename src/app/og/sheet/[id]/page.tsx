@@ -1,11 +1,9 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { BRAND, LogoMark } from "@/brand"
-import { Emphasis } from "@/components/brand/emphasis"
-import { TitleBlock } from "@/components/brand/title-block"
+import { Wordmark } from "@/brand"
 import { SESSIONS, sessionById } from "@/data/course"
 
-// Source for public/og/sheet-<id>.png (scripts/make-og.mjs). Not linked anywhere and not indexed.
+// Source for public/og/sheet-<id>.png (scripts/make-og.ts). Not linked anywhere and not indexed.
 export const metadata: Metadata = { title: "Sheet card", robots: { index: false, follow: false } }
 export const dynamicParams = false
 export function generateStaticParams() {
@@ -16,33 +14,19 @@ export default async function SheetCard({ params }: { params: Promise<{ id: stri
   const { id } = await params
   const s = sessionById(id)
   if (!s) notFound()
-  const words = s.idea.split(" ")
-  const head = words.slice(0, -3).join(" "),
-    tail = words.slice(-3).join(" ")
   return (
     <div className="fixed inset-0 z-[100] bg-background">
-      <div className="drafting-grid absolute inset-0" />
-      <div className="relative flex h-[630px] w-[1200px] flex-col justify-between p-14">
+      <div className="flex h-[630px] w-[1200px] flex-col justify-between p-16">
         <div className="flex items-center justify-between">
-          <span className="flex items-center gap-3">
-            <LogoMark className="size-11" />
-            <span className="text-[28px] font-bold tracking-[-0.03em]">{BRAND.name}</span>
+          <Wordmark className="h-[30px]" />
+          <span className="text-[22px] text-muted-foreground">
+            Lesson {s.n} of 12 · {s.part}
           </span>
-          <TitleBlock
-            className="w-[460px] bg-card [&_dd]:!text-[17px] [&_dt]:!text-[12px]"
-            cells={[
-              { k: "Sheet", v: `${s.n} of 12` },
-              { k: "Part", v: s.part },
-            ]}
-          />
         </div>
-        <div className="grid gap-6">
-          <h1 className="max-w-[18ch] text-[84px] leading-[0.96]">{s.title}</h1>
-          <p className="max-w-[40ch] text-[32px] leading-[1.22] font-medium tracking-[-0.01em]">
-            {head} <Emphasis delay={0}>{tail}</Emphasis>
-          </p>
+        <div className="grid gap-7 rounded-[40px] bg-card p-12">
+          <h1 className="text-[80px] leading-[1.02]">{s.title}</h1>
+          <p className="max-w-[44ch] text-[30px] leading-[1.3] text-muted-foreground">{s.idea}</p>
         </div>
-        <p className="label-mono !text-[15px]">Idea · model · frameworks · three question check</p>
       </div>
     </div>
   )

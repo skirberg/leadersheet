@@ -107,7 +107,7 @@ export function PlayCallout({ sheet }: { sheet: string }) {
     >
       <Glyph id={g.id} />
       <span className="grid min-w-0 gap-0.5">
-        <span className={cn("label-mono", play && "!text-signal-text")}>Play this sheet · {g.minutes}</span>
+        <span className={cn("label-mono", play && "!text-signal-text")}>Play this lesson · {g.minutes}</span>
         <span className="text-lg leading-tight font-semibold">{g.title}</span>
         <span className="text-sm text-muted-foreground">{g.blurb}</span>
       </span>

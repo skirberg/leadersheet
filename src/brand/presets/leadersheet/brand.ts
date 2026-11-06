@@ -4,10 +4,10 @@ export const BRAND: Brand = {
   id: "leadersheet",
   name: "Leadersheet",
   shortName: "Leadersheet",
-  descriptor: "Leadership, one sheet at a time",
-  title: "Leadersheet · Learn to lead",
+  descriptor: "Learn leadership by doing",
+  title: "Leadersheet · Learn leadership by doing",
   description:
-    "Twelve big leadership ideas as interactive sheets: the idea, a model you can move, the frameworks, a three question check, and games. Free, no sign-up.",
+    "Twelve short, hands-on lessons on how leaders build teams, shape culture and drive change. Free, no sign-up.",
   emphasis: "highlight",
   author: { name: "Sami Kirberg", url: "https://github.com/skirberg" },
   repo: "https://github.com/skirberg/leadersheet",

@@ -163,7 +163,7 @@ export function CultureGame() {
         <Disclaimer>
           For fun, not a validated assessment. Based on Groysberg et al. (2018).{" "}
           <Link href="/learn/s4/" className="font-semibold text-foreground underline-offset-4 hover:underline">
-            Open sheet S04
+            Open lesson 4
           </Link>
         </Disclaimer>
       </GameShell>
@@ -291,7 +291,7 @@ export function ConflictGame() {
         <Disclaimer>
           For fun, not a validated assessment or the Thomas-Kilmann instrument.{" "}
           <Link href="/learn/s7/" className="font-semibold text-foreground underline-offset-4 hover:underline">
-            Open sheet S07
+            Open lesson 7
           </Link>
         </Disclaimer>
       </GameShell>
@@ -478,7 +478,7 @@ export function BiasGame() {
           </Button>
           <ShareResult text={`I spotted ${score} biases in 60 seconds. Can you beat that?`} path="/play/bias/" />
           <Button asChild variant="outline">
-            <Link href="/learn/s8/">Open sheet S08</Link>
+            <Link href="/learn/s8/">Open lesson 8</Link>
           </Button>
         </div>
       </GameShell>
@@ -664,7 +664,7 @@ export function ClimbGame() {
               </Button>
               <ShareResult text={`I climbed Kotter’s 8 steps of change in ${secs(final)} seconds. Can you beat that?`} path="/play/climb/" />
               <Button asChild variant="outline">
-                <Link href="/learn/s5/">Open sheet S05</Link>
+                <Link href="/learn/s5/">Open lesson 5</Link>
               </Button>
             </div>
           )}

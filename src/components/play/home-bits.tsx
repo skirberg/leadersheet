@@ -28,7 +28,7 @@ export function HeroCtas({ children }: { children: React.ReactNode }) {
           </Link>
         </Button>
         <Button asChild size="lg" variant="outline">
-          <Link href="#this-week">The sheets</Link>
+          <Link href="#this-week">The lessons</Link>
         </Button>
       </>
     )

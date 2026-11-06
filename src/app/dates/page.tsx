@@ -11,7 +11,7 @@ export default function DatesPage() {
       <div className="grid justify-items-center gap-3 pb-2 text-center">
         <h1 className="text-5xl leading-[1.05] sm:text-6xl">The schedule</h1>
         <p className="max-w-[60ch] text-lg text-muted-foreground">
-          Adds the class schedule and what’s due to every sheet.
+          Adds the class schedule and what’s due to every lesson.
         </p>
         <ClassModeToggle className="w-fit" />
       </div>

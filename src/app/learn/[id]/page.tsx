@@ -79,7 +79,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
     <div className="mx-auto max-w-[1240px] px-4 pt-8 sm:px-6 lg:pt-12">
       <SeenMarker id={s.id} />
       <div className="grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-14">
-        <aside aria-label="All sheets" className="hidden lg:block">
+        <aside aria-label="All lessons" className="hidden lg:block">
           <div className="sticky top-24 grid gap-3">
             <SheetRail currentId={s.id} />
           </div>
@@ -88,7 +88,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
         <article className="grid max-w-[800px] min-w-0 gap-14">
           <header className="grid gap-6">
             <Link href="/learn/" className="label-mono inline-flex w-fit items-center gap-1.5 hover:text-foreground lg:hidden">
-              <ArrowLeft className="size-3.5" /> All sheets
+              <ArrowLeft className="size-3.5" /> All lessons
             </Link>
             <h1 className="text-[42px] leading-[1] sm:text-[60px]">{s.title}</h1>
             <p className="text-2xl leading-[1.25] font-medium tracking-[-0.01em] sm:text-[28px]">
@@ -96,7 +96,7 @@ export default async function SessionPage({ params }: { params: Promise<{ id: st
             </p>
             {/* The model is the point of the sheet; on a phone it would otherwise sit below the film and the readings. */}
             <p className="text-[15px] text-muted-foreground">
-              Sheet {s.n} of 12 · {s.part}
+              Lesson {s.n} of 12 · {s.part}
             </p>
             <a href="#see-it" className="label-mono inline-flex w-fit items-center gap-1.5 border-b border-foreground pb-0.5 text-foreground hover:text-muted-foreground">
               Try the model <ArrowDown className="size-3.5" />
