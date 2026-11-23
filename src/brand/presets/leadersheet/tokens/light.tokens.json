@@ -1,0 +1,65 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "$description": "Leadersheet, light: black ink on an oat page with white cards. The semantic layer: every value aliases a primitive, and each leaf's name is its CSS variable (surface.card is --card).",
+  "surface": {
+    "$type": "color",
+    "$description": "What things sit on.",
+    "background": { "$value": "{color.paper.965}", "$description": "The page." },
+    "card": { "$value": "{color.neutral.1000}", "$description": "Cards sit white on the page." },
+    "popover": { "$value": "{color.neutral.1000}", "$description": "Search and dialogs." },
+    "muted": { "$value": "{color.paper.935}", "$description": "Tracks, the picked choice, a feedback banner." },
+    "secondary": { "$value": "{color.paper.935}", "$description": "Secondary buttons." },
+    "accent": { "$value": "{color.paper.930}", "$description": "Hover fill on menus and rows (shadcn's name; not the pink)." }
+  },
+  "text": {
+    "$type": "color",
+    "$description": "Type. Grey is for labels only: anything a reader has to read or act on is in full ink.",
+    "foreground": { "$value": "{color.neutral.0}", "$description": "Ink." },
+    "card-foreground": { "$value": "{color.neutral.0}" },
+    "popover-foreground": { "$value": "{color.neutral.0}" },
+    "secondary-foreground": { "$value": "{color.neutral.0}" },
+    "accent-foreground": { "$value": "{color.neutral.0}" },
+    "muted-foreground": { "$value": "{color.neutral.475}", "$description": "Labels, meta and small print." }
+  },
+  "action": {
+    "$type": "color",
+    "$description": "The primary button: ink with a pressed edge under it.",
+    "primary": { "$value": "{color.neutral.0}" },
+    "primary-foreground": { "$value": "{color.neutral.1000}" },
+    "primary-edge": { "$value": "{color.neutral.349}", "$description": "The 4 px edge under the ink button, gone when pressed." }
+  },
+  "border": {
+    "$type": "color",
+    "$description": "Lines: hairlines between things, rules around controls, the focus ring.",
+    "border": { "$value": "{color.neutral.919}", "$description": "Hairlines." },
+    "rule": { "$value": "{color.slate.600}", "$description": "Control borders and drawn rules (3:1 or more)." },
+    "input": { "$value": "{color.slate.600}" },
+    "ring": { "$value": "{color.pink.635}", "$description": "Keyboard focus." }
+  },
+  "accent": {
+    "$type": "color",
+    "$description": "The two inks. The pink marks one thing per view and is never an error colour.",
+    "signal": { "$value": "{color.pink.635}" },
+    "signal-text": { "$value": "{color.pink.550}", "$description": "The pink when it has to be small text." },
+    "signal-foreground": { "$value": "{color.slate.200}" },
+    "signal-soft": {
+      "$value": { "colorSpace": "oklch", "components": { "$ref": "#/color/pink/635/$value/components" }, "alpha": 0.1 },
+      "$description": "Text selection."
+    },
+    "signal-2": { "$value": "{color.lime.931}" },
+    "signal-2-foreground": { "$value": "{color.slate.200}" }
+  },
+  "data": {
+    "$type": "color",
+    "$description": "Drawings: the graph paper behind the home drawing, and the lesson cards' art.",
+    "grid": { "$value": { "colorSpace": "oklch", "components": { "$ref": "#/color/slate/200/$value/components" }, "alpha": 0.07 } },
+    "art-blue": { "$value": "{color.blue.675}" },
+    "art-yellow": { "$value": "{color.yellow.854}" }
+  },
+  "state": {
+    "$type": "color",
+    "$description": "Right and wrong. A wrong answer is an X in ink; red is for forms only.",
+    "ok": { "$value": "{color.green.499}", "$description": "A right answer or a strong call." },
+    "destructive": { "$value": "{color.red.464}" }
+  }
+}

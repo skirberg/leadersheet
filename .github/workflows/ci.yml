@@ -1,0 +1,41 @@
+name: Checks
+# Every pull request and every push to main: typecheck, lint, the design tokens against their source, contrast in every
+# theme, unit tests, the decision-case contract, the build, link previews, the voice rules, the brand kit's drift check,
+# then the behavior smoke test in headless Chrome under the production headers.
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      # tokens.css, tokens.ts and public/tokens.json are what the DTCG token files make, and every text pair passes WCAG 2.2.
+      - run: npm run tokens:check
+      - run: npm run contrast
+      - run: npm test
+      - run: npm run cases
+      - run: npm run build
+      - run: npm run previews
+      - run: npm run voice
+      # Icons, share cards and the brand kit are current and match what the site serves (no browser needed).
+      - run: npm run brand:check
+      - run: npm audit --omit=dev
+      - name: Smoke test in Chrome
+        run: npm run smoke
+        env:
+          CHROME_PATH: /usr/bin/google-chrome

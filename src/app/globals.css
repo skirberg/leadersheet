@@ -1,0 +1,495 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../brand/presets/leadersheet/tokens.css";
+
+/*
+  Structure and components. Colors, corners and motion come from the active brand preset: for Leadersheet,
+  src/brand/presets/leadersheet/tokens/*.tokens.json (DTCG), which `npm run tokens` turns into the tokens.css imported above.
+  Rule: the signal color marks one thing per view and is never an error color.
+*/
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  The page grid (DESIGN.md, Grid). Every page, the header and the footer sit in one frame: --cols equal columns,
+  --gutter between them, --margin either side, never wider than --frame (all from the layout tokens: 4 columns on a
+  phone, 8 from 640 px, 12 from 1024 px). A page is a `page`; each block takes a named span, so its edges land on
+  column lines at every width:
+
+    span-wide    every column: index pages and card lists (their cards take subgrid spans)
+    span-head    a page's title and intro: columns 1 to 6 of 8, 1 to 8 of 12
+    span-center  a centred block on the middle columns: 2 to 7 of 8, 3 to 10 of 12
+    span-rail    what a section is: above its content, then beside it in columns 1 to 3 (base-ui.com's label column)
+    span-main    a section's content: every column, then 4 to 12
+    span-read    running text: 1 to 6 of 8, then 4 to 10 (690 px at full width, about 70 characters)
+
+  Inside a block, `max-w-cols-N` is the width of N columns and the gutters between them.
+  `?grid` on any address draws the columns over the page (src/components/site/grid-overlay.tsx).
+*/
+@property --col {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+/* The frame alone: the header's and footer's rows. */
+@utility frame {
+  width: 100%;
+  max-width: calc(var(--frame) + 2 * var(--margin));
+  margin-inline: auto;
+  padding-inline: var(--margin);
+  container-type: inline-size;
+  & > * {
+    --col: calc((100cqw - (var(--cols) - 1) * var(--gutter)) / var(--cols));
+  }
+}
+/* The frame with its columns, its sections a section's height apart. */
+@utility page {
+  width: 100%;
+  max-width: calc(var(--frame) + 2 * var(--margin));
+  margin-inline: auto;
+  padding-inline: var(--margin);
+  padding-top: var(--section);
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--section);
+  align-content: start;
+  container-type: inline-size;
+  /* the width of one column, for max-w-cols-N anywhere inside (cqw here is the page's own width) */
+  & > * {
+    --col: calc((100cqw - (var(--cols) - 1) * var(--gutter)) / var(--cols));
+  }
+}
+@utility span-wide {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+@utility span-head {
+  grid-column: 1 / -1;
+  min-width: 0;
+  @media (width >= 40rem) {
+    grid-column: 1 / span 6;
+  }
+  @media (width >= 64rem) {
+    grid-column: 1 / span 8;
+  }
+}
+@utility span-center {
+  grid-column: 1 / -1;
+  min-width: 0;
+  @media (width >= 40rem) {
+    grid-column: 2 / span 6;
+  }
+  @media (width >= 64rem) {
+    grid-column: 3 / span 8;
+  }
+}
+@utility span-rail {
+  grid-column: 1 / -1;
+  min-width: 0;
+  @media (width >= 64rem) {
+    grid-column: 1 / span 3;
+  }
+}
+@utility span-main {
+  grid-column: 1 / -1;
+  min-width: 0;
+  @media (width >= 64rem) {
+    grid-column: 4 / -1;
+  }
+}
+@utility span-read {
+  grid-column: 1 / -1;
+  min-width: 0;
+  @media (width >= 40rem) {
+    grid-column: 1 / span 6;
+  }
+  @media (width >= 64rem) {
+    grid-column: 4 / span 7;
+  }
+}
+/* A row of a name and what it is (a definition list, a table of tools): the name three columns wide, the rest after a
+   gutter, so the second column of every such row on the site starts on the same column line. From 640 px. */
+@utility cols-label {
+  @media (width >= 40rem) {
+    grid-template-columns: calc(3 * var(--col) + 2 * var(--gutter)) minmax(0, 1fr);
+    column-gap: var(--gutter);
+  }
+}
+@utility max-w-cols-* {
+  max-width: calc(--value(integer) * var(--col) + (--value(integer) - 1) * var(--gutter));
+}
+
+/*
+  Press feedback for tappable cards, options and chips: they give a little the instant a finger or mouse
+  goes down, like a native control. Owns the element's transition so the press, the hover lift and the
+  color change all ease the same way.
+*/
+@utility press {
+  transition-property: color, background-color, border-color, box-shadow, translate, scale;
+  transition-duration: var(--dur-press);
+  transition-timing-function: var(--ease-draft);
+  &:active {
+    scale: 0.98;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-signal: var(--signal);
+  --color-signal-text: var(--signal-text);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-signal-2: var(--signal-2);
+  --color-signal-2-foreground: var(--signal-2-foreground);
+  --color-signal-soft: var(--signal-soft);
+  --color-ok: var(--ok);
+  --color-rule: var(--rule);
+  --color-grid: var(--grid);
+
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-funnel-display), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-noticia), ui-serif, Georgia, serif;
+  /* One family across the site: numbers and labels use the text face, with tabular figures. */
+  --font-mono: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  /* The type scale, set from Brilliant's measured system (DESIGN.md, "Type"): 14 for labels and meta (labels in
+     sentence case, set apart by weight), 16 body, 20 for what you read (explanations, setups, outcomes), 24 for a
+     question, 30 and up for titles.
+     Reading sizes keep a line-height of 1.5. */
+  --text-sm--line-height: 1.5;
+  --text-base--line-height: 1.5;
+  --text-lg--line-height: 1.5;
+  --text-xl--line-height: 1.5;
+
+  /* Corners and easings come from the preset's tokens (tokens.css, generated from its DTCG token files). */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+    /* No gray flash on tap (iOS Safari, Android Chrome); every control has its own pressed state. */
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Taps fire at once instead of waiting to see whether a double-tap zoom is coming. */
+  a,
+  button,
+  label,
+  summary,
+  input,
+  [role="button"],
+  [role="tab"],
+  [role="radio"],
+  [role="switch"],
+  [role="checkbox"],
+  [role="option"] {
+    touch-action: manipulation;
+  }
+  /* A long press on a control does not select its label or open the link callout. Content stays selectable. */
+  button,
+  [role="button"],
+  [role="tab"],
+  [role="radio"],
+  [role="switch"],
+  [role="checkbox"] {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-optical-sizing: auto;
+    font-feature-settings: "ss01" 0;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    background: var(--signal-soft);
+    color: inherit;
+  }
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  /* Page and section titles are set in the serif; card titles and UI stay in the sans. */
+  h1,
+  h2 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* A label, not a sentence, and never in capitals (DESIGN.md, "Type", 22 November 2026): the meta size in sentence
+     case, set apart by weight and grey, as Apple, Stripe and Linear set theirs. Grey is for labels only; anything a
+     reader has to read or act on is in full ink. */
+  .label-mono {
+    @apply font-sans text-sm leading-[1.5] font-medium text-muted-foreground;
+    font-variant-numeric: tabular-nums slashed-zero;
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums slashed-zero;
+  }
+  /* The learning surfaces share five pieces, measured from Brilliant's problem card (DESIGN.md, "Type"):
+     a question in the serif at 24 px; reading text at 20 px in full ink; choices at least 52 px tall with a
+     14 px radius; a feedback banner that leads with the verdict, tinted by state (ok for right, neutral for
+     anything else, never the pink accent); and chips 36 px tall with a hairline. */
+  .t-question {
+    @apply font-serif text-2xl leading-tight font-normal tracking-[-0.01em] text-balance;
+  }
+  .t-read {
+    @apply text-xl leading-[1.5] text-foreground;
+  }
+  .choice {
+    @apply flex min-h-13 w-full items-start gap-3 rounded-[14px] border border-border bg-card px-4 py-3 text-left text-base leading-snug transition-colors duration-(--dur-ui) hover:border-foreground/50;
+  }
+  .choice[aria-pressed="true"] {
+    @apply border-foreground bg-muted;
+  }
+  .feedback {
+    @apply grid gap-2 rounded-[14px] border border-foreground/25 bg-muted px-5 py-4;
+  }
+  .feedback-ok {
+    @apply border-ok bg-ok/10;
+  }
+  .chip {
+    @apply inline-flex min-h-9 items-center rounded-full border border-border px-3.5 py-1 text-sm leading-snug text-foreground;
+  }
+  .chip[aria-current="true"] {
+    @apply border-foreground bg-foreground font-semibold text-background;
+  }
+  .rise {
+    animation: rise 300ms var(--ease-draft) both;
+    animation-delay: var(--delay, 0ms);
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/*
+  Page changes. PageTransition (components/motion/page-transition.tsx) asks the browser for a view transition when the
+  path changes: the old page's content fades out as the new one fades in, at the interface speed on the site's easing. The root takes no part, so the
+  header, the phone tab bar and the footer stay live and tappable while it runs: a named element is not hit-tested
+  during a transition (Next.js's view transitions guide), and the tab bar's sliding pill promises that a quick second
+  tap goes through. Clicks pass through the overlay to the page.
+*/
+:root {
+  view-transition-name: none;
+}
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(*) {
+  animation-duration: var(--dur-ui);
+  animation-timing-function: var(--ease-draft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* No crossfade either: the new page is simply there. */
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+@layer components {
+  /* Lab drawings share one look: ink lines, paper nodes, mono annotations. */
+  .viz {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-inline: auto;
+    overflow: visible;
+  }
+  .viz text {
+    fill: var(--muted-foreground);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+  .viz .lbl {
+    fill: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  .viz .node {
+    fill: var(--card);
+    stroke: var(--foreground);
+    stroke-width: 1.5;
+  }
+  .viz .node-lead {
+    fill: var(--signal);
+    stroke: var(--signal);
+  }
+  .viz .edge {
+    stroke: var(--rule);
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .viz .edge-ink {
+    stroke: var(--foreground);
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .viz .edge-signal {
+    stroke: var(--signal);
+    stroke-width: 2.5;
+    fill: none;
+  }
+  .viz .grid-line {
+    stroke: var(--border);
+    stroke-width: 1;
+    fill: none;
+  }
+  .viz .fill-ink {
+    fill: var(--foreground);
+  }
+  .viz .fill-signal {
+    fill: var(--signal);
+  }
+  .viz .fill-soft {
+    fill: var(--border);
+  }
+  /* A line that just arrived (Team math: the newest person's lines). */
+  .viz .fresh {
+    animation: fresh 450ms var(--ease-draft) both;
+  }
+  @keyframes fresh {
+    from {
+      opacity: 0;
+    }
+  }
+  /* A line that draws itself once (Rewind's trace). Reduced motion shows it drawn. */
+  .viz .draw {
+    stroke-dasharray: 1;
+    animation: draw var(--dur-draw) var(--ease-draft) both;
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .viz .move {
+    transition:
+      transform 600ms var(--ease-draft),
+      opacity 400ms var(--ease-draft);
+  }
+  .viz [role="button"] {
+    cursor: pointer;
+    outline: none;
+  }
+  .viz [role="button"]:focus-visible .focus-ring {
+    stroke: var(--signal);
+    stroke-width: 2;
+    stroke-dasharray: 3 3;
+  }
+}
+
+@layer components {
+  .burst-stroke {
+    animation: burst 760ms var(--ease-draft) both;
+  }
+  @keyframes burst {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(0.4);
+    }
+    25% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--bx), var(--by)) scale(1);
+    }
+  }
+  @keyframes nudge {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    75% {
+      transform: translateX(5px);
+    }
+  }
+  .nudge {
+    animation: nudge 240ms ease-in-out;
+  }
+}
+
+
+
+/* After a tap or click, no focus ring: it is only there to show keyboard users where they are.
+   Unlayered and important so it also beats the components' own focus-visible utilities. */
+html[data-pointer] :focus-visible {
+  outline: none !important;
+}
+html[data-pointer] [role="tab"]:focus-visible,
+html[data-pointer] button:focus-visible {
+  border-color: transparent !important;
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+/* Your sheet prints as one sheet: no site chrome, no page background, and a card that becomes the page. */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  body {
+    background: var(--card);
+  }
+}

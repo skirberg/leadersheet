@@ -1,0 +1,30 @@
+name: Content correction
+description: A reading, number, date or framework on the site is wrong or out of date.
+labels: [content]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The address, for example https://leadersheet.io/learn/s10/
+    validations:
+      required: true
+  - type: textarea
+    id: says
+    attributes:
+      label: What it says now
+    validations:
+      required: true
+  - type: textarea
+    id: should
+    attributes:
+      label: What it should say
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: A link to the original reading, paper or publisher page.
+    validations:
+      required: true

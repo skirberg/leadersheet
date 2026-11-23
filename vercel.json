@@ -1,0 +1,285 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/learn/s1",
+      "destination": "/learn/leader-as-architect/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s1/",
+      "destination": "/learn/leader-as-architect/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s2",
+      "destination": "/learn/leading-by-doing/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s2/",
+      "destination": "/learn/leading-by-doing/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s3",
+      "destination": "/learn/leading-through-design/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s3/",
+      "destination": "/learn/leading-through-design/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s4",
+      "destination": "/learn/leadership-through-culture/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s4/",
+      "destination": "/learn/leadership-through-culture/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s5",
+      "destination": "/learn/influence-and-driving-change/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s5/",
+      "destination": "/learn/influence-and-driving-change/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s6",
+      "destination": "/learn/teaming/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s6/",
+      "destination": "/learn/teaming/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s7",
+      "destination": "/learn/navigating-conflict/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s7/",
+      "destination": "/learn/navigating-conflict/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s8",
+      "destination": "/learn/collaborative-decision-making/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s8/",
+      "destination": "/learn/collaborative-decision-making/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s9",
+      "destination": "/learn/leading-by-listening/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s9/",
+      "destination": "/learn/leading-by-listening/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s10",
+      "destination": "/learn/motivating-yourself-and-others/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s10/",
+      "destination": "/learn/motivating-yourself-and-others/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s11",
+      "destination": "/learn/feedback/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s11/",
+      "destination": "/learn/feedback/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s13",
+      "destination": "/learn/power-and-influence/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s13/",
+      "destination": "/learn/power-and-influence/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s14",
+      "destination": "/learn/leadership-styles/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s14/",
+      "destination": "/learn/leadership-styles/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s15",
+      "destination": "/learn/transforming-and-serving/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s15/",
+      "destination": "/learn/transforming-and-serving/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s16",
+      "destination": "/learn/trust-and-fairness/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s16/",
+      "destination": "/learn/trust-and-fairness/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s17",
+      "destination": "/learn/ethics-and-blind-spots/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s17/",
+      "destination": "/learn/ethics-and-blind-spots/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s18",
+      "destination": "/learn/negotiation/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s18/",
+      "destination": "/learn/negotiation/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s19",
+      "destination": "/learn/coaching-and-delegating/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s19/",
+      "destination": "/learn/coaching-and-delegating/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s20",
+      "destination": "/learn/networks/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s20/",
+      "destination": "/learn/networks/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s21",
+      "destination": "/learn/across-cultures-and-distance/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s21/",
+      "destination": "/learn/across-cultures-and-distance/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s22",
+      "destination": "/learn/crisis-and-uncertainty/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s22/",
+      "destination": "/learn/crisis-and-uncertainty/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s23",
+      "destination": "/learn/inclusion-and-voice/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s23/",
+      "destination": "/learn/inclusion-and-voice/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s24",
+      "destination": "/learn/leading-yourself/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s24/",
+      "destination": "/learn/leading-yourself/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s12",
+      "destination": "/learn/integrating-it-all/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/s12/",
+      "destination": "/learn/integrating-it-all/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://vercel.live; style-src 'self' 'unsafe-inline' https://vercel.live; img-src 'self' data: blob: https://vercel.live https://vercel.com; font-src 'self' data: https://vercel.live https://assets.vercel.com; connect-src 'self' https://vercel.live wss://ws-us3.pusher.com; media-src 'self' blob:; worker-src 'self' blob:; manifest-src 'self'; frame-src https://vercel.live; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self' https://samikirberg.com https://www.samikirberg.com; upgrade-insecure-requests"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/security.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}

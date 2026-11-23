@@ -1,0 +1,22 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "$description": "Leadersheet, dark, more contrast (prefers-contrast: more). Overrides on dark.tokens.json: lighter labels and pink text, hairlines and control borders that show.",
+  "text": {
+    "$type": "color",
+    "muted-foreground": { "$value": "{color.slate.807}" }
+  },
+  "border": {
+    "$type": "color",
+    "border": { "$value": "{color.slate.527}" },
+    "rule": { "$value": "{color.slate.731}" },
+    "input": { "$value": "{color.slate.731}" }
+  },
+  "accent": {
+    "$type": "color",
+    "signal-text": { "$value": "{color.pink.786}" }
+  },
+  "state": {
+    "$type": "color",
+    "destructive": { "$value": "{color.red.782}" }
+  }
+}

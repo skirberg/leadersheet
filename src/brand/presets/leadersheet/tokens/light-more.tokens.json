@@ -1,0 +1,25 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "$description": "Leadersheet, light, more contrast (prefers-contrast: more). Overrides on light.tokens.json: reading text and labels at 7:1 or better (Primer's high-contrast goal, WCAG AAA), hairlines that show, firmer control borders. The pink marks and the focus ring stay.",
+  "text": {
+    "$type": "color",
+    "muted-foreground": { "$value": "{color.neutral.349}", "$description": "Labels in near-ink: 10:1 on the page." }
+  },
+  "border": {
+    "$type": "color",
+    "border": { "$value": "{color.slate.600}", "$description": "Hairlines that show: 3.5:1." },
+    "rule": { "$value": "{color.neutral.475}" },
+    "input": { "$value": "{color.neutral.475}" }
+  },
+  "accent": {
+    "$type": "color",
+    "signal-text": { "$value": "{color.pink.464}" },
+    "signal-foreground": { "$value": "{color.neutral.0}", "$description": "Ink on the pink fill: 5.4:1, as far as text on the brand pink can go." },
+    "signal-2-foreground": { "$value": "{color.neutral.0}" }
+  },
+  "state": {
+    "$type": "color",
+    "ok": { "$value": "{color.green.408}" },
+    "destructive": { "$value": "{color.red.452}" }
+  }
+}

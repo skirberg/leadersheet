@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: "Leadersheet: leadership in twenty-four lessons"
+message: "If you use Leadersheet in teaching or research, please cite it as below."
+type: software
+authors:
+  - name: skirberg
+    website: "https://github.com/skirberg"
+url: "https://leadersheet.io"
+repository-code: "https://github.com/skirberg/leadersheet"
+license: MIT
+keywords:
+  - leadership
+  - management
+  - interactive learning
+  - organizational behavior
+  - education

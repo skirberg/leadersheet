@@ -1,0 +1,22 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "Leadersheet",
+  "version": "2025.10",
+  "description": "How the token files combine. The primitives always; then one theme: light or dark (the site's theme switch), or either with the high-contrast overrides on top (prefers-contrast: more). scripts/tokens.ts resolves every theme and writes tokens.css, tokens.ts and public/tokens.json.",
+  "sets": {
+    "primitives": { "sources": [{ "$ref": "primitives.tokens.json" }] }
+  },
+  "modifiers": {
+    "theme": {
+      "description": "Colour theme.",
+      "contexts": {
+        "light": [{ "$ref": "light.tokens.json" }],
+        "dark": [{ "$ref": "dark.tokens.json" }],
+        "light-more": [{ "$ref": "light.tokens.json" }, { "$ref": "light-more.tokens.json" }],
+        "dark-more": [{ "$ref": "dark.tokens.json" }, { "$ref": "dark-more.tokens.json" }]
+      },
+      "default": "light"
+    }
+  },
+  "resolutionOrder": [{ "$ref": "#/sets/primitives" }, { "$ref": "#/modifiers/theme" }]
+}

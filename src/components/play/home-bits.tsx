@@ -1,0 +1,64 @@
+"use client"
+
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Emphasis } from "@/components/brand/emphasis"
+import { Arcade } from "./arcade"
+import { useProgress } from "@/lib/store"
+
+export function HeroLine() {
+  const { mode, ready } = useProgress()
+  const play = ready && mode === "play"
+  return (
+    <>
+      Learn <Emphasis>leadership</Emphasis> {play ? "by playing" : "by doing"}
+    </>
+  )
+}
+
+export function HeroCtas({ children }: { children: React.ReactNode }) {
+  const { mode, ready } = useProgress()
+  if (ready && mode === "play")
+    return (
+      <>
+        <Button asChild size="lg">
+          <Link href="/play/">
+            Open the arcade <ArrowRight className="size-4" />
+          </Link>
+        </Button>
+        <Button asChild size="lg" variant="outline">
+          <Link href="#lessons">The lessons</Link>
+        </Button>
+      </>
+    )
+  return <>{children}</>
+}
+
+export function HomeArcade({ slot }: { slot: "top" | "bottom" }) {
+  const { mode, ready } = useProgress()
+  const play = ready && mode === "play"
+  if ((slot === "top") !== play) return null
+  return (
+    <section aria-labelledby={`arcade-${slot}`} className="span-wide grid grid-cols-subgrid gap-y-6">
+      <div className="span-rail grid content-start justify-items-start gap-2">
+        <h2 id={`arcade-${slot}`} className="text-4xl">
+          The arcade
+        </h2>
+        <Link href="/play/" className="-my-3 py-3 text-sm font-semibold underline-offset-4 hover:underline">
+          All games
+        </Link>
+      </div>
+      <div className="span-main">
+        <Arcade across={3} />
+      </div>
+    </section>
+  )
+}
+
+export function SheetPlaySlot({ slot, children }: { slot: "top" | "bottom"; children: React.ReactNode }) {
+  const { mode, ready } = useProgress()
+  const play = ready && mode === "play"
+  if ((slot === "top") !== play) return null
+  return <>{children}</>
+}
