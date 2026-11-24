@@ -61,5 +61,10 @@
   },
   "engines": {
     "node": ">=22.18"
+  },
+  "overrides": {
+    "@ts-morph/common": {
+      "minimatch": "^11.0.1"
+    }
   }
 }
